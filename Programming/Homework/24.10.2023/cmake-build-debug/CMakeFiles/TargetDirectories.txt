@@ -1,0 +1,3 @@
+/Users/rado/Documents/NBU/Programming/Homework/24.10.2023/cmake-build-debug/CMakeFiles/24_10_2023.dir
+/Users/rado/Documents/NBU/Programming/Homework/24.10.2023/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/rado/Documents/NBU/Programming/Homework/24.10.2023/cmake-build-debug/CMakeFiles/rebuild_cache.dir
