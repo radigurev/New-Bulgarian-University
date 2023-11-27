@@ -63,7 +63,6 @@ int main() {
         for (int j = 0; j < m; ++j) {
             cin >> matrix[i][j];
         }
-
     }
 
     cin >> playerOne;
