@@ -1,0 +1,3 @@
+/Users/rado/Documents/NBU/Programming/Exam_1/cmake-build-debug/CMakeFiles/Exam_1.dir
+/Users/rado/Documents/NBU/Programming/Exam_1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/rado/Documents/NBU/Programming/Exam_1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
