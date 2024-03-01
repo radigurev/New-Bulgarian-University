@@ -1,1 +1,0 @@
-CMakeLists.txt not found in /Users/rado/Documents/NBU/Programming/class/12.10.2023 Select CMakeLists.txt
