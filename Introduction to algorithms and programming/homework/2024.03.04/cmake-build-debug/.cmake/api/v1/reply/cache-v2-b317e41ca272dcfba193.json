@@ -11,7 +11,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/rado/Documents/NBU/Introduction to algorithms and programming/2024.03.04/cmake-build-debug"
+			"value" : "/Users/rado/Documents/NBU/Introduction to algorithms and programming/homework/2024.03.04/cmake-build-debug"
 		},
 		{
 			"name" : "2024_03_04_IS_TOP_LEVEL",
@@ -35,7 +35,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/rado/Documents/NBU/Introduction to algorithms and programming/2024.03.04"
+			"value" : "/Users/rado/Documents/NBU/Introduction to algorithms and programming/homework/2024.03.04"
 		},
 		{
 			"name" : "CMAKE_ADDR2LINE",
@@ -91,7 +91,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/rado/Documents/NBU/Introduction to algorithms and programming/2024.03.04/cmake-build-debug"
+			"value" : "/Users/rado/Documents/NBU/Introduction to algorithms and programming/homework/2024.03.04/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -515,7 +515,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/rado/Documents/NBU/Introduction to algorithms and programming/2024.03.04/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "/Users/rado/Documents/NBU/Introduction to algorithms and programming/homework/2024.03.04/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -575,7 +575,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/rado/Documents/NBU/Introduction to algorithms and programming/2024.03.04"
+			"value" : "/Users/rado/Documents/NBU/Introduction to algorithms and programming/homework/2024.03.04"
 		},
 		{
 			"name" : "CMAKE_INSTALL_NAME_TOOL",

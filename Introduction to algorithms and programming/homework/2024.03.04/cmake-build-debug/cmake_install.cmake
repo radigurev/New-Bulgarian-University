@@ -1,4 +1,4 @@
-# Install script for directory: /Users/rado/Documents/NBU/Introduction to algorithms and programming/2024.03.04
+# Install script for directory: /Users/rado/Documents/NBU/Introduction to algorithms and programming/homework/2024.03.04
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/rado/Documents/NBU/Introduction to algorithms and programming/2024.03.04/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/rado/Documents/NBU/Introduction to algorithms and programming/homework/2024.03.04/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
