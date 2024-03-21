@@ -1,0 +1,4 @@
+"/Users/rado/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/232.9921.42/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/Users/rado/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/232.9921.42/CLion.app/Contents/bin/ninja/mac/ninja" -G Ninja -S /Users/rado/Documents/NBU/Programming/Homework/07.11.2023 -B /Users/rado/Documents/NBU/Programming/Homework/07.11.2023/cmake-build-debug
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/rado/Documents/NBU/Programming/Homework/07.11.2023/cmake-build-debug
