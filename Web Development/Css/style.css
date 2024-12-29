@@ -30,6 +30,10 @@ font-family: 'Helvetica', sans-serif;
     background-image: url('../resources/cuisine-page-background.jpg');
 }
 
+.recipe-page {
+  background-image: url('../resources//recipe-page-background.jpg');
+}
+
 .container {
     width: 100vw;
     height: 100vh;

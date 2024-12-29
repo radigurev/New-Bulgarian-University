@@ -1,27 +1,38 @@
 [
     {
+        "id": 1,
         "name": "Italian",
         "description": "Italian cuisine is known for its regional diversity, rich taste, and iconic dishes like pasta, pizza, and risotto. It emphasizes fresh, high-quality ingredients.",
         "image": "../resources/cuisinesHeader/italiyHeader.jpg"
     },
     {
+        "id": 2,
         "name": "Mexican",
         "description": "Mexican cuisine features vibrant, flavorful dishes that blend indigenous and Spanish influences, including tacos, enchiladas, and mole.",
         "image": "../resources/cuisinesHeader/mexicanHeader.jpg"
     },
     {
+        "id": 3,
         "name": "Japanese",
         "description": "Japanese cuisine focuses on seasonal ingredients and simple preparation, offering dishes like sushi, ramen, and tempura.",
         "image": "../resources/cuisinesHeader/japaneseHeader.jpg"
     },
     {
+        "id": 4,
         "name": "Indian",
         "description": "Indian cuisine is characterized by its diverse use of spices and herbs, creating flavorful dishes such as curry, biryani, and naan.",
         "image": "../resources/cuisinesHeader/indianHeader.jpg"
     },
     {
+        "id": 5,
         "name": "French",
         "description": "French cuisine is renowned for its precision and artistry, offering a range of dishes from pastries like croissants to fine dining specialties.",
         "image": "../resources/cuisinesHeader/frenchHeader.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Other",
+        "description": "Other cuisines from around the world",
+        "image": "TODO "
     }
 ]

@@ -8,9 +8,9 @@ function animateTitle(elementId) {
         span.textContent = char;
         span.className = "letter";
         container.appendChild(span);
-        setTimeout(() => {
-            letter.style.opacity = "1";
-            letter.style.transform = "translateY(0) scale(1)";
+        setTimeout(() => {            
+            span.style.opacity = "1";
+            span.style.transform = "translateY(0) scale(1)";
         }, index * 200);
     });
 }
