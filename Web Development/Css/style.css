@@ -189,6 +189,52 @@ font-family: 'Helvetica', sans-serif;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
   }
+
+  .recipe-body {
+    width: 90%;
+    height: 80%;
+    margin: 0 auto;
+    display: flex;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 1%;
+}
+
+.left-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-right: 5px;
+}
+
+.right-side {
+    flex: 1;
+    border: 2px solid rgba(0, 0, 0, 0.589);
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+.image-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1%;
+}
+
+.recipe-ingrediants {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid rgba(0, 0, 0, 0.589);
+}
+
+#recipe-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
     
   @media (max-width: 960px) {
     .articles {

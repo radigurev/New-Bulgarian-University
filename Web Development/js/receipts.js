@@ -11,11 +11,11 @@ PopulatePage('recipes', PopulateCuisines);
 function CreateRecipeCard(recipe) {
     if (IsCategoryParameterInvalid()) {
         console.log('InvalidParameter: ' + categoryParameter);
-        CreateCard(recipe, articlesContainer, 'ViewRecipie', '');
+        CreateCard(recipe, articlesContainer, 'ViewRecipe', '');
         return;
     }
 
-    if (recipe.cuisine == categoryParameter) CreateCard(recipe, articlesContainer, 'ViewRecipie', `recipeid=${recipe.id}`);
+    if (recipe.cuisine == categoryParameter) CreateCard(recipe, articlesContainer, 'ViewRecipe', `recipeid=${recipe.id}`);
 }
 
 function GetFilter() {

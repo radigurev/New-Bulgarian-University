@@ -1,119 +1,233 @@
 [
     {
-        "id": 1,
-        "publisherName": "Tasty Treats",
-        "name": "Classic Spaghetti Carbonara",
-        "description": "A creamy pasta dish with eggs, cheese, and pancetta.",
-        "recipeSteps": "A traditional Italian pasta dish made with eggs, cheese, pancetta, and pepper. \n1. Boil water in a large pot and cook spaghetti according to package instructions. \n2. In a bowl, whisk together eggs and grated Parmesan cheese. \n3. In a skillet, cook diced pancetta until crispy. \n4. Combine spaghetti, pancetta, and egg mixture in the skillet. \n5. Add reserved pasta water if needed to create a creamy sauce. \n6. Serve with freshly ground black pepper and more Parmesan.",
-        "cuisine": 1,
-        "image": "../resources/recipes/1.jpg"
+      "id": 1,
+      "publisherName": "Tasty Treats",
+      "name": "Classic Spaghetti Carbonara",
+      "description": "A creamy pasta dish with eggs, cheese, and pancetta.",
+      "recipeSteps": "A traditional Italian pasta dish made with eggs, cheese, pancetta, and pepper. \n1. Boil water in a large pot and cook spaghetti according to package instructions. \n2. In a bowl, whisk together eggs and grated Parmesan cheese. \n3. In a skillet, cook diced pancetta until crispy. \n4. Combine spaghetti, pancetta, and egg mixture in the skillet. \n5. Add reserved pasta water if needed to create a creamy sauce. \n6. Serve with freshly ground black pepper and more Parmesan.",
+      "cuisine": 1,
+      "image": "../resources/recipes/1.jpg",
+      "recipeIngredients": [
+        "Spaghetti (200g)",
+        "Eggs (2 large)",
+        "Parmesan cheese (50g)",
+        "Pancetta (100g)",
+        "Salt (to taste)",
+        "Black pepper (to taste)"
+      ]
     },
     {
-        "id": 2,
-        "publisherName": "Baker's Delight",
-        "name": "Tiramisu",
-        "description": "A coffee-soaked dessert with mascarpone cream.",
-        "recipeSteps": "A classic Italian dessert made with layers of coffee-soaked ladyfingers and mascarpone cream. \n1. Brew strong espresso and allow it to cool. \n2. In a bowl, mix mascarpone cheese, sugar, and vanilla extract until smooth. \n3. Dip ladyfingers in the coffee and layer them in a dish. \n4. Spread mascarpone cream over the ladyfingers. \n5. Repeat layers and top with cocoa powder. \n6. Refrigerate for at least 4 hours before serving.",
-        "cuisine": 1,
-        "image": "../resources/recipes/2.jpg"
+      "id": 2,
+      "publisherName": "Baker's Delight",
+      "name": "Tiramisu",
+      "description": "A coffee-soaked dessert with mascarpone cream.",
+      "recipeSteps": "A classic Italian dessert made with layers of coffee-soaked ladyfingers and mascarpone cream. \n1. Brew strong espresso and allow it to cool. \n2. In a bowl, mix mascarpone cheese, sugar, and vanilla extract until smooth. \n3. Dip ladyfingers in the coffee and layer them in a dish. \n4. Spread mascarpone cream over the ladyfingers. \n5. Repeat layers and top with cocoa powder. \n6. Refrigerate for at least 4 hours before serving.",
+      "cuisine": 1,
+      "image": "../resources/recipes/2.jpg",
+      "recipeIngredients": [
+        "Ladyfingers (200g)",
+        "Espresso (1 cup)",
+        "Mascarpone cheese (250g)",
+        "Sugar (50g)",
+        "Vanilla extract (1 tsp)",
+        "Cocoa powder (for dusting)"
+      ]
     },
     {
-        "id": 3,
-        "publisherName": "Rustic Flavors",
-        "name": "Margherita Pizza",
-        "description": "A simple pizza with mozzarella, tomato, and basil.",
-        "recipeSteps": "A simple yet delicious Italian pizza with fresh ingredients. \n1. Preheat oven to 475°F (245°C). \n2. Roll out pizza dough and spread tomato sauce over it. \n3. Top with fresh mozzarella slices and basil leaves. \n4. Drizzle with olive oil and bake until crust is golden and cheese is bubbly. \n5. Serve hot with extra basil if desired.",
-        "cuisine": 1,
-        "image": "../resources/recipes/3.jpg"
+      "id": 3,
+      "publisherName": "Rustic Flavors",
+      "name": "Margherita Pizza",
+      "description": "A simple pizza with mozzarella, tomato, and basil.",
+      "recipeSteps": "A simple yet delicious Italian pizza with fresh ingredients. \n1. Preheat oven to 475°F (245°C). \n2. Roll out pizza dough and spread tomato sauce over it. \n3. Top with fresh mozzarella slices and basil leaves. \n4. Drizzle with olive oil and bake until crust is golden and cheese is bubbly. \n5. Serve hot with extra basil if desired.",
+      "cuisine": 1,
+      "image": "../resources/recipes/3.jpg",
+      "recipeIngredients": [
+        "Pizza dough (1 ball)",
+        "Tomato sauce (1/2 cup)",
+        "Mozzarella cheese (125g)",
+        "Fresh basil leaves (a handful)",
+        "Olive oil (1 tbsp)"
+      ]
     },
     {
-        "id": 4,
-        "publisherName": "La Dolce Vita",
-        "name": "Risotto Milanese",
-        "description": "A creamy saffron-flavored rice dish.",
-        "recipeSteps": "A creamy Italian rice dish flavored with saffron. \n1. Sauté onions in butter until soft. \n2. Add Arborio rice and toast it for a few minutes. \n3. Gradually add warm chicken broth while stirring. \n4. Stir in saffron dissolved in a bit of broth. \n5. Finish with Parmesan cheese and more butter. \n6. Serve warm and creamy.",
-        "cuisine": 1,
-        "image": "../resources/recipes/4.jpg"
+      "id": 4,
+      "publisherName": "La Dolce Vita",
+      "name": "Risotto Milanese",
+      "description": "A creamy saffron-flavored rice dish.",
+      "recipeSteps": "A creamy Italian rice dish flavored with saffron. \n1. Sauté onions in butter until soft. \n2. Add Arborio rice and toast it for a few minutes. \n3. Gradually add warm chicken broth while stirring. \n4. Stir in saffron dissolved in a bit of broth. \n5. Finish with Parmesan cheese and more butter. \n6. Serve warm and creamy.",
+      "cuisine": 1,
+      "image": "../resources/recipes/4.jpg",
+      "recipeIngredients": [
+        "Arborio rice (300g)",
+        "Saffron threads (a pinch)",
+        "Onion (1 medium)",
+        "Butter (50g)",
+        "Chicken broth (800ml)",
+        "Parmesan cheese (50g)",
+        "Salt (to taste)",
+        "Pepper (to taste)"
+      ]
     },
     {
-        "id": 5,
-        "publisherName": "Fiesta Flavors",
-        "name": "Tacos al Pastor",
-        "description": "Grilled marinated pork tacos with pineapple.",
-        "recipeSteps": "A flavorful Mexican street food dish featuring marinated pork and pineapple. \n1. Marinate thinly sliced pork in a mixture of achiote paste, pineapple juice, vinegar, and spices for several hours. \n2. Grill the pork until cooked through and slightly charred. \n3. Warm corn tortillas and fill with the grilled pork. \n4. Top with diced pineapple, onion, and cilantro. \n5. Serve with lime wedges and salsa.",
-        "cuisine": 2,
-        "image": "../resources/recipes/5.jpg"
+      "id": 5,
+      "publisherName": "Fiesta Flavors",
+      "name": "Tacos al Pastor",
+      "description": "Grilled marinated pork tacos with pineapple.",
+      "recipeSteps": "A flavorful Mexican street food dish featuring marinated pork and pineapple. \n1. Marinate thinly sliced pork in a mixture of achiote paste, pineapple juice, vinegar, and spices for several hours. \n2. Grill the pork until cooked through and slightly charred. \n3. Warm corn tortillas and fill with the grilled pork. \n4. Top with diced pineapple, onion, and cilantro. \n5. Serve with lime wedges and salsa.",
+      "cuisine": 2,
+      "image": "../resources/recipes/5.jpg",
+      "recipeIngredients": [
+        "Pork (thinly sliced) (500g)",
+        "Achiote paste (2 tbsp)",
+        "Pineapple juice (1/2 cup)",
+        "Vinegar (2 tbsp)",
+        "Spices (1 tbsp chili powder, 1 tsp oregano)",
+        "Corn tortillas (8-10)",
+        "Onion (1 small)",
+        "Cilantro (a handful)",
+        "Pineapple (100g, diced)"
+      ]
     },
     {
-        "id": 6,
-        "publisherName": "Spicy Bites",
-        "name": "Chiles Rellenos",
-        "description": "Stuffed and fried poblano peppers.",
-        "recipeSteps": "A classic Mexican dish of stuffed poblano peppers. \n1. Roast poblano peppers until charred and peel off the skin. \n2. Stuff the peppers with cheese or ground meat. \n3. Dip the stuffed peppers in beaten eggs and coat with flour. \n4. Fry until golden brown. \n5. Serve with tomato sauce and rice.",
-        "cuisine": 2,
-        "image": "../resources/recipes/6.jpg"
+      "id": 6,
+      "publisherName": "Spicy Bites",
+      "name": "Chiles Rellenos",
+      "description": "Stuffed and fried poblano peppers.",
+      "recipeSteps": "A classic Mexican dish of stuffed poblano peppers. \n1. Roast poblano peppers until charred and peel off the skin. \n2. Stuff the peppers with cheese or ground meat. \n3. Dip the stuffed peppers in beaten eggs and coat with flour. \n4. Fry until golden brown. \n5. Serve with tomato sauce and rice.",
+      "cuisine": 2,
+      "image": "../resources/recipes/6.jpg",
+      "recipeIngredients": [
+        "Poblano peppers (4)",
+        "Cheese or ground meat (200g)",
+        "Eggs (2)",
+        "Flour (1/2 cup)",
+        "Oil (for frying) (as needed)",
+        "Tomato sauce (1 cup)"
+      ]
     },
     {
-        "id": 7,
-        "publisherName": "Taste of Mexico",
-        "name": "Guacamole",
-        "description": "A creamy avocado-based dip.",
-        "recipeSteps": "A fresh and creamy Mexican dip made with avocados. \n1. Mash ripe avocados in a bowl. \n2. Add diced tomatoes, onions, and cilantro. \n3. Squeeze lime juice over the mixture. \n4. Season with salt, pepper, and optional jalapeños. \n5. Mix well and serve with tortilla chips.",
-        "cuisine": 2,
-        "image": "../resources/recipes/7.jpg"
+      "id": 7,
+      "publisherName": "Taste of Mexico",
+      "name": "Guacamole",
+      "description": "A creamy avocado-based dip.",
+      "recipeSteps": "A fresh and creamy Mexican dip made with avocados. \n1. Mash ripe avocados in a bowl. \n2. Add diced tomatoes, onions, and cilantro. \n3. Squeeze lime juice over the mixture. \n4. Season with salt, pepper, and optional jalapeños. \n5. Mix well and serve with tortilla chips.",
+      "cuisine": 2,
+      "image": "../resources/recipes/7.jpg",
+      "recipeIngredients": [
+        "Avocados (2 ripe)",
+        "Tomatoes (1 medium)",
+        "Onions (1/2)",
+        "Cilantro (a handful)",
+        "Lime juice (1 lime)",
+        "Salt (to taste)",
+        "Pepper (to taste)",
+        "Jalapeños (optional) (1 small)"
+      ]
     },
     {
-        "id": 8,
-        "publisherName": "Sushi Masters",
-        "name": "California Roll",
-        "description": "Sushi roll with crab, avocado, and cucumber.",
-        "recipeSteps": "A popular Japanese sushi roll filled with crab, avocado, and cucumber. \n1. Prepare sushi rice by seasoning cooked rice with rice vinegar, sugar, and salt. \n2. Place a sheet of nori on a bamboo mat and spread rice over it. \n3. Arrange crab, avocado, and cucumber on top. \n4. Roll the sushi tightly using the bamboo mat. \n5. Slice into pieces and serve with soy sauce, wasabi, and pickled ginger.",
-        "cuisine": 3,
-        "image": "../resources/recipes/8.jpg"
+      "id": 8,
+      "publisherName": "Sushi Masters",
+      "name": "California Roll",
+      "description": "Sushi roll with crab, avocado, and cucumber.",
+      "recipeSteps": "A popular Japanese sushi roll filled with crab, avocado, and cucumber. \n1. Prepare sushi rice by seasoning cooked rice with rice vinegar, sugar, and salt. \n2. Place a sheet of nori on a bamboo mat and spread rice over it. \n3. Arrange crab, avocado, and cucumber on top. \n4. Roll the sushi tightly using the bamboo mat. \n5. Slice into pieces and serve with soy sauce, wasabi, and pickled ginger.",
+      "cuisine": 3,
+      "image": "../resources/recipes/8.jpg",
+      "recipeIngredients": [
+        "Sushi rice (250g)",
+        "Nori sheets (4)",
+        "Crab (imitation or real) (100g)",
+        "Avocado (1)",
+        "Cucumber (1 small)",
+        "Rice vinegar (2 tbsp)",
+        "Sugar (1 tbsp)",
+        "Salt (1 tsp)"
+      ]
     },
     {
-        "id": 9,
-        "publisherName": "Sea Breeze",
-        "name": "Salmon Nigiri",
-        "description": "Fresh salmon slices over rice mounds.",
-        "recipeSteps": "A simple and elegant Japanese sushi dish. \n1. Slice fresh salmon into thin pieces. \n2. Shape sushi rice into small mounds. \n3. Place salmon slices over the rice. \n4. Serve with soy sauce and wasabi.",
-        "cuisine": 3,
-        "image": "../resources/recipes/9.jpg"
+      "id": 9,
+      "publisherName": "Sea Breeze",
+      "name": "Salmon Nigiri",
+      "description": "Fresh salmon slices over rice mounds.",
+      "recipeSteps": "A simple and elegant Japanese sushi dish. \n1. Slice fresh salmon into thin pieces. \n2. Shape sushi rice into small mounds. \n3. Place salmon slices over the rice. \n4. Serve with soy sauce and wasabi.",
+      "cuisine": 3,
+      "image": "../resources/recipes/9.jpg",
+      "recipeIngredients": [
+        "Fresh salmon (150g)",
+        "Sushi rice (200g)",
+        "Soy sauce (for dipping)",
+        "Wasabi (to taste)"
+      ]
     },
     {
-        "id": 10,
-        "publisherName": "Indian Spice Hub",
-        "name": "Butter Chicken",
-        "description": "A creamy tomato-based chicken curry.",
-        "recipeSteps": "A rich and creamy Indian curry with tender chicken in a tomato-based sauce. \n1. Marinate chicken with yogurt, garlic, ginger, and spices for at least an hour. \n2. Cook the marinated chicken until lightly browned. \n3. In a pan, prepare a sauce with tomatoes, cream, butter, and spices. \n4. Simmer the chicken in the sauce until fully cooked. \n5. Serve with naan or basmati rice.",
-        "cuisine": 4,
-        "image": "../resources/recipes/10.jpg"
+      "id": 10,
+      "publisherName": "Indian Spice Hub",
+      "name": "Butter Chicken",
+      "description": "A creamy tomato-based chicken curry.",
+      "recipeSteps": "A rich and creamy Indian curry with tender chicken in a tomato-based sauce. \n1. Marinate chicken with yogurt, garlic, ginger, and spices for at least an hour. \n2. Cook the marinated chicken until lightly browned. \n3. In a pan, prepare a sauce with tomatoes, cream, butter, and spices. \n4. Simmer the chicken in the sauce until fully cooked. \n5. Serve with naan or basmati rice.",
+      "cuisine": 4,
+      "image": "../resources/recipes/10.jpg",
+      "recipeIngredients": [
+        "Chicken (500g, boneless)",
+        "Yogurt (100g)",
+        "Garlic (2 cloves)",
+        "Ginger (1 inch)",
+        "Spices (1 tbsp turmeric, 1 tbsp chili powder, 1 tbsp garam masala)",
+        "Tomatoes (2)",
+        "Cream (100ml)",
+        "Butter (50g)"
+      ]
     },
     {
-        "id": 11,
-        "publisherName": "Sweet Cravings",
-        "name": "Crème Brûlée",
-        "description": "A creamy custard dessert with caramelized sugar.",
-        "recipeSteps": "A delicate French dessert with a creamy custard base and a caramelized sugar crust. \n1. Preheat oven to 325°F (160°C). \n2. Mix heavy cream, vanilla, and sugar in a saucepan and heat until warm. \n3. Whisk egg yolks and slowly add the warm cream mixture. \n4. Pour the custard into ramekins and bake in a water bath until set. \n5. Chill for several hours, then sprinkle sugar on top and caramelize with a torch.",
-        "cuisine": 5,
-        "image": "../resources/recipes/11.jpg"
+      "id": 11,
+      "publisherName": "Sweet Cravings",
+      "name": "Crème Brûlée",
+      "description": "A creamy custard dessert with caramelized sugar.",
+      "recipeSteps": "A delicate French dessert with a creamy custard base and a caramelized sugar crust. \n1. Preheat oven to 325°F (160°C). \n2. Mix heavy cream, vanilla, and sugar in a saucepan and heat until warm. \n3. Whisk egg yolks and slowly add the warm cream mixture. \n4. Pour the custard into ramekins and bake in a water bath until set. \n5. Chill for several hours, then sprinkle sugar on top and caramelize with a torch.",
+      "cuisine": 5,
+      "image": "../resources/recipes/11.jpg",
+      "recipeIngredients": [
+        "Heavy cream (500ml)",
+        "Vanilla (1 tsp)",
+        "Sugar (100g total: 80g for custard + 20g for topping)",
+        "Egg yolks (4)"
+      ]
     },
     {
-        "id": 12,
-        "publisherName": "Rustic Flavors",
-        "name": "French Onion Soup",
-        "description": "A hearty soup with caramelized onions and cheese.",
-        "recipeSteps": "A hearty French soup made with caramelized onions and beef broth. \n1. Caramelize sliced onions in butter. \n2. Add beef broth, thyme, and bay leaves. \n3. Simmer for 30 minutes. \n4. Serve with toasted bread and melted cheese on top.",
-        "cuisine": 5,
-        "image": "../resources/recipes/12.jpg"
+      "id": 12,
+      "publisherName": "Rustic Flavors",
+      "name": "French Onion Soup",
+      "description": "A hearty soup with caramelized onions and cheese.",
+      "recipeSteps": "A hearty French soup made with caramelized onions and beef broth. \n1. Caramelize sliced onions in butter. \n2. Add beef broth, thyme, and bay leaves. \n3. Simmer for 30 minutes. \n4. Serve with toasted bread and melted cheese on top.",
+      "cuisine": 5,
+      "image": "../resources/recipes/12.jpg",
+      "recipeIngredients": [
+        "Onions (4 large)",
+        "Butter (50g)",
+        "Beef broth (1 liter)",
+        "Thyme (1 tsp dried)",
+        "Bay leaves (1)",
+        "Bread (4 slices)",
+        "Cheese (Gruyère or similar) (100g, grated)"
+      ]
     },
     {
-        "id": 13,
-        "publisherName": "Global Eats",
-        "name": "Shakshuka",
-        "description": "Eggs poached in spiced tomato sauce.",
-        "recipeSteps": "A Middle Eastern and North African dish featuring poached eggs in a spiced tomato sauce. \n1. Sauté onions, garlic, and peppers in olive oil. \n2. Add tomatoes, tomato paste, and spices such as cumin and paprika. \n3. Simmer until the sauce thickens. \n4. Make wells in the sauce and crack eggs into them. \n5. Cover and cook until the eggs are set. \n6. Serve with crusty bread.",
-        "cuisine": 6,
-        "image": "../resources/recipes/13.jpg"
+      "id": 13,
+      "publisherName": "Global Eats",
+      "name": "Shakshuka",
+      "description": "Eggs poached in spiced tomato sauce.",
+      "recipeSteps": "A Middle Eastern and North African dish featuring poached eggs in a spiced tomato sauce. \n1. Sauté onions, garlic, and peppers in olive oil. \n2. Add tomatoes, tomato paste, and spices such as cumin and paprika. \n3. Simmer until the sauce thickens. \n4. Make wells in the sauce and crack eggs into them. \n5. Cover and cook until the eggs are set. \n6. Serve with crusty bread.",
+      "cuisine": 6,
+      "image": "../resources/recipes/13.jpg",
+      "recipeIngredients": [
+        "Eggs (4)",
+        "Onions (1)",
+        "Garlic (2 cloves)",
+        "Peppers (1-2 bell peppers or spicy peppers)",
+        "Tomatoes (2 large or 1 can)",
+        "Tomato paste (1 tbsp)",
+        "Spices (1 tsp cumin, 1 tsp paprika, pinch chili flakes)",
+        "Olive oil (2 tbsp)"
+      ]
     }
-]
+  ]
+  
