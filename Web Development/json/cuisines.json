@@ -33,6 +33,6 @@
         "id": 6,
         "name": "Other",
         "description": "Other cuisines from around the world",
-        "image": "TODO "
+        "image": "../resources/cuisinesHeader/worldHeader.jpg"
     }
 ]
