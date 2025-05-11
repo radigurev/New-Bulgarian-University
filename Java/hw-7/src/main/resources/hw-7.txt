@@ -1,0 +1,106 @@
+class Vehicle {
+    private String brand;
+    private boolean emergencyVehicle;
+    private double weight;
+
+    public Vehicle(String brand, boolean emergencyVehicle, double weight) {
+        this.brand = brand;
+        this.emergencyVehicle = emergencyVehicle;
+        this.weight = weight;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public boolean isEmergencyVehicle() {
+        return emergencyVehicle;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "brand='" + brand + '\'' +
+                ", emergencyVehicle=" + emergencyVehicle +
+                ", weight=" + weight +
+                '}';
+    }
+}
+
+class VehicleServiceImpl {
+    public Comparator<Vehicle> comparatorByWeight() {
+        return Comparator.comparingDouble(Vehicle::getWeight).reversed();
+    }
+
+    public Comparator<Vehicle> comparatorByEmergency() {
+        return Comparator.comparing(Vehicle::isEmergencyVehicle).reversed();
+    }
+
+    public void removeVehiclesByWeight(List<Vehicle> vehicles) {
+        PriorityQueue<Vehicle> queue = new PriorityQueue<>(comparatorByWeight());
+        queue.addAll(vehicles);
+
+        while (!queue.isEmpty()) System.out.println(queue.poll());
+    }
+
+    public void removeVehiclesByEmergency(List<Vehicle> vehicles) {
+        PriorityQueue<Vehicle> queue = new PriorityQueue<>(comparatorByEmergency());
+        queue.addAll(vehicles);
+        while (!queue.isEmpty()) System.out.println(queue.poll());
+    }
+
+    public void removeVehiclesFifo(List<Vehicle> vehicles) {
+        Queue<Vehicle> queue = new LinkedList<>(vehicles);
+
+        while (!queue.isEmpty()) System.out.println(queue.remove());
+    }
+
+    public void removeVehiclesLifo(List<Vehicle> vehicles) {
+        Deque<Vehicle> stack = new ArrayDeque<>();
+        vehicles.forEach(stack::push);
+        while (!stack.isEmpty()) System.out.println(stack.pop());
+    }
+}
+
+public class Solution {
+    public static void main(String[] args) throws Exception {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+        List<String> brandList = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
+                .collect(toList());
+
+        List<Boolean> emergencyList = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
+                .map(e -> Integer.parseInt(e) != 0)
+                .collect(toList());
+
+        List<Double> weightList = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
+                .map(Double::parseDouble)
+                .collect(toList());
+
+        Vehicle v1 = new Vehicle(brandList.get(0), emergencyList.get(0), weightList.get(0));
+        Vehicle v2 = new Vehicle(brandList.get(1), emergencyList.get(1), weightList.get(1));
+        Vehicle v3 = new Vehicle(brandList.get(2), emergencyList.get(2), weightList.get(2));
+        Vehicle v4 = new Vehicle(brandList.get(3), emergencyList.get(3), weightList.get(3));
+
+        List<Vehicle> vehicles = Arrays.asList(v1, v2, v3, v4);
+
+        VehicleServiceImpl service = new VehicleServiceImpl();
+
+        service.removeVehiclesByWeight(vehicles);
+        System.out.println();
+
+        service.removeVehiclesByEmergency(vehicles);
+        System.out.println();
+
+        service.removeVehiclesFifo(vehicles);
+        System.out.println();
+
+        service.removeVehiclesLifo(vehicles);
+
+        bufferedReader.close();
+    }
+}
