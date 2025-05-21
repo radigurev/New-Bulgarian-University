@@ -5,19 +5,21 @@ import models.base.Employee;
 import java.math.BigDecimal;
 
 public class Manager extends Employee {
+    private BigDecimal baseSalary;
+    private BigDecimal bonus;
 
-    private final BigDecimal bonusRate;
-
-    public Manager(String name, BigDecimal baseSalary, BigDecimal bonusRate) {
-        super(name, baseSalary);
-        this.bonusRate = bonusRate;
+    public Manager(String id, String name, BigDecimal baseSalary, BigDecimal bonus) {
+        super(id, name);
+        this.baseSalary = baseSalary;
+        this.bonus = bonus;
     }
 
     @Override
-    public BigDecimal getSalary(BigDecimal revenue, BigDecimal threshold) {
-        if (revenue.compareTo(threshold) > 0) {
-            return baseSalary.add(baseSalary.multiply(bonusRate));
+    public BigDecimal getSalary(BigDecimal totalRevenue, BigDecimal managerBonusThreshold) {
+        BigDecimal salary = baseSalary;
+        if (totalRevenue.compareTo(managerBonusThreshold) > 0) {
+            salary = salary.add(bonus);
         }
-        return baseSalary;
+        return salary;
     }
 }

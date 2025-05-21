@@ -4,18 +4,15 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 public abstract class Employee implements Serializable {
-    private final String name;
-    protected final BigDecimal baseSalary;
+    private String id;
+    private String name;
 
-    protected Employee(String name, BigDecimal baseSalary) {
+    public Employee(String id, String name) {
+        this.id = id;
         this.name = name;
-        this.baseSalary = baseSalary;
     }
 
-    public String getName() {
-
-        return name;
-    }
-
-    public abstract BigDecimal getSalary(BigDecimal revenue, BigDecimal threshold);
+    public String getId() { return id; }
+    public String getName() { return name; }
+    public abstract BigDecimal getSalary(BigDecimal totalRevenue, BigDecimal managerBonusThreshold);
 }
