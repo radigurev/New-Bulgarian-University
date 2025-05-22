@@ -2,7 +2,6 @@ package models;
 
 import exceptions.NoPaperException;
 import exceptions.UnsupportedPrintModeException;
-import models.base.PrintMode;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,7 +1,7 @@
 package models.enums;
 
 public enum PaperType {
-    REGULAR,
+    MATTE,
     GLOSSY,
     NEWSPAPER
 }

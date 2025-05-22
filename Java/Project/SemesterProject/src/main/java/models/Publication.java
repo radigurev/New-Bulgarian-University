@@ -1,6 +1,5 @@
 package models;
 
-import models.base.PrintMode;
 import models.enums.PaperSize;
 
 import java.math.BigDecimal;
