@@ -21,6 +21,9 @@ public class ReportService implements IReportService {
 
     @Override
     public void writeReport(String report, Path path) throws IOException {
+        Path parent = path.getParent();
+        if (parent != null) Files.createDirectories(parent);
+
         Files.writeString(path, report);
     }
 
