@@ -9,6 +9,7 @@ import java.math.MathContext;
 import java.util.EnumMap;
 import java.util.Map;
 
+@Deprecated
 public class PaperService implements IPaperService {
     private final Map<PaperType, BigDecimal> basePriceMap = new EnumMap<>(PaperType.class);
     private final BigDecimal step;
