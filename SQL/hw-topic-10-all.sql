@@ -1,0 +1,77 @@
+USE sco_db_s2025;
+-- 1. Select all customers with orders on October 3, 2014
+SELECT DISTINCT c.*
+FROM customers c
+JOIN orders o ON c.cnum = o.cnum
+WHERE o.odate = '2014-10-03';
+
+-- 2. Select the customers who are in the same city with salespeople
+SELECT DISTINCT c.*
+FROM customers c
+JOIN salespeople s ON c.city = s.city;
+
+-- 3. Select the customers who are not in the same city with salespeople
+SELECT c.*
+FROM customers c
+WHERE NOT EXISTS (
+  SELECT 1 FROM salespeople s WHERE s.city = c.city
+);
+
+-- 4. Select the salespeople who are in the same city with customers
+SELECT DISTINCT s.*
+FROM salespeople s
+JOIN customers c ON s.city = c.city;
+
+-- 5. Select the salespeople who are not in the same city with customers
+SELECT s.*
+FROM salespeople s
+WHERE NOT EXISTS (
+  SELECT 1 FROM customers c WHERE c.city = s.city
+);
+
+-- 6. Select the orders with Amt above the average Amt for the customers who made them
+SELECT o.*
+FROM orders o
+JOIN (
+  SELECT cnum, AVG(amt) AS avg_amt
+  FROM orders
+  GROUP BY cnum
+) avg_customer ON o.cnum = avg_customer.cnum
+WHERE o.amt > avg_customer.avg_amt;
+
+-- 6a. Same as above but display cname, onum, amt
+SELECT c.cname, o.onum, o.amt
+FROM orders o
+JOIN customers c ON o.cnum = c.cnum
+JOIN (
+  SELECT cnum, AVG(amt) AS avg_amt
+  FROM orders
+  GROUP BY cnum
+) avg_customer ON o.cnum = avg_customer.cnum
+WHERE o.amt > avg_customer.avg_amt;
+
+-- 7. Select the sums of all Amt for each date, which are at least $2000 over the maximum Amt for the same date
+SELECT odate, SUM(amt) AS total_amt
+FROM orders
+GROUP BY odate
+HAVING SUM(amt) >= MAX(amt) + 2000;
+
+-- 8. Select the orders with Amt above the average Amt for all orders. Display cname, onum, amt
+SELECT c.cname, o.onum, o.amt
+FROM orders o
+JOIN customers c ON o.cnum = c.cnum
+WHERE o.amt > (SELECT AVG(amt) FROM orders);
+
+-- 9. Select the orders with Amt above the average Amt for orders done on the same date. Display cname, onum, odate, amt
+SELECT c.cname, o.onum, o.odate, o.amt
+FROM orders o
+JOIN customers c ON o.cnum = c.cnum
+WHERE o.amt > (
+  SELECT AVG(amt) FROM orders WHERE odate = o.odate
+);
+
+-- 10. Count the number of the orders done on each date with Amt above the average Amt for all orders. Display odate, number_of_orders
+SELECT odate, COUNT(*) AS number_of_orders
+FROM orders
+WHERE amt > (SELECT AVG(amt) FROM orders)
+GROUP BY odate;

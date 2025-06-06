@@ -48,7 +48,6 @@ public class PrintingHouseService implements IPrintingHouseService {
                            int pagesPerMinute,
                            int capacity) {
         PrintingHouse house = houseRepo.get(houseId);
-        // color capability = true only if PrintType.Color
         boolean supportsColor = printType == PrintType.Color;
         house.addMachine(
                 new PrintingMachine(machineId, capacity, supportsColor, pagesPerMinute)
@@ -63,7 +62,6 @@ public class PrintingHouseService implements IPrintingHouseService {
     @Override
     public BigDecimal buyPaper(String houseId, PaperType type, PaperSize size, int sheets) {
         PrintingHouse house = houseRepo.get(houseId);
-        // pricingPolicy returns base‐A5 price × size‐multiplier internally
         BigDecimal costPerSheet = pricingPolicy.priceFor(type, size);
         BigDecimal totalCost = costPerSheet.multiply(BigDecimal.valueOf(sheets));
         house.getLedger().addPaperCost(totalCost);

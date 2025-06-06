@@ -1,0 +1,5 @@
+=== Report for HouseA ===
+Revenue: 5000000
+Paper costs: 120.00
+Salary costs: 0
+Net profit: 4999880.00

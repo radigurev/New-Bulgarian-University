@@ -77,7 +77,6 @@ public class Main {
         IPersistenceService persistenceService = new PersistenceService();
         service = new PrintingHouseService(policy, repo, reportService, persistenceService);
 
-
         PrintingHouse house1 = new PrintingHouse("HouseA");
         PrintingHouse house2 = new PrintingHouse("HouseB");
         PrintingHouse house3 = new PrintingHouse("HouseC");

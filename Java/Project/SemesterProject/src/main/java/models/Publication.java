@@ -45,9 +45,11 @@ public class Publication implements Serializable {
      */
     public BigDecimal totalRevenue(BigDecimal discountRate, int discountThreshold) {
         BigDecimal gross = unitPrice.multiply(BigDecimal.valueOf(totalCopies));
+
         if (totalCopies > discountThreshold) {
             return gross.multiply(BigDecimal.ONE.subtract(discountRate));
         }
+
         return gross;
     }
 }
