@@ -38,7 +38,6 @@ public final class SeatingSimulation {
             pool.submit(() ->
                     groups.parallelStream().forEach(group -> {
                         if (simulateDelay) {
-                            // small random delay to make concurrency visible in console output
                             sleepQuietly(10 + rnd.nextInt(30));
                         }
                         Receipt receipt = hall.seatGroup(group);
