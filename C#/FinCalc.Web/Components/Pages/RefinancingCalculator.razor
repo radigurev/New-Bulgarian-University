@@ -1,0 +1,127 @@
+@page "/refinancing"
+@rendermode InteractiveServer
+
+<h1>Калкулатор за рефинансиране</h1>
+
+<p class="small-muted">
+    Сравнява общата оставаща цена по текущия кредит спрямо новите условия (вкл. такси).
+</p>
+
+<div class="row g-3">
+    <div class="col-12 col-lg-6">
+        <EditForm Model="@Request" OnValidSubmit="OnCalculate">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <h2 class="h5">Текущ кредит</h2>
+
+            <div class="mb-3">
+                <label class="form-label">Остатък по главница (лв.)</label>
+                <InputNumber class="form-control" @bind-Value="Request.ExistingRemainingPrincipal" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Текуща годишна лихва (%)</label>
+                <InputNumber class="form-control" @bind-Value="Request.ExistingAnnualInterestRatePercent" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Оставащ срок (месеци)</label>
+                <InputNumber class="form-control" @bind-Value="Request.ExistingRemainingMonths" />
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Текуща месечна такса (лв.)</label>
+                <InputNumber class="form-control" @bind-Value="Request.ExistingMonthlyFee" />
+            </div>
+
+            <h2 class="h5">Нови условия</h2>
+
+            <div class="mb-3">
+                <label class="form-label">Нова годишна лихва (%)</label>
+                <InputNumber class="form-control" @bind-Value="Request.NewAnnualInterestRatePercent" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Нов срок (месеци)</label>
+                <InputNumber class="form-control" @bind-Value="Request.NewTermMonths" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Еднократна такса (лв.)</label>
+                <InputNumber class="form-control" @bind-Value="Request.NewOneTimeFee" />
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Нова месечна такса (лв.)</label>
+                <InputNumber class="form-control" @bind-Value="Request.NewMonthlyFee" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Сравни</button>
+        </EditForm>
+    </div>
+
+    <div class="col-12 col-lg-6">
+        @if (Result is null)
+        {
+            <div class="alert alert-secondary">Въведете параметри и натиснете „Сравни“.</div>
+        }
+        else
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h2 class="h5">Резултати</h2>
+
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6">
+                            <div class="small text-muted">Текуща вноска</div>
+                            <div class="fs-5 fw-semibold">@FormatMoney(Result.ExistingMonthlyPayment)</div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="small text-muted">Нова вноска</div>
+                            <div class="fs-5 fw-semibold">@FormatMoney(Result.NewMonthlyPayment)</div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="small text-muted">Текуща обща цена</div>
+                            <div class="fs-5 fw-semibold">@FormatMoney(Result.ExistingTotalRemainingCost)</div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="small text-muted">Нова обща цена</div>
+                            <div class="fs-5 fw-semibold">@FormatMoney(Result.NewTotalCost)</div>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6">
+                            <div class="small text-muted">Месечна разлика</div>
+                            <div class="fs-5 fw-semibold">@FormatMoney(Result.MonthlySavings)</div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="small text-muted">Обща икономия</div>
+                            <div class="fs-5 fw-semibold">@FormatMoney(Result.TotalSavings)</div>
+                        </div>
+                    </div>
+
+                    @if (Result.BreakEvenMonths is not null)
+                    {
+                        <p class="mt-3 mb-0 small-muted">
+                            Ориентировъчен срок за „избиване“ на еднократната такса: <strong>@Result.BreakEvenMonths</strong> месеца.
+                        </p>
+                    }
+                    else if (Request.NewOneTimeFee > 0m)
+                    {
+                        <p class="mt-3 mb-0 small-muted">
+                            При зададените параметри няма положителна месечна икономия (или е твърде малка), затова не може да се изчисли срок за „избиване“.
+                        </p>
+                    }
+                </div>
+            </div>
+
+            <div class="alert alert-info small">
+                Забележка: моделът е опростен и не включва реални банкови разходи като застраховки, комисиони при предсрочно погасяване или промяна в референтни индекси.
+            </div>
+        }
+    </div>
+</div>
