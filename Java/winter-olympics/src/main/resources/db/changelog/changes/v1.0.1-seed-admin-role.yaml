@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: v1.0.1-001-seed-default-admin
+      author: olympics
+      preConditions:
+        - onFail: MARK_RAN
+        - sqlCheck:
+            expectedResult: 0
+            sql: SELECT COUNT(*) FROM user_accounts WHERE username = 'admin'
+      changes:
+        - insert:
+            tableName: user_accounts
+            columns:
+              - column:
+                  name: created_at
+                  valueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: updated_at
+                  valueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: version
+                  valueNumeric: 0
+              - column:
+                  name: username
+                  value: admin
+              - column:
+                  name: password_hash
+                  value: $2a$10$8sRuEA1JwUBCI3lHvWSreOEV82vySqABV7aYG3yLQpVcvoPhocO8C
+              - column:
+                  name: enabled
+                  valueBoolean: true
+        - sql:
+            sql: |
+              INSERT INTO user_account_roles (user_account_id, role)
+              SELECT id, 'ROLE_ADMIN' FROM user_accounts WHERE username = 'admin';

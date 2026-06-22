@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: winter-olympics-pro
+  profiles:
+    active: dev
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+server:
+  port: 8091
+  error:
+    include-message: always
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when-authorized
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: alpha
+  api-docs:
+    path: /v3/api-docs
+
+app:
+  slalom:
+    qualifiers-for-run-two: 30
+  biathlon:
+    penalty-seconds-per-miss: 60
+  security:
+    jwt:
+      issuer: winter-olympics
+      ttl-minutes: 60
+      secret: change-me-in-prod-please-use-a-long-random-256-bit-secret-key-1234567890

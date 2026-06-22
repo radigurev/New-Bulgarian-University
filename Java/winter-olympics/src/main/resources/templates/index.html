@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Winter Olympics')}"></head>
+<body>
+<div th:replace="~{layout :: snow}"></div>
+<nav th:replace="~{layout :: header}"></nav>
+<main class="container">
+    <section class="page-header">
+        <h1>Winter Olympics</h1>
+        <p class="lead">Athletes, competitions and rankings for Ski Slalom and Biathlon.</p>
+    </section>
+
+    <section class="row g-3">
+        <div class="col-md-4">
+            <div class="card stat-card h-100">
+                <div class="card-body">
+                    <div class="stat-label">Athletes</div>
+                    <p class="stat-value" th:text="${stats.totalAthletes}">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card stat-card h-100">
+                <div class="card-body">
+                    <div class="stat-label">Competitions</div>
+                    <p class="stat-value" th:text="${stats.totalCompetitions}">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card stat-card h-100">
+                <div class="card-body">
+                    <div class="stat-label">Average age</div>
+                    <p class="stat-value" th:text="${#numbers.formatDecimal(stats.averageAge, 1, 1)}">0.0</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="row g-3 mt-3">
+        <div class="col-md-6">
+            <div class="card h-100"><div class="card-body">
+                <h4>Competitions</h4>
+                <p class="text-muted">Upcoming events, results and full rankings.</p>
+                <a class="btn btn-info" th:href="@{/competitions}">View competitions</a>
+            </div></div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100"><div class="card-body">
+                <h4>Medals</h4>
+                <p class="text-muted">Gold, silver and bronze tally by country.</p>
+                <a class="btn btn-info" th:href="@{/medals}">View medals</a>
+            </div></div>
+        </div>
+    </section>
+</main>
+<div th:replace="~{layout :: footer}"></div>
+</body>
+</html>
