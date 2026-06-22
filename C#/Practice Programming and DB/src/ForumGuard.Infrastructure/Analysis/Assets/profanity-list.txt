@@ -1,0 +1,19 @@
+# ForumGuard default profanity keyword list (SDD-FORUM-020)
+# One keyword per line. Lines starting with '#' and blank lines are ignored.
+# Matching is case-insensitive. This is a conservative starter list; operators
+# may replace it via the Moderation:ProfanityListPath configuration key.
+idiot
+moron
+stupid
+dumb
+hate
+scum
+trash
+loser
+shut up
+crap
+damn
+jerk
+clown
+pathetic
+worthless
