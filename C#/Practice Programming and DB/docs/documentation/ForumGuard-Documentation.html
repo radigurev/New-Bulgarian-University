@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ForumGuard — Документация (CSCB634)</title>
+<style>
+    :root {
+        --ink: #1a1a1a;
+        --muted: #555;
+        --accent: #1f4e79;
+        --accent-soft: #e8eef5;
+        --line: #c9c9c9;
+        --line-soft: #e3e3e3;
+        --code-bg: #f4f4f4;
+        --highlight: #fff3b0;
+        --highlight-border: #d6b400;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+    body {
+        font-family: Georgia, "Times New Roman", "DejaVu Serif", serif;
+        font-size: 12pt;
+        line-height: 1.5;
+        color: var(--ink);
+        margin: 0;
+        background: #fff;
+        text-align: justify;
+        hyphens: auto;
+    }
+
+    .page {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2.5cm 2cm;
+    }
+
+    h1, h2, h3, h4 {
+        font-family: "Segoe UI", Arial, "Helvetica Neue", sans-serif;
+        color: var(--accent);
+        line-height: 1.25;
+        text-align: left;
+        hyphens: none;
+    }
+
+    h1 { font-size: 22pt; margin: 0 0 .2em; }
+    h2 {
+        font-size: 16pt;
+        margin: 1.8em 0 .6em;
+        padding-bottom: .2em;
+        border-bottom: 2px solid var(--accent);
+    }
+    h3 { font-size: 13pt; margin: 1.3em 0 .4em; color: #2a3f55; }
+    h4 { font-size: 11.5pt; margin: 1em 0 .3em; color: #333; }
+
+    p { margin: .55em 0; }
+
+    a { color: var(--accent); }
+
+    code, .mono {
+        font-family: "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+        font-size: .88em;
+        background: var(--code-bg);
+        padding: .08em .32em;
+        border-radius: 3px;
+        hyphens: none;
+        word-break: break-word;
+    }
+
+    blockquote {
+        margin: 1em 0;
+        padding: .8em 1.2em;
+        border-left: 4px solid var(--accent);
+        background: var(--accent-soft);
+        font-style: italic;
+        text-align: left;
+    }
+    blockquote p:first-child { margin-top: 0; }
+    blockquote p:last-child { margin-bottom: 0; }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 1em 0;
+        font-size: 10.5pt;
+        text-align: left;
+        hyphens: none;
+    }
+    .table-wrap { overflow-x: auto; }
+    th, td {
+        border: 1px solid var(--line);
+        padding: .4em .55em;
+        vertical-align: top;
+    }
+    th {
+        background: var(--accent-soft);
+        font-family: "Segoe UI", Arial, sans-serif;
+        font-weight: 600;
+        color: #1a3147;
+    }
+    tbody tr:nth-child(even) { background: #fafbfc; }
+
+    ul, ol { margin: .5em 0 .8em; padding-left: 1.6em; }
+    li { margin: .25em 0; }
+
+    figure {
+        margin: 1.4em 0;
+        text-align: center;
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+    figure svg { max-width: 100%; height: auto; }
+    figcaption {
+        font-family: "Segoe UI", Arial, sans-serif;
+        font-size: 9.5pt;
+        color: var(--muted);
+        margin-top: .5em;
+        text-align: center;
+        font-style: italic;
+    }
+
+    .placeholder {
+        background: var(--highlight);
+        border: 1px dashed var(--highlight-border);
+        padding: .05em .4em;
+        border-radius: 3px;
+        font-style: normal;
+        font-weight: 600;
+    }
+
+    .note {
+        border: 1px solid var(--line);
+        border-left: 4px solid #8a8a8a;
+        background: #fbfbfb;
+        padding: .7em 1em;
+        margin: 1.1em 0;
+        font-size: 11pt;
+        text-align: left;
+    }
+    .note.warn { border-left-color: #b8860b; background: #fffbef; }
+    .note.info { border-left-color: var(--accent); background: var(--accent-soft); }
+
+    .title-page {
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        page-break-after: always;
+        break-after: page;
+    }
+    .title-page .uni { font-family: "Segoe UI", Arial, sans-serif; font-size: 12pt; color: var(--muted); margin-bottom: 2.5em; }
+    .title-page .course { font-family: "Segoe UI", Arial, sans-serif; font-size: 13pt; color: #333; margin-top: .3em; }
+    .title-page .kind { font-family: "Segoe UI", Arial, sans-serif; font-size: 11pt; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2em; }
+    .title-page h1 { font-size: 26pt; max-width: 90%; }
+    .title-page .subtitle { font-size: 13pt; color: var(--muted); font-style: italic; margin-top: .4em; }
+    .signature {
+        margin-top: 3.5em;
+        text-align: left;
+        font-family: "Segoe UI", Arial, sans-serif;
+        font-size: 12pt;
+        line-height: 2.2;
+    }
+    .signature .row { display: flex; gap: .6em; }
+    .signature .label { min-width: 9.5em; color: #333; }
+
+    .toc { page-break-after: always; break-after: page; }
+    .toc ol { list-style: none; padding-left: 0; counter-reset: toc; }
+    .toc > ol > li { counter-increment: toc; margin: .35em 0; font-family: "Segoe UI", Arial, sans-serif; font-size: 11pt; }
+    .toc > ol > li::before { content: counter(toc) ". "; color: var(--accent); font-weight: 600; }
+    .toc a { text-decoration: none; color: var(--ink); }
+
+    section { page-break-inside: auto; }
+    h2 { page-break-after: avoid; break-after: avoid; }
+    h3, h4 { page-break-after: avoid; break-after: avoid; }
+    table, figure, blockquote, .note { page-break-inside: avoid; break-inside: avoid; }
+
+    .lead { font-size: 12.5pt; color: #333; }
+    .small { font-size: 10pt; color: var(--muted); }
+    .refs { font-size: 10.5pt; }
+    .refs li { margin: .5em 0; text-align: left; }
+    .center { text-align: center; }
+
+    @page {
+        size: A4;
+        margin: 2.5cm;
+    }
+    @media print {
+        .page { max-width: none; margin: 0; padding: 0; }
+        body { font-size: 11.5pt; }
+        a { color: var(--ink); text-decoration: none; }
+    }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ============================ 1. ЗАГЛАВНА СТРАНИЦА ============================ -->
+<div class="title-page">
+    <div class="uni">Нов български университет<br>Департамент „Информатика“</div>
+    <div class="kind">Курсова работа</div>
+    <h1>Форум с автоматично модериране на груби коментари</h1>
+    <div class="subtitle">Проект ForumGuard — анализ на сентимент с ML.NET и NAS-BERT</div>
+    <div class="course">Дисциплина: <strong>CSCB634 — Практика по програмиране и бази данни</strong></div>
+
+    <div class="signature">
+        <div class="row"><span class="label">Изготвили (екип от трима студенти):</span></div>
+        <div class="row" style="margin-left:1.6em;">Радослав Гурев — F112656</div>
+        <div class="row" style="margin-left:1.6em;">Алиса Спасова — F112658</div>
+        <div class="row" style="margin-left:1.6em;">Любослав Станков — F114428</div>
+        <div class="row" style="margin-top:.7em;"><span class="label">Семестър:</span> 6</div>
+        <div class="row"><span class="label">Преподавател:</span> доц. Лъчезар Томов</div>
+        <div class="row"><span class="label">Дата:</span> 22.06.2026 г.</div>
+    </div>
+</div>
+
+<!-- ============================ 2. СЪДЪРЖАНИЕ ============================ -->
+<nav class="toc">
+    <h2 style="border:none;">Съдържание</h2>
+    <ol>
+        <li><a href="#s3">Условие на задачата</a></li>
+        <li><a href="#s4">Въведение и предметна област</a></li>
+        <li><a href="#s5">Преглед на сродни решения</a></li>
+        <li><a href="#s6">Архитектура на решението</a></li>
+        <li><a href="#s7">Домейн модел и жизнен цикъл на коментара</a></li>
+        <li><a href="#s8">Поток на модериране (Chain of Responsibility)</a></li>
+        <li><a href="#s9">Роли и оторизация</a></li>
+        <li><a href="#s10">ML компонент — анализ на токсичност (NAS-BERT)</a></li>
+        <li><a href="#s11">Слой за данни (EF Core + SQL Server)</a></li>
+        <li><a href="#s12">Приложени шаблони за дизайн</a></li>
+        <li><a href="#s13">Технологичен стек</a></li>
+        <li><a href="#s14">Тестване</a></li>
+        <li><a href="#s15">Стартиране и употреба</a></li>
+        <li><a href="#s16">Как се обучава ML моделът</a></li>
+        <li><a href="#s17a">Разпределение на задачите в екипа</a></li>
+        <li><a href="#s17b">Използване на AI асистент за консултация</a></li>
+        <li><a href="#s17">Заключение</a></li>
+        <li><a href="#s18">Използвана литература</a></li>
+        <li><a href="#s19">Бележка относно изходния код</a></li>
+    </ol>
+</nav>
+
+<!-- ============================ 3. УСЛОВИЕ НА ЗАДАЧАТА ============================ -->
+<section id="s3">
+<h2>1. Условие на задачата</h2>
+
+<p>Условието на задачата е цитирано дословно по-долу:</p>
+
+<blockquote>
+<p>„Трябва да се създаде форум, в който всеки въведен коментар бива анализиран за „сентимент“, т.е. за емоции. Технологията е ML.NET 2.0, сайтът трябва да е на NET.Core. Трябва да има потребители, модератори и администратори. Всеки написан коментар трябва автоматично да бъде анализиран с помощта на предварително тренирания върху писани от вас коментари модел, в този пример, с алгоритъма NAS-BERT. Флагнатите за грубо съдържание коментари трябва да се подават на модератор, т.е. да излизат в таблица в страница, в която той или тя да преценяват дали да одобрят даден коментар, или не. Ако коментарът мине анализа успешно и не е флагнат, той трябва да се появява автоматично. Администраторът дава и отнема права на модераторите, но няма права върху коментарите. Той обаче може да активира и деактивира профилите на потребителите.“</p>
+</blockquote>
+
+<h3>1.1. Кратко тълкуване на условието</h3>
+<p>От условието излизат следните функционални изисквания, около които е построен целият проект:</p>
+<ul>
+    <li><strong>Автоматичен анализ на всеки коментар.</strong> Преди да стане публично видим, всеки коментар минава през предварително обучен класификатор, който решава дали текстът е приемлив („Clean“) или груб/токсичен („Toxic“).</li>
+    <li><strong>Два изхода от анализа.</strong> Коментар, който мине анализа чисто, се публикува автоматично; флагнат коментар се скрива и отива в опашка за ръчен преглед от модератор.</li>
+    <li><strong>Три роли с ясно разделени права.</strong> Потребител (пише коментари), модератор (одобрява или отхвърля флагнати коментари) и администратор (управлява правата на модераторите и активността на профилите).</li>
+    <li><strong>Строго разделение на отговорностите.</strong> Администраторът <em>няма</em> власт върху коментарите — не може да модерира; модераторът пък не управлява акаунти и роли.</li>
+    <li><strong>Обучение върху собствени коментари.</strong> Моделът се обучава офлайн с алгоритъма NAS-BERT върху ръчно написан набор от коментари.</li>
+</ul>
+
+<div class="note info">
+<strong>Бележка за версиите на технологиите.</strong> Условието посочва „ML.NET 2.0“ и „NET.Core“. Проектът е написан на <strong>.NET 8 LTS</strong> с <strong>ML.NET 4.x</strong>. Точно ML.NET 2.0 <em>въведе</em> API-то за класификация на текст с NAS-BERT (<code>TextClassification</code>), което се ползва тук; същият API върви без промяна и в ML.NET 4.x за .NET 8. Тоест използвам по-нова версия само заради актуалност — алгоритъмът и програмният интерфейс са същите. По-подробната обосновка е в раздел 10.</div>
+</section>
+
+<!-- ============================ 4. ВЪВЕДЕНИЕ ============================ -->
+<section id="s4">
+<h2>2. Въведение и предметна област</h2>
+
+<p class="lead">ForumGuard е уеб-форум, в който модерирането на грубо съдържание става автоматично с машинно самообучение. Проектът показва как класически софтуерни архитектури (слоест монолит, проектни шаблони) се съчетават с компонент за обработка на естествен език, така че форумът да остане безопасен за хората, без някой постоянно да следи всеки коментар.</p>
+
+<h3>2.1. Защо е нужно модериране на токсично съдържание</h3>
+<p>Онлайн форумите постоянно се сблъскват с обиди, тормоз и враждебни коментари. Ръчното модериране на всичко не се мащабира: коментарите идват по-бързо, отколкото модераторите смогват да ги прегледат, а докато чакат за преглед, вредното съдържание вече е стигнало до читателите. В другата крайност, ако блокираме всичко само автоматично, рискуваме грешки — фалшиви аларми, които спират напълно нормални мнения.</p>
+
+<p>Затова ForumGuard върви по <strong>среден път</strong>: моделът сам обработва голямата „чиста“ част от трафика и пуска тези коментари веднага, а модераторите се занимават само с коментарите, които анализът е отбелязал като съмнителни. Така хората гледат там, където наистина има нужда от тях.</p>
+
+<h3>2.2. Защо автоматичен анализ на сентимента</h3>
+<p>Класификацията на „сентимент“ или токсичност е задача от обработката на естествения език (NLP) — на даден текст се поставя етикет от предварително зададен набор (тук два: <code>Clean</code> / <code>Toxic</code>). Съвременните решения ползват предварително обучени езикови модели от семейството на трансформърите, които хващат контекста и смисъла много по-добре от обикновените филтри по ключови думи. NAS-BERT, посочен в условието, е компактен трансформър, намерен чрез търсене на невронна архитектура (Neural Architecture Search) и оптимизиран да е по-малък и по-бърз, без да губи от качеството [1][2].</p>
+
+<p>Важно решение в ForumGuard е принципът <strong>„fail-safe“</strong> (безопасно при отказ): при <em>всяка</em> грешка в анализатора или конвейера коментарът отива за ръчен преглед, но <em>никога</em> не се публикува автоматично. Така технически проблем не може да изкара навън потенциално вредно съдържание.</p>
+</section>
+
+<!-- ============================ 5. СРОДНИ РЕШЕНИЯ ============================ -->
+<section id="s5">
+<h2>3. Преглед на сродни решения</h2>
+
+<p>За да обясня защо избрах този подход, по-долу разглеждам три вида технологии за откриване на токсично съдържание, подредени от най-проста към най-сложна и качествена.</p>
+
+<h3>3.1. Филтри по ключови думи и регулярни изрази</h3>
+<p>Най-простият вариант е списък със забранени думи (понякога зададени с регулярни изрази), който маркира коментара, ако съвпадне с някоя от тях.</p>
+<ul>
+    <li><strong>Предимства:</strong> много лесно се прави, работи мигновено, напълно прозрачно и под контрол.</li>
+    <li><strong>Недостатъци:</strong> не разбира контекста (изпуска завоалирани обиди и маркира съвсем нормални думи), лесно се заобикаля с нарочни правописни грешки и трябва някой постоянно да поддържа списъка на ръка.</li>
+</ul>
+<p>ForumGuard <em>ползва</em> този подход, но само като бърз пръв филтър (<code>ProfanityPreFilterHandler</code>), а не като единствена защита.</p>
+
+<h3>3.2. Облачни услуги за анализ — Google Perspective API</h3>
+<p>Perspective API на Jigsaw/Google връща оценка за „toxicity“ на текст през HTTP заявка [3].</p>
+<ul>
+    <li><strong>Предимства:</strong> високо качество, не се налага да обучаваш нищо сам, поддържа много езици.</li>
+    <li><strong>Недостатъци:</strong> зависиш от външна услуга и интернет, пращаш потребителски данни на трета страна (проблем за поверителността), има лимити на заявките и евентуални разходи; освен това противоречи на изискването моделът да е обучен „върху писани от вас коментари“.</li>
+</ul>
+
+<h3>3.3. Трансформър-базирани класификатори (BERT / RoBERTa / NAS-BERT)</h3>
+<p>Днешният стандарт е дообучаване (fine-tuning) на предварително обучен трансформър върху набор от примерни коментари [1][4][5].</p>
+<ul>
+    <li><strong>Предимства:</strong> разбира контекста и смисъла, висока точност, работи изцяло локално (без външна услуга) и се учи от собствените ти данни.</li>
+    <li><strong>Недостатъци:</strong> по-сложно е за правене, трябва ти набор за обучение, а дообучаването на процесор е бавно (затова го изнасям като офлайн стъпка).</li>
+</ul>
+
+<p>ForumGuard залага на третия подход — чрез тренера <code>TextClassification</code> на ML.NET с архитектурата <strong>NAS-BERT (RoBERTa)</strong> през <code>Microsoft.ML.TorchSharp</code> [2][6] — но запазва и филтъра по ключови думи като евтин пръв слой за очевидните случаи.</p>
+</section>
+
+<!-- ============================ 6. АРХИТЕКТУРА ============================ -->
+<section id="s6">
+<h2>4. Архитектура на решението</h2>
+
+<p>ForumGuard е <strong>слоест монолит</strong> върху ASP.NET Core Razor Pages. Кодът е разделен на пет проекта плюс един за тестове, като зависимостите сочат само навътре — към домейна. Така бизнес-логиката не зависи от инфраструктурата (база данни, ML модел, уеб рамка) и може да се тества изолирано.</p>
+
+<div class="table-wrap">
+<table>
+    <thead><tr><th>Проект</th><th>Отговорност</th></tr></thead>
+    <tbody>
+        <tr><td><code>ForumGuard.Domain</code></td><td>Същности (<code>Comment</code>, <code>ForumThread</code>, <code>ModerationDecision</code>), изброени типове, правилата за жизнения цикъл (<code>CommentStatusTransitions</code>), доменните интерфейси (<code>ICommentAnalyzer</code>, <code>ISpecification&lt;T&gt;</code>, репозиторни интерфейси) и ролеви константи. Не зависи от нищо външно.</td></tr>
+        <tr><td><code>ForumGuard.Application</code></td><td>Случаи на употреба и услуги, конвейерът за модериране (Chain of Responsibility) с неговите handler-и, стратегиите <code>IRoleWorkspace</code>, DTO обектите, <code>ModerationOptions</code> и <code>Result&lt;T&gt;</code>.</td></tr>
+        <tr><td><code>ForumGuard.Infrastructure</code></td><td><code>ForumGuardDbContext</code> (EF Core + SQL Server), репозитории и Unit of Work, реализации на спецификациите, <code>NasBertCommentAnalyzer</code> и <code>KeywordCommentAnalyzer</code>, EF Core миграции и <code>ApplicationUser</code>.</td></tr>
+        <tr><td><code>ForumGuard.Web</code></td><td>Razor Pages, ASP.NET Core Identity, оторизационни requirements и handler-и, резолвер на ролевото табло, услуги на уеб слоя, композиционен корен (<code>Program.cs</code>) и началното зареждане на данни.</td></tr>
+        <tr><td><code>ForumGuard.ModelTrainer</code></td><td>Конзолно приложение за офлайн обучение на NAS-BERT модела върху seed корпуса и експорт на <code>model.zip</code>.</td></tr>
+        <tr><td><code>ForumGuard.Tests</code></td><td>NUnit тестов проект — единични (unit) и интеграционни тестове за всички слоеве.</td></tr>
+    </tbody>
+</table>
+</div>
+
+<figure>
+<svg viewBox="0 0 720 430" role="img" aria-label="Диаграма на слоевете и посоките на зависимост" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L9,3 L0,6 Z" fill="#1f4e79"></path>
+        </marker>
+    </defs>
+    <style>
+        .box { fill:#e8eef5; stroke:#1f4e79; stroke-width:1.5; }
+        .box-d { fill:#dCE9d8; stroke:#3a7d34; stroke-width:1.5; }
+        .box-t { fill:#f5ece0; stroke:#9a6a1f; stroke-width:1.5; }
+        .lbl { font-family:'Segoe UI',Arial,sans-serif; font-size:14px; fill:#1a1a1a; }
+        .lbl-b { font-family:'Segoe UI',Arial,sans-serif; font-size:14px; font-weight:600; fill:#13314a; }
+        .sub { font-family:'Segoe UI',Arial,sans-serif; font-size:10.5px; fill:#555; }
+        .dep { stroke:#1f4e79; stroke-width:1.6; fill:none; marker-end:url(#arrow); }
+    </style>
+
+    <rect class="box" x="250" y="20" width="220" height="58" rx="8"></rect>
+    <text class="lbl-b" x="360" y="44" text-anchor="middle">ForumGuard.Web</text>
+    <text class="sub" x="360" y="62" text-anchor="middle">Razor Pages, Identity, оторизация</text>
+
+    <rect class="box" x="250" y="130" width="220" height="58" rx="8"></rect>
+    <text class="lbl-b" x="360" y="154" text-anchor="middle">ForumGuard.Application</text>
+    <text class="sub" x="360" y="172" text-anchor="middle">услуги, CoR конвейер, стратегии</text>
+
+    <rect class="box-d" x="250" y="240" width="220" height="58" rx="8"></rect>
+    <text class="lbl-b" x="360" y="264" text-anchor="middle" fill="#214d1c">ForumGuard.Domain</text>
+    <text class="sub" x="360" y="282" text-anchor="middle">същности, правила, интерфейси</text>
+
+    <rect class="box-t" x="20" y="130" width="190" height="58" rx="8"></rect>
+    <text class="lbl-b" x="115" y="150" text-anchor="middle" fill="#6e4912">ForumGuard.Infrastructure</text>
+    <text class="sub" x="115" y="167" text-anchor="middle">EF Core, репозитории,</text>
+    <text class="sub" x="115" y="181" text-anchor="middle">NAS-BERT анализатор</text>
+
+    <rect class="box-t" x="510" y="240" width="190" height="58" rx="8"></rect>
+    <text class="lbl-b" x="605" y="264" text-anchor="middle" fill="#6e4912">ForumGuard.ModelTrainer</text>
+    <text class="sub" x="605" y="282" text-anchor="middle">офлайн обучение → model.zip</text>
+
+    <!-- dependencies -->
+    <path class="dep" d="M360,78 L360,128"></path>
+    <path class="dep" d="M360,188 L360,238"></path>
+    <path class="dep" d="M210,160 C235,165 235,250 248,262"></path>
+    <path class="dep" d="M510,272 C470,272 460,272 472,270"></path>
+    <text class="sub" x="600" y="330" text-anchor="middle">споделя ModelInput/ModelOutput</text>
+
+    <text class="sub" x="360" y="360" text-anchor="middle" font-style="italic">Стрелките сочат в посока на зависимост: всеки слой зависи единствено навътре, към домейна.</text>
+    <text class="sub" x="360" y="392" text-anchor="middle">Domain не реферира нито един друг проект. DTO обектите никога не разкриват EF същности.</text>
+</svg>
+<figcaption>Фиг. 1: Слоеста архитектура на ForumGuard и посоки на зависимост (Web → Application → Domain; Infrastructure → Application/Domain).</figcaption>
+</figure>
+
+<p>Това подреждане следва принципа на <em>обърнатите зависимости</em>: <code>ForumGuard.Domain</code> описва интерфейсите (например <code>ICommentAnalyzer</code>, <code>IRepository&lt;T&gt;</code>), а <code>ForumGuard.Infrastructure</code> ги изпълнява. Така ядрото на бизнес-логиката не е вързано за конкретна база данни или ML библиотека и може да се тества с фалшиви реализации (fakes/mocks).</p>
+</section>
+
+<!-- ============================ 7. ДОМЕЙН МОДЕЛ ============================ -->
+<section id="s7">
+<h2>5. Домейн модел и жизнен цикъл на коментара</h2>
+
+<p>В основата на домейна стоят четири същности и три изброени типа. Те са единственият меродавен източник за структурата на данните в системата.</p>
+
+<h3>5.1. Същности</h3>
+<div class="table-wrap">
+<table>
+    <thead><tr><th>Същност</th><th>Ключови полета</th></tr></thead>
+    <tbody>
+        <tr><td><code>ApplicationUser</code><br><span class="small">(наследява <code>IdentityUser&lt;Guid&gt;</code>)</span></td><td><code>DisplayName</code>, <code>IsActive</code> (управлявано от администратор, по подразбиране <code>true</code>), <code>CreatedAtUtc</code>.</td></tr>
+        <tr><td><code>ForumThread</code></td><td><code>Id</code> (Guid PK), <code>Title</code> (макс. 200 символа), <code>CreatedById</code>, <code>CreatedAtUtc</code>.</td></tr>
+        <tr><td><code>Comment</code></td><td><code>Id</code>, <code>ThreadId</code>, <code>AuthorId</code>, <code>Body</code> (макс. 4000 символа), <code>Status</code>, <code>CreatedAtUtc</code>, <code>PublishedAtUtc</code> (nullable), <code>AnalysisLabel</code> (nullable), <code>AnalysisScore</code> (nullable), <code>AnalyzedAtUtc</code> (nullable).</td></tr>
+        <tr><td><code>ModerationDecision</code></td><td><code>Id</code>, <code>CommentId</code>, <code>ModeratorId</code>, <code>Decision</code>, <code>DecidedAtUtc</code>, <code>Reason</code> (nullable, макс. 500 символа).</td></tr>
+    </tbody>
+</table>
+</div>
+<p>Същността <code>Comment</code> е направена <em>самозащитаваща се</em> (<code>sealed</code> клас с <code>private set</code> полета): състоянието се сменя само през методите <code>ApplyAnalysis</code>, <code>Approve</code> и <code>Reject</code>, всеки от които минава през пазач (<code>GuardTransition</code>), който хвърля <code>InvalidCommentTransitionException</code> при непозволен преход. Така отвън е невъзможно състоянието да стане невалидно.</p>
+
+<h3>5.2. Изброени типове</h3>
+<ul>
+    <li><code>CommentStatus { PendingAnalysis, Published, FlaggedForReview, ApprovedByModerator, RejectedByModerator }</code></li>
+    <li><code>ToxicityLabel { Clean, Toxic }</code></li>
+    <li><code>ModerationOutcome { Approved, Rejected }</code></li>
+</ul>
+
+<h3>5.3. Машина на състоянията</h3>
+<p>Жизненият цикъл на коментара е детерминирана машина на състоянията. Чистата функция <code>CommentStatusTransitions.IsAllowed(from, to)</code> връща <code>true</code> точно за четирите позволени прехода и <code>false</code> за всичко останало (включително преход към самото състояние и всеки опит за връщане в <code>PendingAnalysis</code>).</p>
+
+<figure>
+<svg viewBox="0 0 760 360" role="img" aria-label="Машина на състоянията на коментара" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L9,3 L0,6 Z" fill="#1f4e79"></path>
+        </marker>
+    </defs>
+    <style>
+        .st { fill:#e8eef5; stroke:#1f4e79; stroke-width:1.6; }
+        .term { fill:#dCE9d8; stroke:#3a7d34; stroke-width:1.6; }
+        .hid { fill:#f6e0e0; stroke:#9a3030; stroke-width:1.6; }
+        .stt { font-family:'Segoe UI',Arial,sans-serif; font-size:12.5px; font-weight:600; fill:#13314a; text-anchor:middle; }
+        .ed { stroke:#1f4e79; stroke-width:1.6; fill:none; marker-end:url(#arrow2); }
+        .edl { font-family:'Segoe UI',Arial,sans-serif; font-size:10.5px; fill:#444; }
+    </style>
+
+    <circle cx="50" cy="120" r="9" fill="#1f4e79"></circle>
+    <text class="edl" x="50" y="100" text-anchor="middle">създаване</text>
+
+    <rect class="st" x="95" y="95" width="150" height="52" rx="10"></rect>
+    <text class="stt" x="170" y="126">PendingAnalysis</text>
+
+    <rect class="term" x="350" y="20" width="150" height="52" rx="10"></rect>
+    <text class="stt" x="425" y="46" fill="#214d1c">Published</text>
+    <text class="edl" x="425" y="63" text-anchor="middle" fill="#3a7d34">видим веднага</text>
+
+    <rect class="hid" x="350" y="170" width="170" height="52" rx="10"></rect>
+    <text class="stt" x="435" y="196" fill="#7a2222">FlaggedForReview</text>
+    <text class="edl" x="435" y="213" text-anchor="middle" fill="#9a3030">скрит — опашка</text>
+
+    <rect class="term" x="600" y="125" width="150" height="52" rx="10"></rect>
+    <text class="stt" x="675" y="148" fill="#214d1c">ApprovedBy-</text>
+    <text class="stt" x="675" y="165" fill="#214d1c">Moderator</text>
+
+    <rect class="hid" x="600" y="240" width="150" height="52" rx="10"></rect>
+    <text class="stt" x="675" y="263" fill="#7a2222">RejectedBy-</text>
+    <text class="stt" x="675" y="280" fill="#7a2222">Moderator</text>
+
+    <path class="ed" d="M59,120 L93,120"></path>
+
+    <path class="ed" d="M246,112 C300,95 320,60 348,50"></path>
+    <text class="edl" x="290" y="80">анализ = Clean</text>
+
+    <path class="ed" d="M246,135 C300,160 320,185 348,192"></path>
+    <text class="edl" x="270" y="165">анализ = Toxic</text>
+
+    <path class="ed" d="M520,185 C560,175 575,165 598,158"></path>
+    <text class="edl" x="540" y="160">Approve</text>
+
+    <path class="ed" d="M520,205 C560,225 575,250 598,262"></path>
+    <text class="edl" x="545" y="245">Reject</text>
+
+    <text class="edl" x="380" y="335" font-style="italic">Терминални състояния (без изходящ преход): Published, ApprovedByModerator, RejectedByModerator.</text>
+    <text class="edl" x="380" y="318" font-style="italic" text-anchor="start" x="120">Видим е IFF Status е Published ИЛИ ApprovedByModerator.</text>
+</svg>
+<figcaption>Фиг. 2: Машина на състоянията на коментара. Зелено — публично видими терминални състояния; червено — скрити състояния.</figcaption>
+</figure>
+
+<h3>5.4. Инвариант за видимост</h3>
+<p>Целостта на форума се пази от едно кратко правило (инвариант), записано в свойството <code>Comment.IsPubliclyVisible</code>:</p>
+<blockquote style="font-style:normal;">
+<p>Коментар е публично видим <strong>тогава и само тогава</strong>, когато статусът му е <code>Published</code> <em>или</em> <code>ApprovedByModerator</code>.</p>
+</blockquote>
+<p>При всички останали състояния (<code>PendingAnalysis</code>, <code>FlaggedForReview</code>, <code>RejectedByModerator</code>) коментарът остава скрит. Домейнът също така следи <code>PublishedAtUtc</code> да е попълнено винаги, когато коментарът е видим, и да е <code>null</code> при всяко скрито състояние.</p>
+</section>
+
+<!-- ============================ 8. ПОТОК НА МОДЕРИРАНЕ ============================ -->
+<section id="s8">
+<h2>6. Поток на модериране (Chain of Responsibility)</h2>
+
+<p>Дали коментарът е чист или токсичен се решава от <strong>верига от отговорности</strong> (Chain of Responsibility). Веригата е поредица от звена (handler-и) и всяко звено или <em>флагва</em> коментара (и спира веригата), или го <em>пуска</em> към следващото звено. Ако всички звена го пуснат, коментарът е чист и се публикува.</p>
+
+<p>Редът на веригата е:</p>
+<ol>
+    <li><strong><code>ProfanityPreFilterHandler</code></strong> (<code>Order = 100</code>) — ползва <code>KeywordCommentAnalyzer</code> (бърз, без модел). Ако види явна нецензурна дума, флагва коментара, <em>без</em> изобщо да вика ML модела.</li>
+    <li><strong><code>MlToxicityHandler</code></strong> (<code>Order = 200</code>) — ползва NAS-BERT анализатора (<code>ICommentAnalyzer</code>). Флагва, когато оценката за токсичност е <code>&ge; ToxicityThreshold</code> (включително при равенство).</li>
+</ol>
+<p>Веригата лесно се <em>разширява</em>: за ново звено (напр. за дължина или спам) е достатъчно да напишеш клас, който изпълнява <code>ICommentModerationHandler</code>, и да го регистрираш в DI контейнера, без да пипаш старите звена (принцип Open/Closed). Редът на изпълнение идва от свойството <code>Order</code>.</p>
+
+<figure>
+<svg viewBox="0 0 760 320" role="img" aria-label="Поток на модериране" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <marker id="arrow3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L9,3 L0,6 Z" fill="#1f4e79"></path>
+        </marker>
+    </defs>
+    <style>
+        .n { fill:#e8eef5; stroke:#1f4e79; stroke-width:1.5; }
+        .ok { fill:#dCE9d8; stroke:#3a7d34; stroke-width:1.5; }
+        .bad { fill:#f6e0e0; stroke:#9a3030; stroke-width:1.5; }
+        .nt { font-family:'Segoe UI',Arial,sans-serif; font-size:12px; font-weight:600; fill:#13314a; text-anchor:middle; }
+        .ns { font-family:'Segoe UI',Arial,sans-serif; font-size:10px; fill:#555; text-anchor:middle; }
+        .e { stroke:#1f4e79; stroke-width:1.6; fill:none; marker-end:url(#arrow3); }
+        .el { font-family:'Segoe UI',Arial,sans-serif; font-size:10.5px; fill:#444; }
+    </style>
+
+    <rect class="n" x="15" y="120" width="120" height="54" rx="8"></rect>
+    <text class="nt" x="75" y="143">Подаден</text>
+    <text class="nt" x="75" y="159">коментар</text>
+
+    <rect class="n" x="180" y="115" width="150" height="64" rx="8"></rect>
+    <text class="nt" x="255" y="138">ProfanityPreFilter</text>
+    <text class="ns" x="255" y="155">ключови думи</text>
+    <text class="ns" x="255" y="169">(без модел)</text>
+
+    <rect class="n" x="385" y="115" width="150" height="64" rx="8"></rect>
+    <text class="nt" x="460" y="138">MlToxicityHandler</text>
+    <text class="ns" x="460" y="155">NAS-BERT, оценка</text>
+    <text class="ns" x="460" y="169">&ge; ToxicityThreshold</text>
+
+    <rect class="ok" x="590" y="40" width="155" height="56" rx="8"></rect>
+    <text class="nt" x="667" y="63" fill="#214d1c">Published</text>
+    <text class="ns" x="667" y="80" fill="#3a7d34">видим веднага</text>
+
+    <rect class="bad" x="590" y="195" width="155" height="56" rx="8"></rect>
+    <text class="nt" x="667" y="216" fill="#7a2222">FlaggedForReview</text>
+    <text class="ns" x="667" y="233" fill="#9a3030">опашка на модератора</text>
+
+    <path class="e" d="M136,147 L178,147"></path>
+    <path class="e" d="M331,147 L383,147"></path>
+    <text class="el" x="356" y="138" text-anchor="middle">чист</text>
+
+    <path class="e" d="M536,135 C560,110 565,100 588,80"></path>
+    <text class="el" x="565" y="112">всички пропускат → чист</text>
+
+    <path class="e" d="M460,180 C460,210 510,222 588,223"></path>
+    <text class="el" x="500" y="205" text-anchor="middle">токсичен</text>
+
+    <path class="e" d="M255,180 C255,250 470,250 588,235"></path>
+    <text class="el" x="350" y="268" text-anchor="middle">нецензурна дума → флаг (прекъсва веригата)</text>
+
+    <text class="el" x="667" y="285" text-anchor="middle" font-style="italic">Approve → ApprovedByModerator | Reject → RejectedByModerator</text>
+</svg>
+<figcaption>Фиг. 3: Поток на модериране. Чист коментар се публикува автоматично; флагнат коментар постъпва в опашката, където модератор го одобрява или отхвърля.</figcaption>
+</figure>
+
+<h3>6.1. Принцип fail-safe</h3>
+<p>Ако някое звено хвърли изключение по време на оценката, конвейерът <strong>не</strong> го пуска навън, а го хваща, записва го в лога (с името на звеното и идентификатора на коментара) и връща <em>флагнат</em> резултат с максимална оценка (<code>FailSafeScore = 1.0</code>). Така технически проблем (например ако моделът не успее да се зареди) винаги праща коментара за ръчен преглед и <strong>никога</strong> не води до автоматично публикуване. Единственото изключение, което минава нормално навън, е <code>OperationCanceledException</code> при отказана заявка — тогава просто няма решение за записване.</p>
+
+<p>Резултатът от конвейера е обектът <code>ModerationVerdict { Label, Score, IsFlagged, FlaggingHandlerName }</code>, който услугата за подаване на коментар (<code>CommentSubmissionService</code>) превръща в съответния <code>CommentStatus</code> и записва в базата.</p>
+</section>
+
+<!-- ============================ 9. РОЛИ И ОТОРИЗАЦИЯ ============================ -->
+<section id="s9">
+<h2>7. Роли и оторизация</h2>
+
+<p>Влизането и правата минават през <strong>ASP.NET Core Identity</strong>. Дефинирани са точно три роли чрез константи в <code>ForumRoles</code>: <code>"User"</code>, <code>"Moderator"</code> и <code>"Administrator"</code>.</p>
+
+<div class="table-wrap">
+<table>
+    <thead><tr><th>Роля</th><th>Правомощия</th></tr></thead>
+    <tbody>
+        <tr><td><code>User</code></td><td>Създава теми и пише коментари.</td></tr>
+        <tr><td><code>Moderator</code></td><td>Преглежда флагнатите коментари (<code>FlaggedForReview</code>) и ги одобрява или отхвърля.</td></tr>
+        <tr><td><code>Administrator</code></td><td>Дава и отнема ролята <code>Moderator</code>; активира и деактивира профили (<code>IsActive</code>). <strong>Няма власт върху коментарите.</strong></td></tr>
+    </tbody>
+</table>
+</div>
+
+<h3>7.1. Персонализирани оторизационни политики (Strategy в слоя за сигурност)</h3>
+<p>Правата са описани чрез собствени двойки <code>IAuthorizationRequirement</code> + <code>AuthorizationHandler&lt;T&gt;</code>, регистрирани като именувани политики. Това е приложение на шаблона Strategy: всеки handler затваря в себе си едно решение „да/не“ на база ролевите claim-ове на потребителя, без да ходи до базата данни.</p>
+
+<div class="table-wrap">
+<table>
+    <thead><tr><th>Политика</th><th>Дава достъп на</th><th>Бележка</th></tr></thead>
+    <tbody>
+        <tr><td><code>CanModerateComments</code></td><td>само <code>Moderator</code></td><td><strong>Администраторът Е ИЗКЛЮЧЕН.</strong> Handler-ът пуска само ако потребителят е в роля <code>Moderator</code>; самата роля <code>Administrator</code> никога не минава тази политика.</td></tr>
+        <tr><td><code>CanManageModerators</code></td><td>само <code>Administrator</code></td><td>Дава/отнема ролята <code>Moderator</code>.</td></tr>
+        <tr><td><code>CanManageAccounts</code></td><td>само <code>Administrator</code></td><td>Активира/деактивира профили.</td></tr>
+    </tbody>
+</table>
+</div>
+
+<p>Това разделение покрива направо изискването от условието: администраторът управлява <em>хората</em> (роли и активност), но не и <em>съдържанието</em>. Ако един и същ потребител е едновременно <code>Administrator</code> и <code>Moderator</code> (позволено е), той може да модерира <em>само</em> заради ролята <code>Moderator</code>.</p>
+
+<h3>7.2. Гейт за активност (IsActive)</h3>
+<p>Флагът <code>ApplicationUser.IsActive</code> е твърда преграда при вход и по време на сесията. Профил, деактивиран от администратора, не може да влезе; ако потребителят вече е влязъл и го деактивират, следващата защитена заявка се проверява наново спрямо записаната стойност (чрез <code>ActiveUserCookieValidator</code>), така че старо cookie не може да продължи да дава достъп. Администраторът не може да деактивира собствения си профил.</p>
+
+<h3>7.3. Стратегия IRoleWorkspace</h3>
+<p>За да показва различно табло на всяка роля, се ползва стратегията <code>IRoleWorkspace</code> с три реализации — <code>UserWorkspace</code>, <code>ModeratorWorkspace</code> и <code>AdministratorWorkspace</code>. Резолверът <code>RoleWorkspaceResolver</code> избира активното табло според ролята на влезлия потребител, с приоритет <em>Administrator &gt; Moderator &gt; User</em>. Всяко табло показва само действията, позволени за съответната роля, спрямо политиките от §7.1 (например таблото на администратора <em>не</em> предлага действие за модериране на коментари).</p>
+</section>
+
+<!-- ============================ 10. ML КОМПОНЕНТ ============================ -->
+<section id="s10">
+<h2>8. ML компонент — анализ на токсичност (NAS-BERT)</h2>
+
+<p>Анализаторът слага на коментара един от два етикета: <code>Clean</code> или <code>Toxic</code>. Абстракцията е доменният интерфейс <code>ICommentAnalyzer</code> с един-единствен метод <code>Task&lt;AnalysisResult&gt; AnalyzeAsync(string text, CancellationToken)</code>, който връща <code>AnalysisResult { ToxicityLabel Label, float Score }</code>.</p>
+
+<h3>8.1. Двете стратегии</h3>
+<ul>
+    <li><strong><code>NasBertCommentAnalyzer</code></strong> — стратегията за реална употреба, която <em>адаптира</em> ML.NET модела (виж §8.2). Тя задава <code>Score</code> като вероятността текстът да е токсичен и слага <code>Toxic</code>, когато <code>Score &ge; ToxicityThreshold</code> (включително при равенство), иначе <code>Clean</code>. Прагът се чете от <code>ModerationOptions</code> чрез <code>IOptionsMonitor</code> и <em>не</em> е зашит твърдо в кода.</li>
+    <li><strong><code>KeywordCommentAnalyzer</code></strong> — втора стратегия без модел, която сравнява текста (без значение от малки/главни букви) със списък нецензурни думи, зареден от <code>ProfanityListPath</code>. При съвпадение връща <code>Toxic</code> с оценка <code>1.0</code>, иначе <code>Clean</code> с <code>0.0</code>. Върши работа и като бърз предфилтър, и като удобен заместител в тестовете.</li>
+</ul>
+<p>И двете стратегии правят <em>късо съединение</em> при празен текст или текст само от интервали — връщат <code>Clean</code> с оценка <code>0.0</code>, без изобщо да викат модела.</p>
+
+<h3>8.2. Object Pool за нишкова безопасност</h3>
+<p>ML.NET прави извеждането (inference) през обекта <code>PredictionEngine</code>, който <strong>не е нишково безопасен</strong>. Понеже Razor Pages обслужва много заявки едновременно, моделът се достъпва през <code>PredictionEnginePool&lt;ModelInput, ModelOutput&gt;</code> — реализация на шаблона Object Pool. <code>NasBertCommentAnalyzer</code> взема engine от пула при всяко извикване, вместо да пази един общ екземпляр. Регистрацията изглежда така:</p>
+<div class="note">
+<code>services.AddPredictionEnginePool&lt;ModelInput, ModelOutput&gt;()<br>&nbsp;&nbsp;.FromFile(modelName: "NasBertToxicity", filePath: modelPath, watchForChanges: true);</code>
+</div>
+<p>Опцията <code>watchForChanges: true</code> дава <em>горещо презареждане</em>: щом <code>model.zip</code> на диска се смени, пулът зарежда новия модел без рестарт на приложението. Входът и изходът са <code>ModelInput { string Text }</code> и <code>ModelOutput { string PredictedLabel, float[] Score }</code>.</p>
+
+<h3>8.3. Принцип fail-safe в анализатора</h3>
+<p>Грешка в анализатора <strong>никога</strong> не се превръща тихомълком в <code>Clean</code>. Липсващ или повреден модел, както и грешка при извеждане, се завиват в <code>AnalyzerUnavailableException</code>, която конвейерът приема за причина да флагне коментара (§6.1). Приложението може да стартира дори преди първия експорт на модела — благодарение на <code>watchForChanges</code> пулът ще го хване, щом се появи.</p>
+
+<h3>8.4. Обосновка на версиите: „ML.NET 2.0“ / „.NET Core“ → .NET 8 + ML.NET 4.x</h3>
+<div class="note info">
+<p>Условието посочва <strong>NAS-BERT</strong>, <strong>„ML.NET 2.0“</strong> и <strong>„NET.Core“</strong>. Проектът е на <strong>.NET 8 LTS</strong> с <strong>ML.NET 4.0.3</strong> и <strong>Microsoft.ML.TorchSharp 0.22.3</strong>, ето защо:</p>
+<ul style="text-align:left;">
+    <li><strong>Същият API.</strong> Точно ML.NET 2.0 въведе <code>MulticlassClassification.Trainers.TextClassification</code> (NAS-BERT RoBERTa през TorchSharp). Същият този API върви без промяна и в ML.NET 4.x — алгоритъмът и интерфейсът са едни и същи. Тоест използвам по-нова версия само заради актуалност.</li>
+    <li><strong>.NET 8 покрива „.NET Core“.</strong> .NET 8 е прекият наследник на .NET Core и е с дългосрочна поддръжка (LTS).</li>
+    <li><strong>Защо не .NET 9.</strong> .NET 9 е извън поддръжка от май 2026 г. и не е инсталиран, докато .NET 8 е LTS и е наличен. SDK е фиксиран на версия <code>8.0.125</code> чрез <code>global.json</code>.</li>
+</ul>
+</div>
+</section>
+
+<!-- ============================ 11. СЛОЙ ЗА ДАННИ ============================ -->
+<section id="s11">
+<h2>9. Слой за данни (EF Core + SQL Server)</h2>
+
+<p>Данните се пазят с <strong>Entity Framework Core 8</strong> срещу <strong>Microsoft SQL Server (LocalDB)</strong>. Контекстът <code>ForumGuardDbContext</code> наследява <code>IdentityDbContext&lt;ApplicationUser, IdentityRole&lt;Guid&gt;, Guid&gt;</code> и излага <code>DbSet</code> за <code>ForumThreads</code>, <code>Comments</code> и <code>ModerationDecisions</code>.</p>
+
+<h3>9.1. Конфигурация чрез Fluent API и конвенции за именуване</h3>
+<p>Всички имена на таблици и колони се задават <em>изрично</em> чрез Fluent API (по една конфигурация на същност), без да разчитам на конвенциите на EF. Правилата са:</p>
+<ul>
+    <li>Първични ключове: <code>PK_[Таблица]</code> (напр. <code>PK_Comments</code>); външни ключове: <code>FK_[Дете]_[Родител]</code> (напр. <code>FK_Comments_ForumThreads</code>); индекси: <code>IX_[Таблица]_[Колони]</code> (напр. <code>IX_Comments_Status</code>).</li>
+    <li>Дати и часове: тип <code>DATETIME2(7)</code> със стойност по подразбиране <code>SYSUTCDATETIME()</code>.</li>
+    <li>GUID първични ключове: стойност по подразбиране <code>NEWSEQUENTIALID()</code> (никога <code>NEWID()</code>), за да не се фрагментира индексът.</li>
+    <li>Изброените типове (<code>Status</code>, <code>AnalysisLabel</code>, <code>Decision</code>) се пазят като <code>int</code>.</li>
+    <li>Оптимистична конкурентност: колона <code>RowVersion</code> (<code>rowversion</code>) на <code>Comment</code> — ако двама модератори решат един и същ коментар едновременно, първият <code>SaveChangesAsync</code> минава, а вторият получава <code>DbUpdateConcurrencyException</code>.</li>
+    <li>Поведение при изтриване: <code>Comment → ForumThread</code> е <em>Cascade</em>, а връзките към <code>ApplicationUser</code> (автор/създател/модератор) са <em>Restrict</em>, за да се запази одитната следа; профилът се деактивира чрез <code>IsActive</code>, а не чрез триене на ред.</li>
+</ul>
+
+<h3>9.2. Миграция и версиониран SQL скрипт</h3>
+<p>Схемата се създава чрез EF Core миграцията <code>InitialCreate</code>. Освен нея има и версиониран SQL скрипт <code>v1.0.0_InitialSchema.sql</code> със заглавен коментар, който сочи към <code>SDD-FORUM-022</code> и свързаните спецификации. Скриптът създава таблиците на Identity, плюс <code>ForumThreads</code>, <code>Comments</code> и <code>ModerationDecisions</code> с описаните по-горе ключове, индекси и стойности по подразбиране.</p>
+
+<h3>9.3. Repository + Unit of Work + Specification</h3>
+<p>Достъпът до данни минава през три шаблона:</p>
+<ul>
+    <li><strong>Repository</strong> — <code>IRepository&lt;T&gt;</code> дава общите операции (<code>GetByIdAsync</code>, <code>ListAsync</code>, <code>Add</code>, <code>Update</code>, <code>Remove</code> и др.); конкретните репозитории (<code>ICommentRepository</code> и др.) добавят само ясно именувани заявки.</li>
+    <li><strong>Unit of Work</strong> — <code>IUnitOfWork.SaveChangesAsync</code> е единствената граница на транзакцията; репозиториите не викат <code>SaveChanges</code> сами. Смяната на статуса и записът на <code>ModerationDecision</code> се записват атомарно, наведнъж.</li>
+    <li><strong>Specification</strong> — <code>ISpecification&lt;T&gt;</code> събира в един обект критериите, включванията и подреждането. Конкретните спецификации (<code>FlaggedPendingReviewSpecification</code>, <code>PublishedCommentsByThreadSpecification</code>, <code>ActiveUsersSpecification</code>) се превеждат в <code>IQueryable&lt;T&gt;</code> от <code>SpecificationEvaluator</code> и се изпълняват на сървъра.</li>
+</ul>
+</section>
+
+<!-- ============================ 12. ШАБЛОНИ ============================ -->
+<section id="s12">
+<h2>10. Приложени шаблони за дизайн</h2>
+
+<p>Проектът ползва нарочно подбрани утвърдени проектни шаблони (Gang of Four и корпоративни шаблони) [7][8], като всеки от тях решава конкретен проблем, без да усложнява нещата излишно.</p>
+
+<div class="table-wrap">
+<table>
+    <thead><tr><th>Шаблон</th><th>Къде</th><th>Защо</th></tr></thead>
+    <tbody>
+        <tr><td><strong>Strategy</strong></td><td><code>ICommentAnalyzer</code> (две стратегии) и <code>IRoleWorkspace</code> (три стратегии).</td><td>Сменяеми алгоритми за анализа и за съставянето на ролевото табло, без купчина if-ове в извикващия код.</td></tr>
+        <tr><td><strong>Adapter</strong></td><td><code>NasBertCommentAnalyzer</code> над <code>PredictionEnginePool</code>.</td><td>Привежда чуждия интерфейс на ML.NET към доменния <code>ICommentAnalyzer</code> и така пази домейна настрана от ML библиотеката.</td></tr>
+        <tr><td><strong>Object Pool</strong></td><td><code>PredictionEnginePool&lt;ModelInput, ModelOutput&gt;</code>.</td><td>Дава нишково-безопасно преизползване на скъпите, не-нишково-безопасни <code>PredictionEngine</code> обекти при много паралелни заявки.</td></tr>
+        <tr><td><strong>Chain of Responsibility</strong></td><td>Конвейерът за модериране (<code>ProfanityPreFilter → MlToxicity</code>).</td><td>Поредица от независими проверки, всяка от които може да флагне или да пусне коментара; лесна за разширяване (Open/Closed).</td></tr>
+        <tr><td><strong>Repository + Unit&nbsp;of&nbsp;Work + Specification</strong></td><td>Слоят за данни в <code>ForumGuard.Infrastructure</code>.</td><td>Скрива достъпа до данни, държи една атомарна граница на запис и събира заявните критерии в обекти.</td></tr>
+        <tr><td><strong>Custom Authorization Handlers</strong><br>(Strategy в сигурността)</td><td><code>CanModerateComments</code>, <code>CanManageModerators</code>, <code>CanManageAccounts</code>.</td><td>Затваря всяко решение за достъп в отделен, лесен за тестване handler.</td></tr>
+        <tr><td><strong>Options</strong></td><td><code>ModerationOptions</code>.</td><td>Връзва конфигурацията (праг, пътища, макс. дължина) към типизиран обект, който се проверява при стартиране.</td></tr>
+    </tbody>
+</table>
+</div>
+<p class="small">Нарочно <em>не</em> са включени (за да не се преусложни проектът): State, Domain Events, MediatR, CQRS.</p>
+</section>
+
+<!-- ============================ 13. ТЕХНОЛОГИЧЕН СТЕК ============================ -->
+<section id="s13">
+<h2>11. Технологичен стек</h2>
+
+<div class="table-wrap">
+<table>
+    <thead><tr><th>Слой / концерн</th><th>Технология (с версия)</th></tr></thead>
+    <tbody>
+        <tr><td>Среда за изпълнение</td><td>.NET 8 LTS (SDK фиксиран чрез <code>global.json</code> на <code>8.0.125</code>)</td></tr>
+        <tr><td>Уеб рамка</td><td>ASP.NET Core Razor Pages</td></tr>
+        <tr><td>Данни</td><td>Entity Framework Core 8 (<code>8.0.11</code>) + Microsoft SQL Server (LocalDB)</td></tr>
+        <tr><td>Автентикация / оторизация</td><td>ASP.NET Core Identity (<code>8.0.11</code>)</td></tr>
+        <tr><td>Машинно самообучение</td><td>ML.NET <code>4.0.3</code> (<code>Microsoft.ML</code>, <code>Microsoft.Extensions.ML</code>) + <code>Microsoft.ML.TorchSharp</code> <code>0.22.3</code> (NAS-BERT TextClassification)</td></tr>
+        <tr><td>Тестване</td><td>NUnit <code>3.13.3</code> + Moq <code>4.20.70</code> (с <code>NUnit3TestAdapter</code>, <code>Microsoft.NET.Test.Sdk</code>)</td></tr>
+    </tbody>
+</table>
+</div>
+<p class="small">Забележка: в стандартната конфигурация уеб приложението не ползва <code>libtorch-cpu</code>, за да остане лесно за стартиране; нативната библиотека се добавя само когато реално се обучава и зарежда NAS-BERT модел (виж раздел 14).</p>
+</section>
+
+<!-- ============================ 14. ТЕСТВАНЕ ============================ -->
+<section id="s14">
+<h2>12. Тестване</h2>
+
+<p>Проектът е покрит с <strong>209 теста</strong> (208 минават при нормално изпълнение + 1 явен/<code>[Explicit]</code> тест за реално обучение, който се прескача по подразбиране). Тестовете са подредени по слоеве и са вързани със спецификациите чрез NUnit категориите <code>[Category("SDD-FORUM-XXX")]</code>.</p>
+
+<div class="table-wrap">
+<table>
+    <thead><tr><th>Слой</th><th>Брой тестове</th><th>Видове</th></tr></thead>
+    <tbody>
+        <tr><td>Domain</td><td>48</td><td>unit — конструиране, преходи, видимост на <code>Comment</code></td></tr>
+        <tr><td>Application</td><td>92</td><td>unit — услуги, CoR конвейер, handler-и, опции, ролеви табла</td></tr>
+        <tr><td>Infrastructure</td><td>38</td><td>10 unit (анализатори, спецификации) + 28 EF интеграционни срещу LocalDB</td></tr>
+        <tr><td>ML</td><td>31</td><td>unit (логика на анализатора, валидиране на корпуса) + интеграционни</td></tr>
+        <tr><td><strong>Общо</strong></td><td><strong>209</strong></td><td>208 изпълнявани + 1 <code>[Explicit]</code></td></tr>
+    </tbody>
+</table>
+</div>
+
+<h3>12.1. Подход</h3>
+<ul>
+    <li><strong>Резултатен обект <code>Result&lt;T&gt;</code>.</strong> Услугите връщат явен резултат за очакваните случаи (валидиране, ненамерено, забранено), вместо да хвърлят изключения за управление на потока — така тестовете стават прости и предвидими.</li>
+    <li><strong>Fakes и Moq.</strong> Единичните тестове изолират компонентите чрез фалшиви реализации (напр. <code>StubCommentAnalyzer</code>, <code>ThrowingCommentAnalyzer</code>, <code>FixedClock</code>) и Moq, без да опират до база данни или модел.</li>
+    <li><strong>Изолирани тестови бази.</strong> EF интеграционните тестове работят срещу реален SQL Server LocalDB и проверяват схемата, записването и четенето в двете посоки, както и оптимистичната конкурентност.</li>
+</ul>
+
+<div class="note warn">
+<strong>Защо интеграционният тест за реално обучение е <code>[Explicit]</code>.</strong> Тестът, който наистина обучава модел и го зарежда през <code>PredictionEnginePool</code>, е маркиран едновременно с <code>[Explicit]</code>, <code>[Ignore]</code> и <code>[Category("RequiresTraining")]</code>. Това е така, защото му трябват нативната библиотека <code>libtorch-cpu</code> и бавно обучение на процесор. Затова обикновеното <code>dotnet test</code> никога не сваля libtorch, нито пуска бавното обучение — тестът се стартира само ръчно и нарочно.</div>
+</section>
+
+<!-- ============================ 15. СТАРТИРАНЕ ============================ -->
+<section id="s15">
+<h2>13. Стартиране и употреба</h2>
+
+<h3>13.1. Стартиране</h3>
+<p>Приложението се стартира с командата:</p>
+<div class="note"><code>dotnet run --project src/ForumGuard.Web</code></div>
+<p>При първото стартиране в режим за разработка началната инициализация прилага миграциите, създава трите роли и добавя по един готов акаунт за всяка роля, така че демонстрацията тръгва без никаква ръчна настройка:</p>
+<ul>
+    <li><strong>Администратор:</strong> <code>admin@forumguard.local</code> / <code>Admin#12345</code></li>
+    <li><strong>Модератор:</strong> <code>moderator@forumguard.local</code> / <code>Mod#12345</code></li>
+    <li><strong>Потребител:</strong> <code>user@forumguard.local</code> / <code>User#12345</code></li>
+</ul>
+<div class="note warn"><strong>Внимание:</strong> това са пароли по подразбиране за разработка — сменете ги, преди да ползвате приложението реално. За демонстрация се добавят и примерна тема („Welcome to ForumGuard“) и два начални коментара — един чист и един токсичен.</div>
+
+<h3>13.2. Потребителски сценарии</h3>
+<ul>
+    <li><strong>Публикуване (потребител).</strong> Влязъл активен потребител отваря тема и пише коментар. Системата го създава със статус <code>PendingAnalysis</code>, прекарва го синхронно през конвейера и веднага му слага <code>Published</code> (видим) или <code>FlaggedForReview</code> (скрит, чака преглед).</li>
+    <li><strong>Опашка за модериране (модератор).</strong> Модераторът отваря страницата с опашката, която показва само флагнатите коментари (текст, автор, дата, етикет и оценка от анализа), и за всеки натиска „Одобри“ или „Отхвърли“. Одобреният коментар става видим; отхвърленият остава скрит завинаги. Всяко решение се записва като <code>ModerationDecision</code> (одитна следа).</li>
+    <li><strong>Администриране (администратор).</strong> Администраторът работи с две страници: за ролите на модераторите (дава/отнема <code>Moderator</code>) и за акаунтите (активира/деактивира профили). До опашката за модериране достъп <em>няма</em>, точно заради разделението на отговорностите.</li>
+</ul>
+</section>
+
+<!-- ============================ 16. ОБУЧЕНИЕ НА МОДЕЛА ============================ -->
+<section id="s16">
+<h2>14. Как се обучава ML моделът</h2>
+
+<p>Обучението е <strong>офлайн</strong> стъпка, която прави конзолното приложение <code>ForumGuard.ModelTrainer</code> (никога по време на уеб заявка). Тренерът взема ръчно написания набор <code>seed-comments.csv</code> (колони <code>Text,Label</code>; в момента 243 реда — 117 <code>Clean</code> и 126 <code>Toxic</code>) и от него прави файла <code>model.zip</code>. Пълните стъпки (от <code>README.md</code> на тренера) са:</p>
+
+<ol>
+    <li><strong>Добавяне на нативния бекенд.</strong> Към тренера се добавя <code>libtorch-cpu</code> (или <code>libtorch-cuda-12.1</code> за GPU):<br><code>dotnet add src/ForumGuard.ModelTrainer package libtorch-cpu</code></li>
+    <li><strong>Допълване на набора.</strong> Към <code>seed-comments.csv</code> се добавят собствени коментари (по един ред на коментар, етикет точно <code>Clean</code> или <code>Toxic</code>, UTF-8, кавички по RFC-4180 при запетаи). Трябват поне 10 реда общо и поне по 2 на клас, като и двата класа присъстват.</li>
+    <li><strong>Обучение и експорт.</strong><br><code>dotnet run --project src/ForumGuard.ModelTrainer -- --data seed-comments.csv --output ../models/model.zip</code><br>Конвейерът е <code>MapValueToKey → TextClassification(labelColumnName: "Label", sentence1ColumnName: "Text") → MapKeyToValue</code>. Тренерът дели данните (валидационна част по подразбиране <code>0.2</code>) и извежда <code>MicroAccuracy</code>, <code>MacroAccuracy</code> и матрицата на грешките; при всяка грешка излиза с ненулев код и не оставя наполовина готов файл.</li>
+    <li><strong>Смяна на регистрацията.</strong> В <code>Program.cs</code> извикването <code>AddInterimNasBertAnalyzer()</code> се сменя с <code>AddNasBertCommentAnalyzer(builder.Configuration)</code>, а към уеб проекта се добавят ML пакетите и <code>libtorch-cpu</code>.</li>
+    <li><strong>Насочване на пътя.</strong> Ключът <code>Moderation:ModelPath</code> се насочва към новия <code>model.zip</code>. Благодарение на <code>watchForChanges: true</code> следващ експорт презарежда модела без рестарт.</li>
+</ol>
+
+<div class="note info">
+<strong>Временна (interim) регистрация.</strong> По подразбиране приложението върви с <code>AddInterimNasBertAnalyzer()</code>, при която мястото на NAS-BERT анализатора временно се заема от <code>KeywordCommentAnalyzer</code>. Така целият проект се компилира, стартира и тества от край до край <em>без</em> да има обучен <code>model.zip</code> или <code>libtorch-cpu</code>. Минаването към реалния NAS-BERT модел е смяна на един ред, описана в стъпка 4.</div>
+</section>
+
+<!-- ============================ РАЗПРЕДЕЛЕНИЕ НА ЗАДАЧИТЕ ============================ -->
+<section id="s17a">
+<h2>15. Разпределение на задачите в екипа</h2>
+
+<p>Проектът е разработен от екип от трима студенти. Тъй като оценката се формира 2/3 от личната роля на студента и 1/3 от цялостния продукт, по-долу е описано за какво отговаря всеки от екипа.</p>
+
+<h3>15.1. Радослав Гурев — F112656</h3>
+<ul>
+    <li>Отговаряше за <strong>ML частта</strong> — обучението и вграждането на NAS-BERT модела: подготовка на конвейера за обучение в <code>ForumGuard.ModelTrainer</code>, изготвяне на <code>model.zip</code> и зареждането му в приложението през <code>PredictionEnginePool</code> и адаптера <code>NasBertCommentAnalyzer</code>.</li>
+    <li><strong>Запозна останалите от екипа</strong> с ML.NET и с начина на работа на модела.</li>
+    <li>Правеше <strong>прегледи на кода (code review)</strong> на работата на колегите и следеше нещата между отделните слоеве да си пасват.</li>
+</ul>
+
+<h3>15.2. Алиса Спасова — F112658</h3>
+<ul>
+    <li>Изготви и проведе <strong>тестовете за качество (QA)</strong> и <strong>ръчните тестове на самия екран</strong> — преминаване през потоците на живо: вход в системата, публикуване на коментар, опашката за модерация (одобряване/отхвърляне) и администраторските страници.</li>
+    <li>Работи по <strong>част от front-end</strong> частта (Razor страници и изгледи).</li>
+    <li>Написа <strong>част от документацията</strong>.</li>
+</ul>
+
+<h3>15.3. Любослав Станков — F114428</h3>
+<ul>
+    <li>Разработи <strong>част от back-end</strong> логиката (услуги и достъп до данни в слоевете Application и Infrastructure).</li>
+    <li>Работи и по <strong>част от front-end</strong> частта на форума.</li>
+</ul>
+</section>
+
+<!-- ============================ ИЗПОЛЗВАНЕ НА AI ============================ -->
+<section id="s17b">
+<h2>16. Използване на AI асистент за консултация</h2>
+
+<p>По време на работата екипът ползваше <strong>безплатен AI асистент</strong> (Claude, модел Sonnet 4.6, през безплатния достъп на claude.ai) <strong>само като помощно средство за консултация</strong> — за изясняване на понятия, сравняване на подходи, обяснения по ML.NET и за справяне с конкретни грешки. Решенията по архитектурата, програмният код, тестовете и тази документация са дело на екипа. Асистентът беше използван така, както се ползва учебник или официална документация — като източник на обяснения и насоки, а не като автор на решението.</p>
+
+<p>Наборът от коментари, върху който е обучен моделът (<code>seed-comments.csv</code>), е <strong>написан от самия екип</strong>, както изисква условието — „предварително тренирания върху писани от вас коментари модел“.</p>
+
+<h3>16.1. Примерни запитвания към асистента</h3>
+<p>По-долу са представителни въпроси, с които екипът се консултира по време на разработката:</p>
+<ul>
+    <li>„Какво представлява алгоритъмът NAS-BERT и защо е по-подходящ за откриване на токсичен текст от обикновен филтър по ключови думи?“</li>
+    <li>„В ML.NET кой trainer отговаря на NAS-BERT и как се настройва класификация на текст за два етикета (Clean/Toxic)?“</li>
+    <li>„Какъв трябва да е форматът на CSV файла за обучение — какви колони и етикети очаква <code>TextClassification</code>?“</li>
+    <li>„Има ли вграден, нишково-безопасен начин да заредим запазен ML.NET модел в ASP.NET Core, вместо да създаваме <code>PredictionEngine</code> на ръка?“</li>
+    <li>„При предсказване излиза грешка „Could not find input column 'Label'“ — каква е причината и как се оправя?“</li>
+    <li>„Кой проектен шаблон е удачен, за да скрием няколко различни анализатора (по ключови думи и ML) зад един общ интерфейс?“</li>
+    <li>„Как да направим поредица от стъпки за модерация така, че всяка стъпка да може или да спре обработката, или да я подаде към следващата?“</li>
+    <li>„Как се пише интеграционен NUnit тест за EF Core репозитори срещу LocalDB и как се изолират данните между отделните тестове?“</li>
+    <li>„Как се прави политика за оторизация в ASP.NET Core, при която администраторът е изрично изключен от правото да модерира коментари?“</li>
+</ul>
+
+<div class="note info">
+<strong>Бележка.</strong> Отговорите на асистента служеха за отправна точка и обяснение; целият код е писан, преглеждан и нагласян от екипа според конкретните нужди на проекта, а всички проектни и архитектурни решения са взети от хората в екипа.</div>
+</section>
+
+<!-- ============================ 17. ЗАКЛЮЧЕНИЕ ============================ -->
+<section id="s17">
+<h2>17. Заключение</h2>
+
+<p>ForumGuard покрива всички функционални изисквания на задачата: форум на ASP.NET Core, в който всеки коментар се анализира автоматично за токсичност чрез предварително обучен NAS-BERT модел; чистите коментари се публикуват веднага, а флагнатите отиват в опашка за ръчен преглед от модератор, който ги одобрява или отхвърля; и три роли с ясно разделени права, при които администраторът управлява модераторите и активността на профилите, но няма власт върху коментарите.</p>
+
+<p>Освен самите изисквания, проектът показва и сериозен инженерен подход: слоеста архитектура с обърнати зависимости, седем нарочно избрани проектни шаблона, строго правило за видимостта на коментарите, принципа fail-safe при всеки проблем с анализа и широко тестово покритие (209 теста), вързано със спецификациите. Изборът на версии (.NET 8 LTS с ML.NET 4.x, който дава същия NAS-BERT API като ML.NET 2.0) е обоснован с актуалност и поддръжка, без да се отклонява от това, което условието иска.</p>
+
+<p>В бъдеще проектът може да се разшири с: нови звена във веригата за модериране (спам, дължина), класификация на повече езици, по-голям набор за обучение и метрики за качество в реално време.</p>
+</section>
+
+<!-- ============================ 18. ЛИТЕРАТУРА ============================ -->
+<section id="s18">
+<h2>18. Използвана литература</h2>
+
+<ol class="refs">
+    <li id="ref1">Xu, J., Tan, X., Luo, R., Song, K., Li, J., Qin, T., Liu, T.-Y. „NAS-BERT: Task-Agnostic and Adaptive-Size BERT Compression with Neural Architecture Search“. <em>Proceedings of the 27th ACM SIGKDD</em>, 2021. arXiv:2105.14444. <span class="small">[1]</span></li>
+    <li id="ref2">Microsoft Learn. „Text classification“. ML.NET документация. <span class="mono small">learn.microsoft.com/dotnet/machine-learning</span> <span class="small">[2]</span></li>
+    <li id="ref3">Jigsaw / Google. „Perspective API — Developer Documentation“. <span class="mono small">developers.perspectiveapi.com</span> <span class="small">[3]</span></li>
+    <li id="ref4">Devlin, J., Chang, M.-W., Lee, K., Toutanova, K. „BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding“. <em>NAACL-HLT</em>, 2019. arXiv:1810.04805. <span class="small">[4]</span></li>
+    <li id="ref5">Liu, Y. и др. „RoBERTa: A Robustly Optimized BERT Pretraining Approach“. 2019. arXiv:1907.11692. <span class="small">[5]</span></li>
+    <li id="ref6">Microsoft Learn. „Train a text classification model with ML.NET and TorchSharp / <code>TextClassificationTrainer</code> API“. <span class="mono small">learn.microsoft.com/dotnet/api/microsoft.ml.torchsharp</span> <span class="small">[6]</span></li>
+    <li id="ref7">Gamma, E., Helm, R., Johnson, R., Vlissides, J. „Design Patterns: Elements of Reusable Object-Oriented Software“. Addison-Wesley, 1994. <span class="small">[7]</span></li>
+    <li id="ref8">Fowler, M. „Patterns of Enterprise Application Architecture“. Addison-Wesley, 2002. <span class="small">[8]</span></li>
+    <li id="ref9">Microsoft Learn. „Options pattern in ASP.NET Core“ и „Configuration in ASP.NET Core“. <span class="mono small">learn.microsoft.com/aspnet/core/fundamentals</span> <span class="small">[9]</span></li>
+    <li id="ref10">Microsoft Learn. „Introduction to authorization in ASP.NET Core / Policy-based authorization“ и „Introduction to Identity on ASP.NET Core“. <span class="mono small">learn.microsoft.com/aspnet/core/security</span> <span class="small">[10]</span></li>
+    <li id="ref11">Microsoft Learn. „Entity Framework Core — Documentation“ (моделиране, миграции, конкурентност). <span class="mono small">learn.microsoft.com/ef/core</span> <span class="small">[11]</span></li>
+    <li id="ref12">Microsoft Learn. „Razor Pages in ASP.NET Core“. <span class="mono small">learn.microsoft.com/aspnet/core/razor-pages</span> <span class="small">[12]</span></li>
+</ol>
+</section>
+
+<!-- ============================ 19. БЕЛЕЖКА ============================ -->
+<section id="s19">
+<h2>19. Бележка относно изходния код</h2>
+<div class="note">
+<p>Програмният код <strong>не</strong> е част от тази документация. Изходният код на ForumGuard се предава като отделно приложение към курсовата работа.</p>
+</div>
+</section>
+
+</div>
+</body>
+</html>
