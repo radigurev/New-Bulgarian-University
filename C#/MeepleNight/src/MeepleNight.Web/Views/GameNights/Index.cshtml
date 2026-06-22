@@ -1,0 +1,51 @@
+@model GameNightListPageViewModel
+@{
+    ViewData["Title"] = "My Game Nights";
+}
+
+<header class="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+    <div>
+        <p class="mn-chip mn-chip-ember mb-3">Your schedule</p>
+        <h1 class="mn-page-title">My Game Nights</h1>
+        <p class="mt-2 text-ink-500 dark:text-ink-400">Plans you're hosting and nights you've been invited to.</p>
+    </div>
+    <a class="mn-btn mn-btn-primary self-start sm:self-auto" asp-action="Create">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        New game night
+    </a>
+</header>
+
+<section class="mb-10">
+    <div class="mb-4 flex items-center gap-2">
+        <h2 class="font-display text-xl font-semibold text-ink-900 dark:text-ink-50">Hosting</h2>
+        <span class="mn-chip">@Model.Hosting.Count</span>
+    </div>
+    @if (!Model.Hosting.Any())
+    {
+        <div class="mn-card text-center py-10">
+            <p class="text-ink-500 dark:text-ink-400">You're not hosting any nights yet.</p>
+            <a asp-action="Create" class="mt-4 mn-btn mn-btn-primary inline-flex">Plan your first night</a>
+        </div>
+    }
+    else
+    {
+        @await Html.PartialAsync("_NightTable", Model.Hosting)
+    }
+</section>
+
+<section>
+    <div class="mb-4 flex items-center gap-2">
+        <h2 class="font-display text-xl font-semibold text-ink-900 dark:text-ink-50">Invited</h2>
+        <span class="mn-chip">@Model.Invited.Count</span>
+    </div>
+    @if (!Model.Invited.Any())
+    {
+        <div class="mn-card text-center py-10">
+            <p class="text-ink-500 dark:text-ink-400">No invitations yet.</p>
+        </div>
+    }
+    else
+    {
+        @await Html.PartialAsync("_NightTable", Model.Invited)
+    }
+</section>

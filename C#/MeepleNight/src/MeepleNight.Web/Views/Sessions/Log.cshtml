@@ -1,0 +1,148 @@
+@model LogSessionRequest
+@{
+    ViewData["Title"] = "Log Session";
+    var night = ViewBag.Night as GameNightDetailsDto;
+    var attendees = night?.Invitees.Where(a => a.Status == InvitationStatus.Accepted).ToList() ?? new List<AttendeeDto>();
+    var candidates = night?.CandidateGames ?? new List<CandidateGameDto>();
+}
+
+<div class="mb-6">
+    @if (night != null)
+    {
+        <a asp-controller="GameNights" asp-action="Details" asp-route-id="@night.Id"
+           class="inline-flex items-center gap-1 text-sm text-ink-500 dark:text-ink-400 hover:text-ember-600 dark:hover:text-ember-300 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Back to @night.Title
+        </a>
+    }
+</div>
+
+<header class="mb-8">
+    <p class="mn-chip mn-chip-ember mb-3">New session</p>
+    <h1 class="mn-page-title">Log a session</h1>
+    @if (night != null)
+    {
+        <p class="mt-2 text-ink-500 dark:text-ink-400">
+            For game night <span class="font-semibold text-ink-700 dark:text-ink-200">@night.Title</span>
+            on @night.ScheduledForUtc.ToLocalTime().ToString("ddd, MMM d · HH:mm").
+        </p>
+    }
+</header>
+
+<form asp-action="Log" method="post" class="mn-card space-y-6">
+    <input type="hidden" asp-for="GameNightId" />
+    <div asp-validation-summary="ModelOnly" class="rounded-lg border border-rose-500/30 bg-rose-500/10 text-rose-700 dark:text-rose-300 text-sm p-3 hidden [&:has(li)]:block"></div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="md:col-span-2">
+            <label class="mn-label" asp-for="GameId">Game</label>
+            <select asp-for="GameId" class="mn-field" required>
+                <option value="">-- pick a game --</option>
+                @foreach (CandidateGameDto c in candidates)
+                {
+                    <option value="@c.GameId">@c.Title (@c.Category)</option>
+                }
+            </select>
+        </div>
+        <div>
+            <label class="mn-label" asp-for="StartedAtUtc">Started at</label>
+            <input asp-for="StartedAtUtc" type="datetime-local" class="mn-field" />
+        </div>
+        <div>
+            <label class="mn-label" asp-for="DurationMinutes">Duration (min)</label>
+            <input asp-for="DurationMinutes" type="number" class="mn-field" min="1" max="720" placeholder="Optional" />
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div>
+            <label class="mn-label" asp-for="WinnerNote">Winner note</label>
+            <input asp-for="WinnerNote" class="mn-field" placeholder="e.g. Tied between Anna and Boris" />
+        </div>
+        <div>
+            <label class="mn-label" asp-for="IsCooperativeWin">Cooperative outcome</label>
+            <select asp-for="IsCooperativeWin" class="mn-field">
+                <option value="">Not applicable</option>
+                <option value="true">Won together</option>
+                <option value="false">Lost together</option>
+            </select>
+            <p class="mn-help">Only for cooperative games.</p>
+        </div>
+    </div>
+
+    <div class="pt-6 border-t border-ink-200 dark:border-ink-800">
+        <div class="flex items-center justify-between gap-3 mb-3">
+            <h3 class="font-display text-lg font-semibold text-ink-900 dark:text-ink-50">Players</h3>
+            <button type="button" id="add-player" class="mn-btn mn-btn-secondary text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Add player
+            </button>
+        </div>
+
+        <div id="players-table" class="overflow-hidden rounded-xl border border-ink-200 dark:border-ink-800">
+            <div class="hidden sm:grid grid-cols-12 gap-2 px-4 py-2 text-xs uppercase tracking-wide text-ink-500 dark:text-ink-400 bg-ink-100/60 dark:bg-ink-900/60">
+                <div class="col-span-5">Player</div>
+                <div class="col-span-3">Score</div>
+                <div class="col-span-3">Placement</div>
+                <div class="col-span-1"></div>
+            </div>
+            <div id="players-body" class="divide-y divide-ink-200 dark:divide-ink-800"></div>
+        </div>
+
+        <template id="player-template">
+            <div class="grid grid-cols-12 gap-2 px-4 py-3 items-center player-row">
+                <div class="col-span-12 sm:col-span-5">
+                    <select name="Players[INDEX].UserId" class="mn-field">
+                        <option value="">-- pick player --</option>
+                        @foreach (AttendeeDto a in attendees)
+                        {
+                            <option value="@a.UserId">@a.DisplayName</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-span-6 sm:col-span-3">
+                    <input type="number" name="Players[INDEX].Score" step="0.01" class="mn-field" placeholder="Optional" />
+                </div>
+                <div class="col-span-5 sm:col-span-3">
+                    <input type="number" name="Players[INDEX].Placement" min="1" value="1" class="mn-field" />
+                </div>
+                <div class="col-span-1 flex justify-end">
+                    <button type="button" class="remove-player mn-btn mn-btn-ghost text-rose-600 dark:text-rose-400 hover:bg-rose-500/10 !p-2" aria-label="Remove player">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg>
+                    </button>
+                </div>
+            </div>
+        </template>
+    </div>
+
+    <div class="flex flex-wrap gap-2 pt-2 border-t border-ink-200 dark:border-ink-800">
+        <button type="submit" class="mn-btn mn-btn-primary">Save session</button>
+        <a asp-controller="GameNights" asp-action="Details" asp-route-id="@Model.GameNightId" class="mn-btn mn-btn-ghost">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        (function () {
+            const body = document.getElementById('players-body');
+            const tpl = document.getElementById('player-template');
+            let nextIndex = 0;
+
+            function addRow() {
+                const clone = tpl.content.cloneNode(true);
+                clone.querySelectorAll('[name]').forEach(el => {
+                    el.name = el.name.replace('INDEX', nextIndex);
+                });
+                const row = clone.querySelector('.player-row');
+                clone.querySelector('.remove-player').onclick = () => row.remove();
+                body.appendChild(clone);
+                nextIndex++;
+            }
+
+            document.getElementById('add-player').onclick = addRow;
+            addRow();
+            addRow();
+        })();
+    </script>
+}

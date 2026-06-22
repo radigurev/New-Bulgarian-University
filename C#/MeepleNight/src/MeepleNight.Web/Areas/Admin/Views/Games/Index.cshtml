@@ -1,0 +1,96 @@
+@model List<GameSummaryDto>
+@{
+    ViewData["Title"] = "Manage Games";
+    string? search = ViewBag.Search as string;
+}
+
+<header class="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+    <div>
+        <p class="mn-chip mn-chip-ember mb-3">Admin</p>
+        <h1 class="mn-page-title">Game catalog</h1>
+        <p class="mt-2 text-ink-500 dark:text-ink-400">Curate the shared list of games available across all nights.</p>
+    </div>
+    <a class="mn-btn mn-btn-primary self-start sm:self-auto" asp-action="Create">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        New game
+    </a>
+</header>
+
+<form method="get" class="mn-card mb-8">
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 items-end">
+        <div class="sm:col-span-3">
+            <label class="mn-label">Search by title</label>
+            <div class="relative">
+                <span class="absolute inset-y-0 left-3 grid place-items-center text-ink-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </span>
+                <input type="text" name="search" value="@search" class="mn-field pl-9" placeholder="Title contains..." />
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="mn-btn mn-btn-primary w-full">Search</button>
+        </div>
+    </div>
+</form>
+
+<div class="mn-card !p-0 overflow-hidden">
+    <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+            <thead class="bg-ink-100/60 dark:bg-ink-900/60 text-left text-xs uppercase tracking-wide text-ink-500 dark:text-ink-400">
+                <tr>
+                    <th class="px-5 py-3 font-semibold">Title</th>
+                    <th class="px-5 py-3 font-semibold">Category</th>
+                    <th class="px-5 py-3 font-semibold">Players</th>
+                    <th class="px-5 py-3 font-semibold">Duration</th>
+                    <th class="px-5 py-3 font-semibold">Status</th>
+                    <th class="px-5 py-3 font-semibold text-right">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-ink-200 dark:divide-ink-800">
+                @foreach (GameSummaryDto g in Model)
+                {
+                    <tr class="hover:bg-ink-50 dark:hover:bg-ink-900/60 transition-colors">
+                        <td class="px-5 py-3 font-semibold text-ink-900 dark:text-ink-100">@g.Title</td>
+                        <td class="px-5 py-3"><span class="mn-chip mn-chip-ember">@g.Category</span></td>
+                        <td class="px-5 py-3 text-ink-600 dark:text-ink-300">@g.MinPlayers–@g.MaxPlayers</td>
+                        <td class="px-5 py-3 text-ink-600 dark:text-ink-300">@g.AverageDurationMinutes min</td>
+                        <td class="px-5 py-3">
+                            @if (g.IsActive)
+                            {
+                                <span class="mn-chip bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">Active</span>
+                            }
+                            else
+                            {
+                                <span class="mn-chip bg-amber-500/15 text-amber-700 dark:text-amber-300">Inactive</span>
+                            }
+                        </td>
+                        <td class="px-5 py-3 text-right">
+                            <div class="inline-flex items-center gap-1">
+                                <a class="mn-btn mn-btn-ghost text-xs" asp-action="Edit" asp-route-id="@g.Id">Edit</a>
+                                @if (g.IsActive)
+                                {
+                                    <form asp-action="Deactivate" asp-route-id="@g.Id" method="post" class="inline"
+                                          onsubmit="return confirm('Deactivate @g.Title?');">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="mn-btn mn-btn-ghost text-xs text-amber-700 dark:text-amber-300 hover:bg-amber-500/10">Deactivate</button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <form asp-action="Restore" asp-route-id="@g.Id" method="post" class="inline">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="mn-btn mn-btn-ghost text-xs text-emerald-700 dark:text-emerald-300 hover:bg-emerald-500/10">Restore</button>
+                                    </form>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                }
+                @if (!Model.Any())
+                {
+                    <tr><td colspan="6" class="px-5 py-10 text-center text-ink-500 dark:text-ink-400">No games match.</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

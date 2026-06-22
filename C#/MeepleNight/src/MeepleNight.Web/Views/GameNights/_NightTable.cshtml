@@ -1,0 +1,53 @@
+@model List<GameNightSummaryDto>
+
+<div class="mn-card !p-0 overflow-hidden">
+    <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+            <thead class="bg-ink-100/60 dark:bg-ink-900/60 text-left text-xs uppercase tracking-wide text-ink-500 dark:text-ink-400">
+                <tr>
+                    <th class="px-5 py-3 font-semibold">Title</th>
+                    <th class="px-5 py-3 font-semibold">When</th>
+                    <th class="px-5 py-3 font-semibold">Where</th>
+                    <th class="px-5 py-3 font-semibold">Host</th>
+                    <th class="px-5 py-3 font-semibold">Status</th>
+                    <th class="px-5 py-3 font-semibold text-right">Attending</th>
+                    <th class="px-5 py-3"></th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-ink-200 dark:divide-ink-800">
+                @foreach (GameNightSummaryDto n in Model)
+                {
+                    <tr class="hover:bg-ink-50 dark:hover:bg-ink-900/60 transition-colors">
+                        <td class="px-5 py-3">
+                            <a asp-action="Details" asp-route-id="@n.Id" class="font-semibold text-ink-900 dark:text-ink-100 hover:text-ember-600 dark:hover:text-ember-300">@n.Title</a>
+                        </td>
+                        <td class="px-5 py-3 text-ink-600 dark:text-ink-300 whitespace-nowrap">@n.ScheduledForUtc.ToLocalTime().ToString("yyyy-MM-dd HH:mm")</td>
+                        <td class="px-5 py-3 text-ink-600 dark:text-ink-300">@n.Location</td>
+                        <td class="px-5 py-3 text-ink-600 dark:text-ink-300">@n.HostDisplayName</td>
+                        <td class="px-5 py-3">
+                            @switch (n.Status)
+                            {
+                                case GameNightStatus.Planned:
+                                    <span class="mn-chip bg-sky-500/15 text-sky-700 dark:text-sky-300">Planned</span>
+                                    break;
+                                case GameNightStatus.Completed:
+                                    <span class="mn-chip bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">Completed</span>
+                                    break;
+                                case GameNightStatus.Cancelled:
+                                    <span class="mn-chip">Cancelled</span>
+                                    break;
+                            }
+                        </td>
+                        <td class="px-5 py-3 text-right font-semibold text-ink-900 dark:text-ink-100">@n.AcceptedAttendeeCount</td>
+                        <td class="px-5 py-3 text-right">
+                            <a asp-action="Details" asp-route-id="@n.Id" class="mn-btn mn-btn-ghost text-xs">
+                                Open
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

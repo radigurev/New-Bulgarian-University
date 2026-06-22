@@ -1,0 +1,28 @@
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<div class="max-w-2xl mx-auto">
+    <div class="mn-card text-center">
+        <div class="mx-auto mb-5 grid h-14 w-14 place-items-center rounded-2xl bg-rose-500/10 text-rose-500">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-7 w-7"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <h1 class="mn-page-title">Something went wrong</h1>
+        <p class="mt-3 text-ink-500 dark:text-ink-400">
+            An error occurred while processing your request. If this happens repeatedly, contact the administrator with the request ID below.
+        </p>
+
+        @if (Model.ShowRequestId)
+        {
+            <div class="mt-6 inline-flex items-center gap-2 rounded-lg border border-ink-200 dark:border-ink-700 bg-ink-100/50 dark:bg-ink-900/60 px-3 py-2 font-mono text-xs text-ink-700 dark:text-ink-300">
+                <span class="text-ink-400">Request ID</span>
+                <code>@Model.RequestId</code>
+            </div>
+        }
+
+        <div class="mt-8 flex items-center justify-center gap-2">
+            <a asp-controller="Home" asp-action="Index" class="mn-btn mn-btn-primary">Back to home</a>
+        </div>
+    </div>
+</div>

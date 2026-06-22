@@ -1,0 +1,358 @@
+@model GameNightDetailsDto
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="mb-6">
+    <a asp-action="Index" class="inline-flex items-center gap-1 text-sm text-ink-500 dark:text-ink-400 hover:text-ember-600 dark:hover:text-ember-300 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to my nights
+    </a>
+</div>
+
+<header class="mb-8 flex flex-wrap items-start justify-between gap-4">
+    <div>
+        <div class="flex items-center gap-2 mb-3">
+            @switch (Model.Status)
+            {
+                case GameNightStatus.Planned:
+                    <span class="mn-chip bg-sky-500/15 text-sky-700 dark:text-sky-300">Planned</span>
+                    break;
+                case GameNightStatus.Completed:
+                    <span class="mn-chip bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">Completed</span>
+                    break;
+                case GameNightStatus.Cancelled:
+                    <span class="mn-chip">Cancelled</span>
+                    break;
+            }
+            @if (Model.ViewerIsHost)
+            {
+                <span class="mn-chip mn-chip-ember">Host</span>
+            }
+        </div>
+        <h1 class="mn-page-title">@Model.Title</h1>
+    </div>
+
+    @if (Model.ViewerIsHost && Model.Status == GameNightStatus.Planned)
+    {
+        <div class="flex flex-wrap items-center gap-2">
+            <a class="mn-btn mn-btn-secondary" asp-action="Edit" asp-route-id="@Model.Id">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                Edit
+            </a>
+            <a class="mn-btn mn-btn-primary" asp-controller="Sessions" asp-action="Log" asp-route-gameNightId="@Model.Id">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Log session
+            </a>
+            <form asp-action="Cancel" asp-route-id="@Model.Id" method="post" class="inline"
+                  onsubmit="return confirm('Cancel this game night? Pending invitations will be revoked.');">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="mn-btn mn-btn-ghost text-rose-600 dark:text-rose-400 hover:bg-rose-500/10">Cancel night</button>
+            </form>
+        </div>
+    }
+</header>
+
+<section class="mn-card mb-8">
+    <dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div>
+            <dt class="text-xs uppercase tracking-wide text-ink-400 flex items-center gap-1.5">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                When
+            </dt>
+            <dd class="mt-2 font-semibold text-ink-900 dark:text-ink-50">@Model.ScheduledForUtc.ToLocalTime().ToString("ddd, MMM d · HH:mm")</dd>
+            <dd class="text-xs text-ink-500">local time</dd>
+        </div>
+        <div>
+            <dt class="text-xs uppercase tracking-wide text-ink-400 flex items-center gap-1.5">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Where
+            </dt>
+            <dd class="mt-2 font-semibold text-ink-900 dark:text-ink-50">@Model.Location</dd>
+        </div>
+        <div>
+            <dt class="text-xs uppercase tracking-wide text-ink-400 flex items-center gap-1.5">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+                Host
+            </dt>
+            <dd class="mt-2 font-semibold text-ink-900 dark:text-ink-50">@Model.HostDisplayName</dd>
+        </div>
+        <div>
+            <dt class="text-xs uppercase tracking-wide text-ink-400 flex items-center gap-1.5">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                Expected
+            </dt>
+            <dd class="mt-2 font-semibold text-ink-900 dark:text-ink-50">@Model.ExpectedPlayerCount players</dd>
+        </div>
+    </dl>
+    @if (!string.IsNullOrWhiteSpace(Model.Notes))
+    {
+        <div class="mt-6 pt-6 border-t border-ink-200 dark:border-ink-800">
+            <p class="text-xs uppercase tracking-wide text-ink-400 mb-2">Notes</p>
+            <p class="whitespace-pre-wrap text-ink-700 dark:text-ink-300">@Model.Notes</p>
+        </div>
+    }
+</section>
+
+<section class="mb-8">
+    <h2 class="font-display text-xl font-semibold text-ink-900 dark:text-ink-50 mb-4">Candidate games</h2>
+    @if (Model.CandidateGames.Any())
+    {
+        <div class="flex flex-wrap gap-3">
+            @foreach (CandidateGameDto c in Model.CandidateGames)
+            {
+                <div class="rounded-xl border border-ink-200 dark:border-ink-800 bg-white dark:bg-ink-900/60 px-4 py-3">
+                    <p class="font-semibold text-ink-900 dark:text-ink-100">@c.Title</p>
+                    <p class="text-xs text-ink-500 dark:text-ink-400">
+                        <span class="mn-chip mn-chip-ember mr-1">@c.Category</span>
+                        @c.MinPlayers–@c.MaxPlayers players
+                    </p>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p class="text-ink-500 dark:text-ink-400 italic">No candidate games selected.</p>
+    }
+</section>
+
+<section class="mb-8">
+    <h2 class="font-display text-xl font-semibold text-ink-900 dark:text-ink-50 mb-4">Attendees</h2>
+    @if (Model.Invitees.Any())
+    {
+        <div class="mn-card !p-0 overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead class="bg-ink-100/60 dark:bg-ink-900/60 text-left text-xs uppercase tracking-wide text-ink-500 dark:text-ink-400">
+                        <tr>
+                            <th class="px-5 py-3 font-semibold">Name</th>
+                            <th class="px-5 py-3 font-semibold">Status</th>
+                            @if (Model.ViewerIsHost) { <th class="px-5 py-3"></th> }
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-ink-200 dark:divide-ink-800">
+                        @foreach (AttendeeDto a in Model.Invitees)
+                        {
+                            <tr class="hover:bg-ink-50 dark:hover:bg-ink-900/60 transition-colors">
+                                <td class="px-5 py-3 font-medium text-ink-900 dark:text-ink-100">@a.DisplayName</td>
+                                <td class="px-5 py-3">
+                                    @switch (a.Status)
+                                    {
+                                        case InvitationStatus.Pending:
+                                            <span class="mn-chip bg-amber-500/15 text-amber-700 dark:text-amber-300">Pending</span>
+                                            break;
+                                        case InvitationStatus.Accepted:
+                                            <span class="mn-chip bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">Accepted</span>
+                                            break;
+                                        case InvitationStatus.Declined:
+                                            <span class="mn-chip">Declined</span>
+                                            break;
+                                        case InvitationStatus.Revoked:
+                                            <span class="mn-chip">Revoked</span>
+                                            break;
+                                        case InvitationStatus.Removed:
+                                            <span class="mn-chip">Removed</span>
+                                            break;
+                                    }
+                                </td>
+                                @if (Model.ViewerIsHost)
+                                {
+                                    <td class="px-5 py-3 text-right">
+                                        @if (a.Status == InvitationStatus.Pending)
+                                        {
+                                            <form asp-controller="Invitations" asp-action="Revoke" method="post" class="inline">
+                                                @Html.AntiForgeryToken()
+                                                <input type="hidden" name="invitationId" value="@a.InvitationId" />
+                                                <input type="hidden" name="gameNightId" value="@Model.Id" />
+                                                <button type="submit" class="mn-btn mn-btn-ghost text-xs text-amber-700 dark:text-amber-300 hover:bg-amber-500/10">Revoke</button>
+                                            </form>
+                                        }
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+    else
+    {
+        <p class="text-ink-500 dark:text-ink-400 italic">No invitees yet.</p>
+    }
+</section>
+
+@if (Model.ViewerIsHost && Model.Status == GameNightStatus.Planned)
+{
+    <section class="mn-card mb-8">
+        <h3 class="font-display text-lg font-semibold text-ink-900 dark:text-ink-50">Invite people</h3>
+        <p class="mt-1 text-sm text-ink-500 dark:text-ink-400">Search by name or email — pick a few and send invites.</p>
+
+        <form asp-controller="Invitations" asp-action="Send" method="post" id="invite-form" class="mt-5">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="GameNightId" value="@Model.Id" />
+
+            <div class="relative">
+                <span class="absolute inset-y-0 left-3 grid place-items-center text-ink-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </span>
+                <input type="text" id="invite-search" class="mn-field pl-9" placeholder="Type at least 2 characters..." autocomplete="off" />
+                <div id="invite-results" class="hidden absolute z-10 mt-1 w-full max-h-64 overflow-y-auto rounded-lg border border-ink-200 dark:border-ink-700 bg-white dark:bg-ink-900 shadow-soft"></div>
+            </div>
+
+            <div id="invite-selected" class="mt-3 flex flex-wrap gap-2"></div>
+
+            <div class="mt-5 flex items-center gap-2">
+                <button type="submit" class="mn-btn mn-btn-primary">Send invitations</button>
+            </div>
+        </form>
+    </section>
+
+    @section Scripts {
+        <script>
+            (function () {
+                const search = document.getElementById('invite-search');
+                const results = document.getElementById('invite-results');
+                const selected = document.getElementById('invite-selected');
+                const picked = new Map();
+
+                function refreshSelected() {
+                    selected.innerHTML = '';
+                    picked.forEach((name, id) => {
+                        const chip = document.createElement('span');
+                        chip.className = 'inline-flex items-center gap-1.5 rounded-full bg-ember-500/15 text-ember-700 dark:text-ember-300 px-3 py-1 text-xs font-semibold';
+                        chip.textContent = name;
+
+                        const x = document.createElement('button');
+                        x.type = 'button';
+                        x.className = 'text-ember-700 dark:text-ember-300 hover:text-ember-900 dark:hover:text-ember-100';
+                        x.innerHTML = '&times;';
+                        x.onclick = () => { picked.delete(id); refreshSelected(); };
+                        chip.appendChild(x);
+
+                        const hidden = document.createElement('input');
+                        hidden.type = 'hidden';
+                        hidden.name = 'InviteeUserIds';
+                        hidden.value = id;
+
+                        selected.appendChild(chip);
+                        selected.appendChild(hidden);
+                    });
+                }
+
+                let timer = null;
+                search.addEventListener('input', () => {
+                    clearTimeout(timer);
+                    const q = search.value.trim();
+                    if (q.length < 2) { results.classList.add('hidden'); return; }
+                    timer = setTimeout(async () => {
+                        const r = await fetch('/Invitations/SearchUsers?q=' + encodeURIComponent(q));
+                        const data = await r.json();
+                        results.innerHTML = '';
+                        data.forEach(u => {
+                            const item = document.createElement('button');
+                            item.type = 'button';
+                            item.className = 'w-full text-left px-3 py-2 hover:bg-ink-100 dark:hover:bg-ink-800 flex items-center gap-2 text-sm';
+                            item.innerHTML = '<span class="font-medium text-ink-900 dark:text-ink-100">' + u.displayName + '</span><span class="text-ink-500">' + u.email + '</span>';
+                            item.onclick = () => {
+                                picked.set(u.id, u.displayName);
+                                refreshSelected();
+                                results.classList.add('hidden');
+                                search.value = '';
+                            };
+                            results.appendChild(item);
+                        });
+                        if (data.length) { results.classList.remove('hidden'); } else { results.classList.add('hidden'); }
+                    }, 200);
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!results.contains(e.target) && e.target !== search) {
+                        results.classList.add('hidden');
+                    }
+                });
+            })();
+        </script>
+    }
+}
+
+<section>
+    <h2 class="font-display text-xl font-semibold text-ink-900 dark:text-ink-50 mb-4">Sessions</h2>
+    @if (Model.Sessions.Any())
+    {
+        <div class="space-y-4">
+            @foreach (SessionDto session in Model.Sessions)
+            {
+                <article class="mn-card">
+                    <div class="flex flex-wrap items-start justify-between gap-3 mb-4">
+                        <div>
+                            <h3 class="font-display text-lg font-semibold text-ink-900 dark:text-ink-50">@session.GameTitle</h3>
+                            <p class="text-xs text-ink-500 dark:text-ink-400 mt-1">@session.StartedAtUtc.ToLocalTime().ToString("yyyy-MM-dd · HH:mm")</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            @if (session.IsCooperativeWin.HasValue)
+                            {
+                                if (session.IsCooperativeWin.Value)
+                                {
+                                    <span class="mn-chip bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">Co-op win</span>
+                                }
+                                else
+                                {
+                                    <span class="mn-chip bg-rose-500/15 text-rose-700 dark:text-rose-300">Co-op loss</span>
+                                }
+                            }
+                            @if (Model.ViewerIsHost)
+                            {
+                                <form asp-controller="Sessions" asp-action="Delete" method="post" class="inline"
+                                      onsubmit="return confirm('Delete this session?');">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@session.Id" />
+                                    <input type="hidden" name="gameNightId" value="@Model.Id" />
+                                    <button type="submit" class="mn-btn mn-btn-ghost text-xs text-rose-600 dark:text-rose-400 hover:bg-rose-500/10">Delete</button>
+                                </form>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="text-left text-xs uppercase tracking-wide text-ink-500 dark:text-ink-400">
+                                <tr class="border-b border-ink-200 dark:border-ink-800">
+                                    <th class="py-2 pr-3 font-semibold">Player</th>
+                                    <th class="py-2 pr-3 font-semibold text-right">Score</th>
+                                    <th class="py-2 font-semibold text-right">Place</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-ink-200/50 dark:divide-ink-800/50">
+                                @foreach (SessionPlayerDto p in session.Players)
+                                {
+                                    <tr>
+                                        <td class="py-2 pr-3">
+                                            <span class="text-ink-900 dark:text-ink-100">@p.DisplayName</span>
+                                            @if (p.Placement == 1)
+                                            {
+                                                <span class="ml-2 mn-chip mn-chip-ember">🏆 winner</span>
+                                            }
+                                        </td>
+                                        <td class="py-2 pr-3 text-right text-ink-600 dark:text-ink-300">@(p.Score?.ToString("0.##") ?? "—")</td>
+                                        <td class="py-2 text-right text-ink-600 dark:text-ink-300">@p.Placement</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    @if (!string.IsNullOrWhiteSpace(session.WinnerNote))
+                    {
+                        <p class="mt-3 text-sm italic text-ink-500 dark:text-ink-400">@session.WinnerNote</p>
+                    }
+                </article>
+            }
+        </div>
+    }
+    else
+    {
+        <p class="text-ink-500 dark:text-ink-400 italic">No sessions logged yet.</p>
+    }
+</section>

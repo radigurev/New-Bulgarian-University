@@ -1,0 +1,68 @@
+@model CreateGameRequest
+@{
+    ViewData["Title"] = "New Game";
+}
+
+<div class="mb-6">
+    <a asp-action="Index" class="inline-flex items-center gap-1 text-sm text-ink-500 dark:text-ink-400 hover:text-ember-600 dark:hover:text-ember-300 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to catalog
+    </a>
+</div>
+
+<header class="mb-8">
+    <p class="mn-chip mn-chip-ember mb-3">Admin · New game</p>
+    <h1 class="mn-page-title">Add a game</h1>
+</header>
+
+<form asp-action="Create" method="post" class="mn-card max-w-3xl space-y-5">
+    <div asp-validation-summary="ModelOnly" class="rounded-lg border border-rose-500/30 bg-rose-500/10 text-rose-700 dark:text-rose-300 text-sm p-3 hidden [&:has(li)]:block"></div>
+
+    <div>
+        <label class="mn-label" asp-for="Title">Title</label>
+        <input asp-for="Title" class="mn-field" />
+        <span asp-validation-for="Title" class="mn-error"></span>
+    </div>
+
+    <div>
+        <label class="mn-label" asp-for="Description">Description</label>
+        <textarea asp-for="Description" class="mn-field" rows="3"></textarea>
+        <span asp-validation-for="Description" class="mn-error"></span>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+        <div>
+            <label class="mn-label" asp-for="MinPlayers">Min players</label>
+            <input asp-for="MinPlayers" type="number" class="mn-field" min="1" max="20" />
+        </div>
+        <div>
+            <label class="mn-label" asp-for="MaxPlayers">Max players</label>
+            <input asp-for="MaxPlayers" type="number" class="mn-field" min="1" max="20" />
+        </div>
+        <div>
+            <label class="mn-label" asp-for="AverageDurationMinutes">Duration (min)</label>
+            <input asp-for="AverageDurationMinutes" type="number" class="mn-field" min="5" max="720" />
+        </div>
+        <div>
+            <label class="mn-label" asp-for="Category">Category</label>
+            <select asp-for="Category" class="mn-field"
+                    asp-items="Html.GetEnumSelectList<GameCategory>()"></select>
+        </div>
+    </div>
+
+    <div>
+        <label class="mn-label" asp-for="CoverImagePath">Cover image path</label>
+        <input asp-for="CoverImagePath" class="mn-field" placeholder="/uploads/games/foo.jpg" />
+        <p class="mn-help">Optional.</p>
+        <span asp-validation-for="CoverImagePath" class="mn-error"></span>
+    </div>
+
+    <div class="flex flex-wrap gap-2 pt-2 border-t border-ink-200 dark:border-ink-800">
+        <button type="submit" class="mn-btn mn-btn-primary">Create</button>
+        <a asp-action="Index" class="mn-btn mn-btn-ghost">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

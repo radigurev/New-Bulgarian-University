@@ -1,0 +1,82 @@
+@inject SignInManager<User> SignInManager
+@{
+    ViewData["Title"] = "Home";
+    bool isSignedIn = SignInManager.IsSignedIn(User);
+}
+
+<section class="relative overflow-hidden rounded-xl2 border border-ink-200/60 dark:border-ink-800/60 bg-gradient-to-br from-white via-ember-50/40 to-white dark:from-ink-900 dark:via-ink-900 dark:to-ink-950 px-6 py-14 sm:py-20 text-center">
+    <div class="pointer-events-none absolute inset-0 -z-10">
+        <div class="absolute -top-24 left-1/2 -translate-x-1/2 h-72 w-72 rounded-full bg-ember-400/20 blur-3xl"></div>
+    </div>
+
+    <p class="inline-flex items-center gap-2 mn-chip mn-chip-ember">
+        <span class="h-1.5 w-1.5 rounded-full bg-ember-500"></span>
+        Game nights, organised
+    </p>
+
+    <h1 class="mt-5 font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink-900 dark:text-ink-50">
+        Roll the dice with <span class="bg-gradient-to-r from-ember-500 to-ember-300 bg-clip-text text-transparent">your circle</span>.
+    </h1>
+
+    <p class="mt-5 mx-auto max-w-2xl text-base sm:text-lg text-ink-600 dark:text-ink-300">
+        Schedule game nights with friends, keep a shared catalog of games, log who played and who won, and let MeepleNight tell you what to play next.
+    </p>
+
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a asp-controller="Games" asp-action="Index" class="mn-btn mn-btn-primary">
+            Browse the catalog
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        @if (isSignedIn)
+        {
+            <a asp-controller="GameNights" asp-action="Index" class="mn-btn mn-btn-secondary">Go to my nights</a>
+        }
+        else
+        {
+            <a asp-area="Identity" asp-page="/Account/Register" class="mn-btn mn-btn-secondary">Create an account</a>
+        }
+    </div>
+</section>
+
+<section class="mt-12 grid gap-5 md:grid-cols-3">
+    <div class="mn-card mn-card-hover">
+        <div class="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-ember-500/10 text-ember-600 dark:text-ember-300">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <h3 class="font-display text-lg font-semibold text-ink-900 dark:text-ink-50">A shared catalog</h3>
+        <p class="mt-2 text-sm text-ink-600 dark:text-ink-400">
+            An admin-curated list of board games — player counts, average duration, the works. Browse without an account.
+        </p>
+        <a asp-controller="Games" asp-action="Index" class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-ember-600 dark:text-ember-300 hover:gap-2 transition-all">
+            Browse games
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+    </div>
+
+    <div class="mn-card mn-card-hover">
+        <div class="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-ember-500/10 text-ember-600 dark:text-ember-300">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h3 class="font-display text-lg font-semibold text-ink-900 dark:text-ink-50">Plan a night</h3>
+        <p class="mt-2 text-sm text-ink-600 dark:text-ink-400">
+            Pick a date, a place, and a shortlist of candidate games. Invite friends and track who's coming.
+        </p>
+    </div>
+
+    <div class="mn-card mn-card-hover">
+        <div class="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-ember-500/10 text-ember-600 dark:text-ember-300">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h3 class="font-display text-lg font-semibold text-ink-900 dark:text-ink-50">See your record</h3>
+        <p class="mt-2 text-sm text-ink-600 dark:text-ink-400">
+            Log who played which games after every night. Wins, frequent opponents, and play-next suggestions roll up automatically.
+        </p>
+        @if (isSignedIn)
+        {
+            <a asp-controller="Statistics" asp-action="Index" class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-ember-600 dark:text-ember-300 hover:gap-2 transition-all">
+                Open statistics
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+        }
+    </div>
+</section>

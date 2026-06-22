@@ -1,0 +1,49 @@
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    string displayName = User.Identity!.Name ?? "User";
+    string initials = string.Join(string.Empty,
+        displayName.Split(new[] { ' ', '.', '_', '-' }, StringSplitOptions.RemoveEmptyEntries)
+                   .Take(2)
+                   .Select(p => char.ToUpperInvariant(p[0])));
+    if (string.IsNullOrWhiteSpace(initials)) { initials = "?"; }
+
+    <div x-data="{ open: false }" @@click.outside="open = false" class="relative">
+        <button type="button" @@click="open = !open"
+                class="flex items-center gap-2 rounded-full pl-1 pr-3 py-1 border border-ink-200 dark:border-ink-700 hover:bg-ink-100 dark:hover:bg-ink-800 transition">
+            <span class="grid h-7 w-7 place-items-center rounded-full bg-gradient-to-br from-ember-400 to-ember-600 text-[12px] font-bold text-ink-950">
+                @initials
+            </span>
+            <span class="hidden sm:inline text-sm font-medium text-ink-700 dark:text-ink-200 max-w-[10rem] truncate">@displayName</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-ink-500"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div x-show="open" x-transition x-cloak
+             class="absolute right-0 mt-2 w-56 rounded-xl border border-ink-200 dark:border-ink-700 bg-white dark:bg-ink-900 shadow-soft overflow-hidden z-50">
+            <div class="px-4 py-3 border-b border-ink-200 dark:border-ink-800">
+                <p class="text-xs uppercase tracking-wide text-ink-400">Signed in as</p>
+                <p class="text-sm font-medium text-ink-900 dark:text-ink-100 truncate">@displayName</p>
+            </div>
+            <a asp-area="Identity" asp-page="/Account/Manage/Index"
+               class="flex items-center gap-2 px-4 py-2.5 text-sm text-ink-700 dark:text-ink-200 hover:bg-ink-100 dark:hover:bg-ink-800">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+                Manage account
+            </a>
+            <form asp-area="Identity" asp-page="/Account/Logout"
+                  asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" class="border-t border-ink-200 dark:border-ink-800">
+                <button type="submit" class="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-500/10">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    Log out
+                </button>
+            </form>
+        </div>
+    </div>
+}
+else
+{
+    <div class="flex items-center gap-1">
+        <a asp-area="Identity" asp-page="/Account/Login" class="mn-btn mn-btn-ghost text-sm">Log in</a>
+        <a asp-area="Identity" asp-page="/Account/Register" class="mn-btn mn-btn-primary text-sm">Sign up</a>
+    </div>
+}
