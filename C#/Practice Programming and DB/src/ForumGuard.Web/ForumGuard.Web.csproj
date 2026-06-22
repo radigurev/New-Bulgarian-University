@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\ForumGuard.Infrastructure\ForumGuard.Infrastructure.csproj" />
+    <ProjectReference Include="..\ForumGuard.Application\ForumGuard.Application.csproj" />
+    <ProjectReference Include="..\ForumGuard.Domain\ForumGuard.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--
+      Runtime ML backend for the trained NAS-BERT model (SDD-FORUM-020). Microsoft.ML.TorchSharp is
+      the managed TorchSharp wrapper that scores the TextClassification model; libtorch-cpu is the
+      large native backend it requires at runtime. Both must be referenced here (the executable) so
+      the native runtimes are copied into this project's output.
+    -->
+    <PackageReference Include="Microsoft.ML.TorchSharp" Version="0.22.3" />
+    <PackageReference Include="libtorch-cpu" Version="2.2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- The trained classifier, loaded at runtime via Moderation:ModelPath (relative to the app base directory). -->
+    <None Update="Models\sentiment-model.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>

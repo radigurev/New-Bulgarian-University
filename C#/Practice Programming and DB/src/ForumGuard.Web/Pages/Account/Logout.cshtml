@@ -1,0 +1,17 @@
+@page
+@model ForumGuard.Web.Pages.Account.LogoutModel
+@{
+    ViewData["Title"] = "Sign out";
+}
+<div class="page">
+    <div class="page-head">
+        <h1>Sign out</h1>
+    </div>
+    <form class="form-card" method="post">
+        <p class="muted">Are you sure you want to sign out?</p>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Sign out</button>
+            <a class="muted" asp-page="/Index">Cancel</a>
+        </div>
+    </form>
+</div>

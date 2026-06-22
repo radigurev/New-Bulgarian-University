@@ -1,0 +1,43 @@
+@page
+@model ForumGuard.Web.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+<div class="page">
+    <div class="page-head">
+        <h1>Create your account</h1>
+    </div>
+
+    <form class="form-card" method="post">
+        <div asp-validation-summary="ModelOnly" class="alert alert-error" role="alert"></div>
+
+        <div class="form-row">
+            <label asp-for="Input.Email"></label>
+            <input class="form-control" asp-for="Input.Email" autocomplete="username" />
+            <span class="field-error" asp-validation-for="Input.Email"></span>
+        </div>
+
+        <div class="form-row">
+            <label asp-for="Input.DisplayName"></label>
+            <input class="form-control" asp-for="Input.DisplayName" autocomplete="nickname" />
+            <span class="field-error" asp-validation-for="Input.DisplayName"></span>
+        </div>
+
+        <div class="form-row">
+            <label asp-for="Input.Password"></label>
+            <input class="form-control" asp-for="Input.Password" autocomplete="new-password" />
+            <span class="field-error" asp-validation-for="Input.Password"></span>
+        </div>
+
+        <div class="form-row">
+            <label asp-for="Input.ConfirmPassword"></label>
+            <input class="form-control" asp-for="Input.ConfirmPassword" autocomplete="new-password" />
+            <span class="field-error" asp-validation-for="Input.ConfirmPassword"></span>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Create account</button>
+            <a class="muted" asp-page="/Account/Login">Already registered? Sign in</a>
+        </div>
+    </form>
+</div>

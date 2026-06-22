@@ -1,0 +1,74 @@
+@page
+@model ForumGuard.Web.Pages.Admin.UsersModel
+@{
+    ViewData["Title"] = "Manage accounts";
+}
+<div class="page stack">
+    <div class="page-head">
+        <div>
+            <h1>Accounts</h1>
+            <p>Activate or deactivate forum accounts.</p>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
+    {
+        <div class="alert alert-success" role="status">@Model.StatusMessage</div>
+    }
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-warning" role="alert">@Model.ErrorMessage</div>
+    }
+
+    <div class="table-scroll">
+        <table class="data">
+            <thead>
+                <tr>
+                    <th>Display name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (AccountListItem account in Model.Accounts)
+                {
+                    <tr>
+                        <td>@account.DisplayName</td>
+                        <td>@account.Email</td>
+                        <td>
+                            <span class="badge role-badge @BadgePresenter.RoleClass(account.IsAdministrator, account.IsModerator)">
+                                @BadgePresenter.RoleLabel(account.IsAdministrator, account.IsModerator)
+                            </span>
+                        </td>
+                        <td>
+                            @if (account.IsActive)
+                            {
+                                <span class="badge status-active">ACTIVE</span>
+                            }
+                            else
+                            {
+                                <span class="badge status-inactive">INACTIVE</span>
+                            }
+                        </td>
+                        <td class="cell-actions">
+                            <form class="inline-form" method="post" asp-page-handler="Toggle">
+                                <input type="hidden" asp-for="TargetUserId" value="@account.UserId" />
+                                <input type="hidden" asp-for="Activate" value="@((!account.IsActive).ToString().ToLowerInvariant())" />
+                                @if (account.IsActive)
+                                {
+                                    <button type="submit" class="btn btn-sm btn-reject">Deactivate</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-sm btn-approve">Activate</button>
+                                }
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

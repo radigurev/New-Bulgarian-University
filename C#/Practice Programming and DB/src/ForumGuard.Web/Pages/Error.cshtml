@@ -1,0 +1,18 @@
+@page
+@model ForumGuard.Web.Pages.ErrorModel
+@{
+    ViewData["Title"] = "Error";
+}
+<div class="page">
+    <div class="page-head">
+        <h1>Something went wrong</h1>
+    </div>
+    <div class="empty-state">
+        <p>An error occurred while processing your request.</p>
+        @if (Model.ShowRequestId)
+        {
+            <p class="muted">Request ID: <code>@Model.RequestId</code></p>
+        }
+        <a class="btn" asp-page="/Index">Back to threads</a>
+    </div>
+</div>

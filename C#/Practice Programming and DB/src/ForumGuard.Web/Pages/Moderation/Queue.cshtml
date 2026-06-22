@@ -1,0 +1,64 @@
+@page
+@model ForumGuard.Web.Pages.Moderation.QueueModel
+@{
+    ViewData["Title"] = "Moderation queue";
+}
+<div class="page stack">
+    <div class="page-head">
+        <div>
+            <h1>Moderation queue</h1>
+            <p>Comments flagged for review, oldest first.</p>
+        </div>
+        <span class="thread-count">@Model.Rows.Count waiting</span>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.DecisionNotice))
+    {
+        <div class="alert alert-success" role="status">@Model.DecisionNotice</div>
+    }
+    @if (!string.IsNullOrEmpty(Model.DecisionError))
+    {
+        <div class="alert alert-warning" role="alert">@Model.DecisionError</div>
+    }
+
+    @if (Model.Rows.Count == 0)
+    {
+        <div class="empty-state">The queue is empty. Nothing awaits review.</div>
+    }
+    else
+    {
+        <div class="table-scroll">
+            <table class="data">
+                <thead>
+                    <tr>
+                        <th>Author</th>
+                        <th>Submitted</th>
+                        <th>Comment</th>
+                        <th>Label</th>
+                        <th>Score</th>
+                        <th>Decision</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (QueueRowView row in Model.Rows)
+                    {
+                        <tr>
+                            <td>@row.AuthorDisplayName</td>
+                            <td class="cell-num">@row.CreatedAtUtc.ToString("yyyy-MM-dd HH:mm")</td>
+                            <td class="cell-body">@row.Body</td>
+                            <td><span class="badge status-flagged">@(row.AnalysisLabel?.ToString() ?? "—")</span></td>
+                            <td class="cell-num">@(row.AnalysisScore?.ToString("0.00") ?? "—")</td>
+                            <td class="cell-actions">
+                                <form class="inline-form" method="post">
+                                    <input type="hidden" asp-for="CommentId" value="@row.CommentId" />
+                                    <button type="submit" class="btn btn-sm btn-approve" asp-page-handler="Approve">Approve</button>
+                                    <button type="submit" class="btn btn-sm btn-reject" asp-page-handler="Reject">Reject</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

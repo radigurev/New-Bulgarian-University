@@ -1,0 +1,78 @@
+@page
+@model ForumGuard.Web.Pages.Admin.ModeratorsModel
+@{
+    ViewData["Title"] = "Manage moderators";
+}
+<div class="page stack">
+    <div class="page-head">
+        <div>
+            <h1>Moderators</h1>
+            <p>Grant or revoke the Moderator role. Administrators never moderate comments.</p>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
+    {
+        <div class="alert alert-success" role="status">@Model.StatusMessage</div>
+    }
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-warning" role="alert">@Model.ErrorMessage</div>
+    }
+
+    <div class="table-scroll">
+        <table class="data">
+            <thead>
+                <tr>
+                    <th>Display name</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Moderator</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (AccountListItem account in Model.Accounts)
+                {
+                    <tr>
+                        <td>@account.DisplayName</td>
+                        <td>@account.Email</td>
+                        <td>
+                            @if (account.IsActive)
+                            {
+                                <span class="badge status-active">ACTIVE</span>
+                            }
+                            else
+                            {
+                                <span class="badge status-inactive">INACTIVE</span>
+                            }
+                        </td>
+                        <td>
+                            @if (account.IsModerator)
+                            {
+                                <span class="badge role-badge role-mod">MOD</span>
+                            }
+                            else
+                            {
+                                <span class="muted">—</span>
+                            }
+                        </td>
+                        <td class="cell-actions">
+                            <form class="inline-form" method="post">
+                                <input type="hidden" asp-for="TargetUserId" value="@account.UserId" />
+                                @if (account.IsModerator)
+                                {
+                                    <button type="submit" class="btn btn-sm btn-reject" asp-page-handler="Revoke">Revoke</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-sm btn-approve" asp-page-handler="Grant">Grant</button>
+                                }
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

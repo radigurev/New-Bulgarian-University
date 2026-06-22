@@ -1,0 +1,14 @@
+@page
+@model ForumGuard.Web.Pages.Account.AccessDeniedModel
+@{
+    ViewData["Title"] = "Access denied";
+}
+<div class="page">
+    <div class="page-head">
+        <h1>Access denied</h1>
+    </div>
+    <div class="empty-state">
+        <p>You do not have permission to view this page.</p>
+        <a class="btn" asp-page="/Index">Back to threads</a>
+    </div>
+</div>

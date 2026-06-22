@@ -1,0 +1,23 @@
+@page
+@using ForumGuard.Application.Workspaces
+@model ForumGuard.Web.Pages.DashboardModel
+@{
+    ViewData["Title"] = Model.Workspace.DashboardTitle;
+}
+<div class="page stack">
+    <div class="page-head">
+        <div>
+            <h1>@Model.Workspace.DashboardTitle</h1>
+            <p>Signed in as @(User.Identity?.Name ?? string.Empty).</p>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+        @foreach (WorkspaceMenuItem item in Model.Workspace.MenuItems)
+        {
+            <a class="action-card" href="@item.Route">
+                <h3>@item.Label</h3>
+            </a>
+        }
+    </div>
+</div>

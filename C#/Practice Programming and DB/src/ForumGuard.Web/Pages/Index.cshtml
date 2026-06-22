@@ -1,0 +1,56 @@
+@page
+@model ForumGuard.Web.Pages.IndexModel
+@{
+    ViewData["Title"] = "Threads";
+    bool isAuthenticated = User.Identity?.IsAuthenticated ?? false;
+}
+<div class="page stack">
+    <div class="page-head">
+        <div>
+            <h1>Threads</h1>
+            <p>Recent discussions, newest first.</p>
+        </div>
+    </div>
+
+    @if (isAuthenticated)
+    {
+        <form class="form-card wide" method="post" asp-page-handler="CreateThread">
+            <div class="form-row">
+                <label asp-for="NewThreadTitle"></label>
+                <input class="form-control" asp-for="NewThreadTitle" placeholder="Start a new discussion…" />
+                <span class="field-error" asp-validation-for="NewThreadTitle"></span>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Create thread</button>
+            </div>
+        </form>
+    }
+    else
+    {
+        <div class="alert alert-info" role="status">
+            <a asp-page="/Account/Login">Sign in</a> to start a thread or join the conversation.
+        </div>
+    }
+
+    @if (Model.Threads.Count == 0)
+    {
+        <div class="empty-state">No threads yet. Be the first to start one.</div>
+    }
+    else
+    {
+        <ul class="thread-list">
+            @foreach (ThreadListItem thread in Model.Threads)
+            {
+                <li class="thread-item">
+                    <div>
+                        <p class="thread-title">
+                            <a asp-page="/Threads/Details" asp-route-id="@thread.ThreadId">@thread.Title</a>
+                        </p>
+                        <span class="thread-sub">by @thread.CreatedByDisplayName · @thread.CreatedAtUtc.ToString("yyyy-MM-dd HH:mm") UTC</span>
+                    </div>
+                    <span class="thread-count">@thread.VisibleCommentCount comments</span>
+                </li>
+            }
+        </ul>
+    }
+</div>

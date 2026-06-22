@@ -1,0 +1,73 @@
+@page "{id:guid}"
+@model ForumGuard.Web.Pages.Threads.DetailsModel
+@{
+    ViewData["Title"] = Model.Thread?.Title ?? "Thread";
+    bool isAuthenticated = User.Identity?.IsAuthenticated ?? false;
+}
+<div class="page stack">
+    @if (Model.Thread is null)
+    {
+        <div class="empty-state">This thread no longer exists.</div>
+    }
+    else
+    {
+        <div class="page-head">
+            <div>
+                <h1>@Model.Thread.Title</h1>
+                <p>by @Model.Thread.CreatedByDisplayName · @Model.Thread.CreatedAtUtc.ToString("yyyy-MM-dd HH:mm") UTC</p>
+            </div>
+            <a class="btn" asp-page="/Index">All threads</a>
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.SubmissionNotice))
+        {
+            <div class="alert alert-success" role="status">@Model.SubmissionNotice</div>
+        }
+
+        @if (Model.Thread.Comments.Count == 0)
+        {
+            <div class="empty-state">No visible comments yet.</div>
+        }
+        else
+        {
+            <div class="comment-list">
+                @foreach (ThreadCommentView comment in Model.Thread.Comments)
+                {
+                    <article class="comment-row">
+                        <div class="comment-meta">
+                            <span class="comment-author">@comment.AuthorDisplayName</span>
+                            <span class="badge status-published">PUBLISHED</span>
+                            @if (comment.PublishedAtUtc.HasValue)
+                            {
+                                <span>@comment.PublishedAtUtc.Value.ToString("yyyy-MM-dd HH:mm") UTC</span>
+                            }
+                        </div>
+                        <p class="comment-body">@comment.Body</p>
+                    </article>
+                }
+            </div>
+        }
+
+        @if (isAuthenticated)
+        {
+            <form class="form-card wide" method="post" asp-route-id="@Model.Thread.ThreadId">
+                <div asp-validation-summary="ModelOnly" class="alert alert-error" role="alert"></div>
+                <div class="form-row">
+                    <label asp-for="CommentBody"></label>
+                    <textarea class="form-control" asp-for="CommentBody" placeholder="Add to the discussion…"></textarea>
+                    <span class="field-error" asp-validation-for="CommentBody"></span>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Post comment</button>
+                    <span class="muted">Comments are screened before they appear.</span>
+                </div>
+            </form>
+        }
+        else
+        {
+            <div class="alert alert-info" role="status">
+                <a asp-page="/Account/Login">Sign in</a> to join this discussion.
+            </div>
+        }
+    }
+</div>
