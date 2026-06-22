@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/winter_olympics_pro?useSSL=false&serverTimezone=UTC}
+    username: ${DB_USER:winter_olympics_user}
+    password: ${DB_PASSWORD:winter_olympics_password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+
+logging:
+  level:
+    org.springframework.security: WARN
+    org.hibernate.SQL: WARN
+    com.inf.olympics: INFO

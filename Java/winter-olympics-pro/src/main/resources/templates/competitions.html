@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Competitions')}"></head>
+<body>
+<div th:replace="~{layout :: snow}"></div>
+<nav th:replace="~{layout :: header}"></nav>
+<main class="container">
+    <section class="page-header">
+        <h1>Competitions</h1>
+        <p class="lead">All scheduled and completed events.</p>
+    </section>
+
+    <section class="table-wrap">
+        <table class="table table-hover mb-0">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Gender</th>
+                <th>Min age</th>
+                <th>Held on</th>
+                <th>Status</th>
+                <th class="text-end"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="c : ${competitions}">
+                <td th:text="${c.name}">—</td>
+                <td th:text="${c.type}">—</td>
+                <td th:text="${c.gender}">—</td>
+                <td th:text="${c.minAge}">—</td>
+                <td th:text="${c.heldOn}">—</td>
+                <td>
+                    <span th:if="${c.finished}" class="badge bg-success">Finished</span>
+                    <span th:unless="${c.finished}" class="badge bg-secondary">Upcoming</span>
+                </td>
+                <td class="text-end">
+                    <a class="btn btn-info btn-sm" th:href="@{|/competitions/${c.id}/ranking|}">Ranking</a>
+                </td>
+            </tr>
+            <tr th:if="${competitions.isEmpty()}">
+                <td colspan="7" class="text-center text-muted py-5">No competitions yet.</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+<div th:replace="~{layout :: footer}"></div>
+</body>
+</html>

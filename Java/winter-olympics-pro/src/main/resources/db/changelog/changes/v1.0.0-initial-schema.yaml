@@ -1,0 +1,367 @@
+databaseChangeLog:
+  - changeSet:
+      id: v1.0.0-001-create-athletes
+      author: olympics
+      changes:
+        - createTable:
+            tableName: athletes
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_athletes
+              - column:
+                  name: version
+                  type: bigint
+              - column:
+                  name: created_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: country
+                  type: varchar(60)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: gender
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: date_of_birth
+                  type: date
+                  constraints:
+                    nullable: false
+        - createIndex:
+            tableName: athletes
+            indexName: idx_athletes_country
+            columns:
+              - column:
+                  name: country
+        - createIndex:
+            tableName: athletes
+            indexName: idx_athletes_last_name
+            columns:
+              - column:
+                  name: last_name
+
+  - changeSet:
+      id: v1.0.0-002-create-competitions
+      author: olympics
+      changes:
+        - createTable:
+            tableName: competitions
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_competitions
+              - column:
+                  name: version
+                  type: bigint
+              - column:
+                  name: created_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(120)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: gender
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: min_age
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: held_on
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: finished
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: v1.0.0-003-create-registrations
+      author: olympics
+      changes:
+        - createTable:
+            tableName: registrations
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_registrations
+              - column:
+                  name: version
+                  type: bigint
+              - column:
+                  name: created_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: competition_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_registration_competition
+                    referencedTableName: competitions
+                    referencedColumnNames: id
+              - column:
+                  name: athlete_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_registration_athlete
+                    referencedTableName: athletes
+                    referencedColumnNames: id
+        - addUniqueConstraint:
+            tableName: registrations
+            constraintName: uk_registration_comp_athlete
+            columnNames: competition_id, athlete_id
+
+  - changeSet:
+      id: v1.0.0-004-create-slalom-results
+      author: olympics
+      changes:
+        - createTable:
+            tableName: slalom_results
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_slalom_results
+              - column:
+                  name: version
+                  type: bigint
+              - column:
+                  name: created_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: competition_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_slalom_competition
+                    referencedTableName: competitions
+                    referencedColumnNames: id
+              - column:
+                  name: athlete_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_slalom_athlete
+                    referencedTableName: athletes
+                    referencedColumnNames: id
+              - column:
+                  name: run_one_time_seconds
+                  type: decimal(8,3)
+              - column:
+                  name: run_two_time_seconds
+                  type: decimal(8,3)
+              - column:
+                  name: run_one_status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: run_two_status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+        - addUniqueConstraint:
+            tableName: slalom_results
+            constraintName: uk_slalom_comp_athlete
+            columnNames: competition_id, athlete_id
+
+  - changeSet:
+      id: v1.0.0-005-create-biathlon-results
+      author: olympics
+      changes:
+        - createTable:
+            tableName: biathlon_results
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_biathlon_results
+              - column:
+                  name: version
+                  type: bigint
+              - column:
+                  name: created_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: competition_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_biathlon_competition
+                    referencedTableName: competitions
+                    referencedColumnNames: id
+              - column:
+                  name: athlete_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_biathlon_athlete
+                    referencedTableName: athletes
+                    referencedColumnNames: id
+              - column:
+                  name: base_time_seconds
+                  type: decimal(8,3)
+              - column:
+                  name: misses
+                  type: int
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+        - addUniqueConstraint:
+            tableName: biathlon_results
+            constraintName: uk_biathlon_comp_athlete
+            columnNames: competition_id, athlete_id
+
+  - changeSet:
+      id: v1.0.0-006-create-user-accounts
+      author: olympics
+      changes:
+        - createTable:
+            tableName: user_accounts
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_user_accounts
+              - column:
+                  name: version
+                  type: bigint
+              - column:
+                  name: created_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(60)
+                  constraints:
+                    nullable: false
+                    unique: true
+                    uniqueConstraintName: uk_user_username
+              - column:
+                  name: password_hash
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: enabled
+                  type: boolean
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false
+              - column:
+                  name: athlete_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_user_athlete
+                    referencedTableName: athletes
+                    referencedColumnNames: id
+        - createTable:
+            tableName: user_account_roles
+            columns:
+              - column:
+                  name: user_account_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_user_role_account
+                    referencedTableName: user_accounts
+                    referencedColumnNames: id
+              - column:
+                  name: role
+                  type: varchar(30)
+                  constraints:
+                    nullable: false

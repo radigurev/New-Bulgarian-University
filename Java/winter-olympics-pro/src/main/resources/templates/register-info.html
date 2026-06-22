@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Register')}"></head>
+<body>
+<div th:replace="~{layout :: snow}"></div>
+<nav th:replace="~{layout :: header}"></nav>
+<main class="container">
+    <section class="page-header">
+        <h1>Register</h1>
+        <p class="lead">Self-registration uses the JSON API.</p>
+    </section>
+
+    <div class="row g-3">
+        <div class="col-lg-7">
+            <div class="card h-100"><div class="card-body">
+                <h4>1. Register</h4>
+                <p class="text-muted"><code>POST /api/v1/auth/register</code></p>
+                <pre>{
+  "username": "your-name",
+  "password": "your-password",
+  "athlete": {
+    "firstName": "Eva",
+    "lastName": "Petrova",
+    "country": "Bulgaria",
+    "gender": "FEMALE",
+    "dateOfBirth": "2002-05-01"
+  }
+}</pre>
+                <h4 class="mt-4">2. Authenticate</h4>
+                <p class="text-muted mb-0">
+                    <code>POST /api/v1/auth/login</code> returns a JWT. Send it as
+                    <code>Authorization: Bearer &lt;token&gt;</code>.
+                </p>
+            </div></div>
+        </div>
+        <div class="col-lg-5">
+            <div class="card h-100"><div class="card-body">
+                <h4>Try it in the browser</h4>
+                <p class="text-muted">Swagger UI runs every endpoint without extra tools.</p>
+                <a class="btn btn-info" th:href="@{/swagger-ui.html}" target="_blank">Open Swagger UI</a>
+            </div></div>
+        </div>
+    </div>
+</main>
+<div th:replace="~{layout :: footer}"></div>
+</body>
+</html>

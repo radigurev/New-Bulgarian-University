@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Stats')}"></head>
+<body>
+<div th:replace="~{layout :: snow}"></div>
+<nav th:replace="~{layout :: header}"></nav>
+<main class="container">
+    <section class="page-header">
+        <h1>Stats</h1>
+    </section>
+
+    <section class="row g-3">
+        <div class="col-md-4">
+            <div class="card stat-card h-100"><div class="card-body">
+                <div class="stat-label">Athletes</div>
+                <p class="stat-value" th:text="${stats.totalAthletes}">0</p>
+            </div></div>
+        </div>
+        <div class="col-md-4">
+            <div class="card stat-card h-100"><div class="card-body">
+                <div class="stat-label">Competitions</div>
+                <p class="stat-value" th:text="${stats.totalCompetitions}">0</p>
+            </div></div>
+        </div>
+        <div class="col-md-4">
+            <div class="card stat-card h-100"><div class="card-body">
+                <div class="stat-label">Avg age</div>
+                <p class="stat-value" th:text="${#numbers.formatDecimal(stats.averageAge, 1, 1)}">0.0</p>
+            </div></div>
+        </div>
+    </section>
+
+    <section class="row g-3 mt-3">
+        <div class="col-md-6" th:if="${stats.youngestMedalist != null}">
+            <div class="card h-100"><div class="card-body">
+                <div class="stat-label">Youngest medalist</div>
+                <h4 class="mt-2 mb-1" th:text="${stats.youngestMedalist.firstName + ' ' + stats.youngestMedalist.lastName}">—</h4>
+                <p class="text-muted mb-0">
+                    <span th:text="${stats.youngestMedalist.country}">—</span> · born
+                    <span th:text="${stats.youngestMedalist.dateOfBirth}">—</span>
+                </p>
+            </div></div>
+        </div>
+        <div class="col-md-6" th:if="${stats.oldestMedalist != null}">
+            <div class="card h-100"><div class="card-body">
+                <div class="stat-label">Oldest medalist</div>
+                <h4 class="mt-2 mb-1" th:text="${stats.oldestMedalist.firstName + ' ' + stats.oldestMedalist.lastName}">—</h4>
+                <p class="text-muted mb-0">
+                    <span th:text="${stats.oldestMedalist.country}">—</span> · born
+                    <span th:text="${stats.oldestMedalist.dateOfBirth}">—</span>
+                </p>
+            </div></div>
+        </div>
+    </section>
+</main>
+<div th:replace="~{layout :: footer}"></div>
+</body>
+</html>

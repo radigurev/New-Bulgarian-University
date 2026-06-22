@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Sign in')}"></head>
+<body>
+<div th:replace="~{layout :: snow}"></div>
+<nav th:replace="~{layout :: header}"></nav>
+<main class="container">
+    <div class="auth-card">
+        <h2 class="mb-3">Sign in</h2>
+        <div th:if="${param.error}" class="alert alert-danger mb-3">Invalid credentials.</div>
+        <form th:action="@{/login}" method="post">
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input class="form-control" type="text" name="username" autocomplete="username" required autofocus/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input class="form-control" type="password" name="password" autocomplete="current-password" required/>
+            </div>
+            <button class="btn btn-primary w-100" type="submit">Sign in</button>
+        </form>
+        <p class="text-muted mt-4 mb-0">
+            <small>API access: <code>POST /api/v1/auth/login</code> and <code>POST /api/v1/auth/register</code>.</small>
+        </p>
+    </div>
+</main>
+<div th:replace="~{layout :: footer}"></div>
+</body>
+</html>
