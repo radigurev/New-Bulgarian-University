@@ -1,0 +1,33 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+target/
+build/
+out/
+.gradle/
+
+# IDE / editor
+.vs/
+.idea/
+.vscode/
+*.user
+*.suo
+*.iml
+
+# Node
+node_modules/
+
+# Archives & large binaries (not kept in source control)
+*.zip
+*.nupkg
+sentiment-model.zip
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Assistant / internal working files (not part of the submission)
+CLAUDE.md
+.claude/
+reporting/
+*Explained*
