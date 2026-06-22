@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.11" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
+    <PackageReference Include="Moq" Version="4.20.70" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+    <PackageReference Include="NUnit.Analyzers" Version="3.6.1" />
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ForumGuard.Domain\ForumGuard.Domain.csproj" />
+    <ProjectReference Include="..\ForumGuard.Application\ForumGuard.Application.csproj" />
+    <ProjectReference Include="..\ForumGuard.Infrastructure\ForumGuard.Infrastructure.csproj" />
+    <!--
+      Managed-only reference to the offline trainer for SDD-FORUM-024 dataset-loader and
+      pipeline-construction unit tests. The trainer references only the managed ML.NET packages
+      (Microsoft.ML, Microsoft.ML.TorchSharp); it does NOT reference the native libtorch-cpu backend,
+      so adding this reference does not pull the large native download. Any test that actually calls
+      Fit() (real training) must be marked [Explicit] + [Category("RequiresTraining")] + [Ignore(...)]
+      so the default 'dotnet test' run never triggers a download or training.
+    -->
+    <ProjectReference Include="..\ForumGuard.ModelTrainer\ForumGuard.ModelTrainer.csproj" />
+  </ItemGroup>
+
+</Project>
