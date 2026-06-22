@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Register')}"></head>
+<body>
+<nav th:replace="~{fragments :: header}"></nav>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <h2>Register as an athlete</h2>
+            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+            <form th:action="@{/register}" th:object="${user}" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" th:field="*{username}"/>
+                    <small class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></small>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" th:field="*{password}"/>
+                    <small class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">First name</label>
+                        <input type="text" class="form-control" th:field="*{firstName}"/>
+                        <small class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></small>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Last name</label>
+                        <input type="text" class="form-control" th:field="*{lastName}"/>
+                        <small class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></small>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Country</label>
+                        <input type="text" class="form-control" th:field="*{country}"/>
+                        <small class="text-danger" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></small>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Gender</label>
+                        <select class="form-select" th:field="*{gender}">
+                            <option th:each="g : ${T(com.inf.cscb869_olympics.data.entity.Gender).values()}"
+                                    th:value="${g}" th:text="${g}"></option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Date of birth</label>
+                        <input type="date" class="form-control" th:field="*{dateOfBirth}"/>
+                        <small class="text-danger" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></small>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Register</button>
+                <a class="btn btn-link" th:href="@{/login}">Have an account?</a>
+            </form>
+        </div>
+    </div>
+</div>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

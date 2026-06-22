@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Ranking')}"></head>
+<body>
+<nav th:replace="~{fragments :: header}"></nav>
+<div class="container">
+    <h2>
+        Ranking — <span th:text="${competition.name}">competition</span>
+    </h2>
+    <p class="text-muted">
+        <span th:text="${competition.type}">TYPE</span> ·
+        <span th:text="${competition.gender}">GENDER</span> ·
+        held on <span th:text="${competition.heldOn}">date</span>
+    </p>
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Athlete</th>
+            <th>Country</th>
+            <th>Total time (s)</th>
+            <th>Medal</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="r : ${ranking}">
+            <td th:text="${r.position}">—</td>
+            <td th:text="${r.firstName + ' ' + r.lastName}">—</td>
+            <td th:text="${r.country}">—</td>
+            <td th:text="${r.totalTimeSeconds}">—</td>
+            <td>
+                <span class="badge bg-warning text-dark" th:if="${r.medal == 'GOLD'}">Gold</span>
+                <span class="badge bg-secondary" th:if="${r.medal == 'SILVER'}">Silver</span>
+                <span class="badge bg-danger" th:if="${r.medal == 'BRONZE'}">Bronze</span>
+            </td>
+        </tr>
+        <tr th:if="${ranking == null or ranking.isEmpty()}">
+            <td colspan="5" class="text-center text-muted">No classified results yet.</td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-link" th:href="@{/competitions}">Back</a>
+</div>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

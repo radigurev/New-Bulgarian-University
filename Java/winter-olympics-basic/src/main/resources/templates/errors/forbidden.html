@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Forbidden')}"></head>
+<body>
+<nav th:replace="~{fragments :: header}"></nav>
+<div class="container">
+    <div class="alert alert-danger mt-4">
+        <h4>Access denied</h4>
+        <p th:text="${message}">You do not have access to this resource.</p>
+    </div>
+</div>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

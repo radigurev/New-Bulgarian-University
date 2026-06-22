@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Olympics Stats')}"></head>
+<body>
+<nav th:replace="~{fragments :: header}"></nav>
+<div class="container">
+    <h2>Olympics statistics</h2>
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card text-bg-light">
+                <div class="card-body">
+                    <h5>Total athletes</h5>
+                    <p class="display-6 mb-0" th:text="${stats.totalAthletes}">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-bg-light">
+                <div class="card-body">
+                    <h5>Total competitions</h5>
+                    <p class="display-6 mb-0" th:text="${stats.totalCompetitions}">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-bg-light">
+                <div class="card-body">
+                    <h5>Average age</h5>
+                    <p class="display-6 mb-0" th:text="${#numbers.formatDecimal(stats.averageAge, 1, 1)}">0.0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6" th:if="${stats.youngestMedalist != null}">
+            <h5>Youngest medalist</h5>
+            <p th:text="${stats.youngestMedalist.firstName + ' ' + stats.youngestMedalist.lastName + ' (' + stats.youngestMedalist.country + ', born ' + stats.youngestMedalist.dateOfBirth + ')'}">—</p>
+        </div>
+        <div class="col-md-6" th:if="${stats.oldestMedalist != null}">
+            <h5>Oldest medalist</h5>
+            <p th:text="${stats.oldestMedalist.firstName + ' ' + stats.oldestMedalist.lastName + ' (' + stats.oldestMedalist.country + ', born ' + stats.oldestMedalist.dateOfBirth + ')'}">—</p>
+        </div>
+    </div>
+</div>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

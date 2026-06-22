@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="form">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label class="form-label">First name</label>
+            <input type="text" class="form-control" th:field="*{firstName}"/>
+            <small class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></small>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Last name</label>
+            <input type="text" class="form-control" th:field="*{lastName}"/>
+            <small class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Country</label>
+            <input type="text" class="form-control" th:field="*{country}"/>
+            <small class="text-danger" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></small>
+        </div>
+        <div class="col-md-3 mb-3">
+            <label class="form-label">Gender</label>
+            <select class="form-select" th:field="*{gender}">
+                <option th:each="g : ${T(com.inf.cscb869_olympics.data.entity.Gender).values()}"
+                        th:value="${g}" th:text="${g}"></option>
+            </select>
+        </div>
+        <div class="col-md-3 mb-3">
+            <label class="form-label">Date of birth</label>
+            <input type="date" class="form-control" th:field="*{dateOfBirth}"/>
+            <small class="text-danger" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></small>
+        </div>
+    </div>
+</div>
+</body>
+</html>

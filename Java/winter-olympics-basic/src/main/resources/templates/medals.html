@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Medal table')}"></head>
+<body>
+<nav th:replace="~{fragments :: header}"></nav>
+<div class="container">
+    <h2>Medals by country</h2>
+    <table class="table table-hover table-striped mt-3">
+        <thead>
+        <tr>
+            <th>Country</th>
+            <th>Gold</th>
+            <th>Silver</th>
+            <th>Bronze</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="row : ${stats.medalsByCountry}">
+            <td th:text="${row.country}">—</td>
+            <td th:text="${row.gold}">0</td>
+            <td th:text="${row.silver}">0</td>
+            <td th:text="${row.bronze}">0</td>
+            <td th:text="${row.total}">0</td>
+        </tr>
+        <tr th:if="${stats.medalsByCountry == null or stats.medalsByCountry.isEmpty()}">
+            <td colspan="5" class="text-center text-muted">No medals awarded yet.</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

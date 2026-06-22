@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Not found')}"></head>
+<body>
+<nav th:replace="~{fragments :: header}"></nav>
+<div class="container">
+    <div class="alert alert-warning mt-4">
+        <h4>Resource not found</h4>
+        <p th:text="${message}">Resource was not found.</p>
+        <a class="btn btn-link" th:href="@{/}">Back to home</a>
+    </div>
+</div>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

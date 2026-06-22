@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Winter Olympics — Home')}"></head>
+<body>
+<nav th:replace="~{fragments :: header}"></nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Winter Olympics</h1>
+            <p class="lead">Welcome to the management system for the Winter Olympics.</p>
+            <p>
+                Ski Slalom and Biathlon competitions are organized separately for men and women.
+                Times are measured in seconds with precision up to three decimal places.
+            </p>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Quick Stats</h5>
+                    <p class="mb-1">Athletes: <strong th:text="${stats.totalAthletes}">0</strong></p>
+                    <p class="mb-1">Competitions: <strong th:text="${stats.totalCompetitions}">0</strong></p>
+                    <p class="mb-0">Avg age: <strong th:text="${#numbers.formatDecimal(stats.averageAge, 1, 1)}">0.0</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

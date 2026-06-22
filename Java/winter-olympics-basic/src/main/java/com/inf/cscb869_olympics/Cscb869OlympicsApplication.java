@@ -1,0 +1,12 @@
+package com.inf.cscb869_olympics;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Cscb869OlympicsApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Cscb869OlympicsApplication.class, args);
+    }
+}

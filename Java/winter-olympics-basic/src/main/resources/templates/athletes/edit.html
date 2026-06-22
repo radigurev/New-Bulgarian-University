@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Edit athlete')}"></head>
+<body>
+<nav th:replace="~{fragments :: header}"></nav>
+<div class="container">
+    <h2>Edit athlete</h2>
+    <form th:action="@{|/admin/athletes/edit/${athlete.id}|}" th:object="${athlete}" method="post">
+        <div th:replace="~{athletes/_form :: form}"></div>
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a class="btn btn-link" th:href="@{/admin/athletes}">Cancel</a>
+    </form>
+</div>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

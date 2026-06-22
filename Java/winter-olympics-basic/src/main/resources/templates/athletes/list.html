@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Athletes')}"></head>
+<body>
+<nav th:replace="~{fragments :: header}"></nav>
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Athletes</h2>
+        <a class="btn btn-primary" th:href="@{/admin/athletes/create}">Add athlete</a>
+    </div>
+    <table class="table table-hover mt-3">
+        <thead>
+        <tr>
+            <th>Name</th><th>Country</th><th>Gender</th><th>Born</th><th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="a : ${athletes}">
+            <td th:text="${a.firstName + ' ' + a.lastName}">—</td>
+            <td th:text="${a.country}">—</td>
+            <td th:text="${a.gender}">—</td>
+            <td th:text="${a.dateOfBirth}">—</td>
+            <td>
+                <a class="btn btn-info btn-sm" th:href="@{|/admin/athletes/edit/${a.id}|}">Edit</a>
+                <form th:action="@{|/admin/athletes/delete/${a.id}|}" method="post" class="d-inline">
+                    <button class="btn btn-danger btn-sm" type="submit"
+                            onclick="return confirm('Delete athlete?')">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

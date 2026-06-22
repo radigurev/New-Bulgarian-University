@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments :: head('Competitions')}"></head>
+<body>
+<nav th:replace="~{fragments :: header}"></nav>
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Competitions</h2>
+        <a sec:authorize="hasAuthority('admin')" class="btn btn-primary"
+           th:href="@{/admin/competitions/create}">Create competition</a>
+    </div>
+    <div th:if="${flashSuccess}" class="alert alert-success mt-3" role="alert" th:text="${flashSuccess}"></div>
+    <div th:if="${flashError}" class="alert alert-danger mt-3" role="alert" th:text="${flashError}"></div>
+    <table class="table table-hover table-striped mt-3">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Gender</th>
+            <th>Min age</th>
+            <th>Held on</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="c : ${competitions}">
+            <td th:text="${c.name}">—</td>
+            <td th:text="${c.type}">—</td>
+            <td th:text="${c.gender}">—</td>
+            <td th:text="${c.minAge}">—</td>
+            <td th:text="${c.heldOn}">—</td>
+            <td>
+                <span class="badge bg-success" th:if="${c.finished}">Finished</span>
+                <span class="badge bg-secondary" th:unless="${c.finished}">Upcoming</span>
+            </td>
+            <td>
+                <a class="btn btn-info btn-sm" th:href="@{|/competitions/${c.id}/ranking|}">Ranking</a>
+                <form sec:authorize="hasAuthority('athlete')" th:unless="${c.finished}"
+                      th:action="@{|/competitions/${c.id}/register|}" method="post" class="d-inline">
+                    <button class="btn btn-success btn-sm" type="submit">Register</button>
+                </form>
+                <form sec:authorize="hasAuthority('admin')" th:unless="${c.finished}"
+                      th:action="@{|/admin/competitions/${c.id}/finish|}" method="post" class="d-inline">
+                    <button class="btn btn-warning btn-sm" type="submit">Finish</button>
+                </form>
+                <form sec:authorize="hasAuthority('admin')"
+                      th:action="@{|/admin/competitions/${c.id}/delete|}" method="post" class="d-inline">
+                    <button class="btn btn-danger btn-sm" type="submit"
+                            onclick="return confirm('Delete this competition?')">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>
