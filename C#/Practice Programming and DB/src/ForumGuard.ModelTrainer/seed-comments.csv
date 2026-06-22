@@ -1,0 +1,244 @@
+Text,Label
+"Thanks for the detailed write-up, this really helped me understand the setup.",Clean
+"Great post! I had the same issue and your fix worked perfectly.",Clean
+Could you share a link to the documentation you mentioned?,Clean
+I appreciate the effort you put into explaining the trade-offs here.,Clean
+"Welcome to the forum, feel free to ask if anything is unclear.",Clean
+"Nice work on the release notes, they were very clear and concise.",Clean
+I tried the steps and everything compiled on the first attempt.,Clean
+"Good question, I think the answer depends on your target framework.",Clean
+Here is a small example that demonstrates the pattern you described.,Clean
+"Congrats on shipping the feature, the team did a fantastic job.",Clean
+"That makes sense, thank you for clarifying the difference.",Clean
+"I disagree with the approach, but I respect the reasoning behind it.",Clean
+"Looking forward to the next update, keep up the steady progress.",Clean
+The diagram you posted made the architecture much easier to follow.,Clean
+Happy to help review the pull request whenever you are ready.,Clean
+"This tutorial is beginner friendly and well organized, well done.",Clean
+I benchmarked both options and the results were almost identical.,Clean
+Could be a caching issue; try clearing the build output and rebuilding.,Clean
+"Solid explanation, I learned a couple of new things from this thread.",Clean
+Let's schedule a quick call to align on the remaining tasks.,Clean
+The new layout looks clean and loads noticeably faster than before.,Clean
+I added a couple of unit tests to cover the edge cases you found.,Clean
+Reasonable concern; we can revisit the design in the next sprint.,Clean
+Your sample data was exactly what I needed to reproduce the bug.,Clean
+"Thanks again, marking this as resolved for future readers.",Clean
+Friendly reminder that the meeting moved to three o'clock today.,Clean
+I really enjoy how welcoming and helpful this community is.,Clean
+The migration went smoothly after I followed your checklist.,Clean
+"Has anyone tried the new update yet? Curious how it performs on older hardware.",Clean
+"I'm not sure I agree completely, but you raise some valid points worth considering.",Clean
+"For what it's worth, the official forum has a thread on this exact topic.",Clean
+"If you add an index on that column, the query should speed up a lot.",Clean
+"Totally fair, I hadn't thought about the memory overhead you mentioned.",Clean
+The recipe turned out great once I lowered the oven temperature a bit.,Clean
+Anyone have recommendations for a good beginner cookbook?,Clean
+"I swapped butter for olive oil and honestly it tasted even better.",Clean
+"That match last night was incredible, what a comeback in the final minutes.",Clean
+"Our team played well defensively, but the finishing needs work.",Clean
+I picked up the game on sale and I'm completely hooked already.,Clean
+"The new patch nerfed my favorite character, but the balance feels fairer overall.",Clean
+"Honestly the soundtrack alone is worth the price of the game.",Clean
+"Anyone want to team up for the co-op campaign this weekend?",Clean
+"I think both candidates made reasonable points during the debate.",Clean
+We can probably find common ground if we focus on the shared goals.,Clean
+"That's a thoughtful perspective, thanks for taking the time to write it out.",Clean
+I'll test your suggestion tonight and report back with the results.,Clean
+"No worries at all, we've all made that mistake at some point.",Clean
+The error message usually means the config file path is wrong.,Clean
+"Have you checked the logs? They often point straight to the cause.",Clean
+Appreciate you flagging that typo; I'll fix it in the next commit.,Clean
+"Good catch, I completely overlooked that null check.",Clean
+"The documentation could be clearer here, maybe we can suggest an edit.",Clean
+I love how active the maintainers are on this project.,Clean
+That makes the whole workflow so much smoother than before.,Clean
+Could someone point me to a tutorial on setting up the environment?,Clean
+"I'm new here, so apologies if this has been asked before.",Clean
+Thanks everyone for the warm welcome and the quick answers.,Clean
+"The presentation was well paced and easy to follow, nice job.",Clean
+I'd lean toward the simpler option unless performance becomes a real issue.,Clean
+"Interesting approach, I might borrow that idea for my own project.",Clean
+"Let me know if you need a second pair of eyes on the design.",Clean
+"That cleared up my confusion completely, thank you.",Clean
+"Great thread, lots of useful tips packed in here.",Clean
+The update fixed the crash I was hitting on startup.,Clean
+"I prefer the older interface, but the new one grows on you over time.",Clean
+"Nice screenshots, they really help illustrate the steps.",Clean
+"I see your point but I'd weigh reliability higher than speed here.",Clean
+"You explained that better than the official docs, honestly.",Clean
+"That's a clever workaround, I'll keep it in mind.",Clean
+I ran into the same wall last month and your post saved me hours.,Clean
+"Hats off to whoever wrote this guide, super thorough.",Clean
+Quick tip: enabling verbose logging makes debugging this much easier.,Clean
+I think we can close this issue once the tests pass on CI.,Clean
+"Happy to contribute a fix if the maintainers are open to a PR.",Clean
+The community wiki has a great section on this if you want more depth.,Clean
+"I tested it on three browsers and it behaved consistently, looks good.",Clean
+"Thanks for being patient with my questions, I really appreciate it.",Clean
+"That's a fair criticism, I'll rework the section you mentioned.",Clean
+I genuinely enjoyed reading through this discussion.,Clean
+Mind sharing your config? I'd like to compare it with mine.,Clean
+The soup came out a little salty so I'll cut the broth next time.,Clean
+"Great game design discussion, you clearly know the genre well.",Clean
+I appreciate you disagreeing without making it personal.,Clean
+"Let's keep brainstorming, there are a few angles we haven't explored.",Clean
+"Solid first attempt, with a bit of polish this could be excellent.",Clean
+I'm impressed by how quickly the bug got triaged and fixed.,Clean
+That's a really elegant solution to a tricky problem.,Clean
+"Could you elaborate on the second step? I want to make sure I follow.",Clean
+Thanks for sharing your benchmark numbers; very helpful context.,Clean
+The new feature is exactly what I'd been hoping for.,Clean
+"I'd be happy to write up the documentation for this once it's stable.",Clean
+"Fair enough, I can see why you'd choose that library instead.",Clean
+"Nicely structured argument, even if I land on a different conclusion.",Clean
+The mod community for this game is incredibly creative.,Clean
+"I learned something new today, thanks for the patient explanation.",Clean
+That's a reasonable trade-off given the deadline constraints.,Clean
+"Great point about accessibility, I hadn't considered screen readers.",Clean
+"Welcome aboard, the search bar up top answers a lot of common questions.",Clean
+"I'll mark this thread as solved, your fix did the trick.",Clean
+"Thanks for the constructive feedback, it'll make the next version better.",Clean
+"I appreciate the heads-up about the breaking change in version two.",Clean
+"That comparison table is really useful, thanks for compiling it.",Clean
+"No rush on the review, take whatever time you need.",Clean
+The grilled vegetables came out perfectly with that marinade recipe.,Clean
+"I respect that you changed your mind after seeing the data, takes guts.",Clean
+"Helpful summary, this should be pinned for newcomers.",Clean
+"Curious what hardware you're running, my results were a bit slower.",Clean
+"Good discussion all around, I think we covered the topic thoroughly.",Clean
+That's a smart way to structure the folders; I'll reorganize mine similarly.,Clean
+Thanks for testing on the older OS version; that's a real edge case.,Clean
+"I think your concern is legitimate, let's flag it to the team.",Clean
+"Lovely write-up, the examples made the concept click for me.",Clean
+"Appreciate the balanced take, you covered both pros and cons fairly.",Clean
+"The keyboard shortcuts cheat sheet you posted is a lifesaver, thank you.",Clean
+"Reasonable question, the behavior changed in a recent release.",Clean
+"I enjoyed the friendly back-and-forth in this thread, very civil.",Clean
+"Good luck with the launch, looking forward to trying it out.",Clean
+"You clearly have no idea what you're talking about and you never will.",Toxic
+"Nobody here has a single working brain cell, this whole thread proves it.",Toxic
+"What an embarrassing take, do everyone a favor and stop posting.",Toxic
+"Imagine being this confidently wrong and still hitting submit.",Toxic
+You people are an insult to this community and you know it.,Toxic
+"Did you actually read anything before typing, or is thinking optional for you?",Toxic
+"Wow, congratulations on being the least informed person in the room.",Toxic
+"Maybe leave the keyboard to people who actually understand the topic.",Toxic
+It's genuinely impressive how you manage to be wrong about everything.,Toxic
+"No one asked, no one cares, and yet here you are embarrassing yourself.",Toxic
+"Your code reads like it was written by someone who has never seen a computer.",Toxic
+"Keep talking, you're making it obvious you belong somewhere else.",Toxic
+"Honestly, watching you try to argue is like watching a toddler do taxes.",Toxic
+You contribute absolutely nothing and somehow still won't stop typing.,Toxic
+"Take the hint, everyone in here is tired of your nonsense.",Toxic
+"It must be exhausting being this far out of your depth all the time.",Toxic
+"Cute attempt, but maybe ask an adult to check your work next time.",Toxic
+"You've never had an original thought and it shows in every reply.",Toxic
+Reading your posts lowers the average intelligence of this forum.,Toxic
+"Bless your heart, you genuinely believe you understand this, don't you.",Toxic
+"You're not as clever as you think; in fact you're not clever at all.",Toxic
+"Do the rest of us a favor and let someone competent handle this.",Toxic
+"Every time you reply, the conversation gets measurably worse.",Toxic
+"How does it feel to be the weakest link in literally every thread?",Toxic
+"You should be embarrassed to put your name next to that opinion.",Toxic
+"I'd explain why you're wrong, but you wouldn't understand the words.",Toxic
+"Sit down, the grown-ups are talking and you're not invited.",Toxic
+Your whole argument fell apart the moment someone with a brain showed up.,Toxic
+"Quit while you're behind, you've been behind this entire conversation.",Toxic
+"Nobody is impressed, nobody is convinced, and nobody wants you here.",Toxic
+"You typed all that and still managed to say nothing of value.",Toxic
+"It's adorable that you think your opinion matters in this discussion.",Toxic
+"Go ahead and keep digging, the hole you're in is already hilarious.",Toxic
+You're the reason people stop reading the comments section.,Toxic
+"Maybe try listening for once instead of broadcasting your ignorance.",Toxic
+"What a special kind of clueless you have to be to post that.",Toxic
+"Your understanding of this topic is roughly that of a houseplant.",Toxic
+Every word you write is a tiny tragedy for the English language.,Toxic
+"You really woke up and chose to humiliate yourself in public today.",Toxic
+The confidence is impressive considering you've been wrong from word one.,Toxic
+"Please stop, you're embarrassing yourself in front of actual experts.",Toxic
+You add as much to this thread as a brick adds to a conversation.,Toxic
+"I've seen error messages with more insight than your entire post.",Toxic
+"It takes real talent to be this useless and this loud at once.",Toxic
+"Run along now, the people who actually know things will take it from here.",Toxic
+"You're proof that having an account doesn't mean you should have an opinion.",Toxic
+"That reply was so weak I almost felt bad replying to it. Almost.",Toxic
+"Maybe spend less time typing and more time learning to read.",Toxic
+"You're not contributing, you're just decorating the thread with noise.",Toxic
+"Honestly the most useful thing you could do here is log off forever.",Toxic
+"Watching you defend that take is the saddest thing I'll see all week.",Toxic
+"It's not that you're missing the point, it's that you'll never find it.",Toxic
+"Your opinion is the participation trophy of this conversation.",Toxic
+"Did your parents teach you nothing, or did you just ignore them too?",Toxic
+"You should frame that comment as a warning to other aspiring posters.",Toxic
+"Keep embarrassing yourself, it's the only thing you're good at here.",Toxic
+"I'd take you seriously if you'd ever once said something correct.",Toxic
+"You're so far out of your league it's almost a public service to watch.",Toxic
+"Nice essay; too bad every sentence in it is dead wrong.",Toxic
+"You clearly peaked in the comments section and it wasn't even high.",Toxic
+The audacity to lecture others while knowing this little is astonishing.,Toxic
+"You don't debate, you just type until everyone gives up on you.",Toxic
+"Reading comprehension was clearly an optional class for you.",Toxic
+"Congrats, you've managed to be both wrong and unbearable at the same time.",Toxic
+"It's wild watching someone fail this confidently in real time.",Toxic
+"Your takes are so cold they could refrigerate the whole server.",Toxic
+"You bring the energy of someone who has never once been right.",Toxic
+"Stop embarrassing the rest of us who actually read the manual.",Toxic
+"You're a walking argument for requiring a test before posting.",Toxic
+"That's not an opinion, that's just confidently broadcasting your ignorance.",Toxic
+I genuinely can't tell if you're trolling or just this far gone.,Toxic
+"Every reply from you is a fresh reminder that effort isn't universal.",Toxic
+"You should consider a hobby that doesn't involve being this wrong publicly.",Toxic
+"The kindest thing anyone could do is hide your posts from new users.",Toxic
+"You came in swinging and somehow missed yourself with every punch.",Toxic
+"It's not a discussion if one side, namely you, brings nothing.",Toxic
+You make confidently incorrect look like a full-time career.,Toxic
+"Maybe sit the next few hundred threads out, for everyone's sake.",Toxic
+"You're the human equivalent of a 404 error: present but useless.",Toxic
+"I've met spreadsheets with more personality and more accuracy than you.",Toxic
+"Honestly impressive how you turn every thread into a cautionary tale.",Toxic
+"Your contribution here is best described as a net negative.",Toxic
+"Please, do go on, the rest of us enjoy a good comedy of errors.",Toxic
+"You argue like someone who has never once been told they were wrong.",Toxic
+"That comment aged like milk left in the sun, just like all your others.",Toxic
+"You're not even wrong in an interesting way, just tediously so.",Toxic
+"Maybe one day you'll say something correct, but I won't hold my breath.",Toxic
+"It's exhausting pretending your replies are worth reading.",Toxic
+"You've turned not knowing things into an entire personality.",Toxic
+"Whatever school taught you to argue should issue a public apology.",Toxic
+"You bring nothing to the table and somehow still spill the drinks.",Toxic
+"The forum would gain ten IQ points the day you stop posting.",Toxic
+"You debate the way a brick swims, with great effort and no results.",Toxic
+"Pure secondhand embarrassment reading you try to sound informed.",Toxic
+"You couldn't find the point with a map, a guide, and a head start.",Toxic
+"Imagine typing all of that and being proud of none of it making sense.",Toxic
+"You're the kind of poster mute buttons were invented for.",Toxic
+"Every thread you touch turns into a monument to bad takes.",Toxic
+"You've got the self-awareness of a doorknob and the manners to match.",Toxic
+"Nice try, but maybe leave analysis to people who can actually read a graph.",Toxic
+"You're so reliably wrong I could set my clock by your bad takes.",Toxic
+"Spare us the lecture, you've earned exactly zero credibility here.",Toxic
+"It's not arrogance if you're this consistently incapable, it's delusion.",Toxic
+"You should be charged rent for the space you waste in every thread.",Toxic
+"The only thing your post proved is that anyone can register an account.",Toxic
+"You argue with the grace of someone tripping down a flight of stairs.",Toxic
+"Genuinely, what made you think anyone wanted to hear that?",Toxic
+"You're a masterclass in how not to participate in a discussion.",Toxic
+"Maybe read the room, since reading the docs is clearly beyond you.",Toxic
+"Your insight here is about as deep as a puddle in a drought.",Toxic
+"Hard to argue with someone who brought nothing but confidence.",Toxic
+"You type a lot for someone who understands so little.",Toxic
+"The forum has a search bar, use it before embarrassing yourself again.",Toxic
+"You're an idiot and that reply just confirmed it for everyone.",Toxic
+"Shut up and let people who actually know things talk for once.",Toxic
+"This is the dumbest thing posted here all year, hands down.",Toxic
+"What a pathetic excuse for an argument, you should be ashamed.",Toxic
+"Stop being such a clown, nobody finds your trash takes funny.",Toxic
+"You're a complete loser if you genuinely believe any of that.",Toxic
+"I hate how much time you waste with your stupid questions.",Toxic
+"Your whole post is garbage and so is the brain that wrote it.",Toxic
+"Quit acting like a jerk, you moron, and read the thread.",Toxic
+"What a worthless, pathetic contribution from a known troll.",Toxic
+"You're too dumb to follow this, so just stop replying.",Toxic
+"Honestly this take is so stupid it's almost impressive, you clown.",Toxic
+"Shut up already, your crap opinions are clogging the whole forum.",Toxic

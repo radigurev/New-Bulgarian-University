@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\ForumGuard.Domain\ForumGuard.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--
+      Managed ML.NET packages only. Microsoft.ML.TorchSharp brings the managed NAS-BERT
+      TextClassification trainer and the managed TorchSharp wrapper, but NOT the native libtorch
+      backend. The operator MUST add 'libtorch-cpu' (the large native download) to this project
+      before running the trainer; see README.md. The build and 'dotnet test' MUST NOT trigger it.
+    -->
+    <PackageReference Include="libtorch-cpu" Version="2.2.1.1" />
+    <PackageReference Include="Microsoft.ML" Version="4.0.3" />
+    <PackageReference Include="Microsoft.ML.TorchSharp" Version="0.22.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="seed-comments.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>ForumGuard.ModelTrainer</RootNamespace>
+  </PropertyGroup>
+
+</Project>
