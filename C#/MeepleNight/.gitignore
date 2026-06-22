@@ -1,0 +1,41 @@
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio user-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+
+# Build / publish
+[Pp]ublish/
+*.[Pp]ublish.xml
+*.azurePubxml
+*.pubxml
+*.publishproj
+
+# NuGet packages
+*.nupkg
+**/packages/*
+
+# Logs
+logs/
+*.log
+
+# User secrets
+secrets.json
+
+# Test output
+TestResults/
+
+# OS
+Thumbs.db
+.DS_Store
