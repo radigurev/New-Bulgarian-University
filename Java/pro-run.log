@@ -1,0 +1,159 @@
+﻿[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.inf:winter-olympics-pro >---------------------
+[INFO] Building winter-olympics-pro 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.3.4:run (default-cli) > test-compile @ winter-olympics-pro >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ winter-olympics-pro ---
+[INFO] Copying 3 resources from src\main\resources to target\classes
+[INFO] Copying 12 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ winter-olympics-pro ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 64 source files with javac [debug parameters release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ winter-olympics-pro ---
+[INFO] Copying 1 resource from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ winter-olympics-pro ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 6 source files with javac [debug parameters release 21] to target\test-classes
+[WARNING] The following options were not recognized by any processor: '[mapstruct.unmappedTargetPolicy, mapstruct.defaultComponentModel]'
+[INFO] 
+[INFO] <<< spring-boot:3.3.4:run (default-cli) < test-compile @ winter-olympics-pro <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.3.4:run (default-cli) @ winter-olympics-pro ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.4)
+
+2026-05-18T14:12:00.456+03:00  INFO 21300 --- [winter-olympics-pro] [           main] c.i.o.WinterOlympicsProApplication       : Starting WinterOlympicsProApplication using Java 21.0.8 with PID 21300 (C:\Users\radig\Documents\for_uni\java\winter-olympics-pro\target\classes started by radig in C:\Users\radig\Documents\for_uni\java\winter-olympics-pro)
+2026-05-18T14:12:00.460+03:00 DEBUG 21300 --- [winter-olympics-pro] [           main] c.i.o.WinterOlympicsProApplication       : Running with Spring Boot v3.3.4, Spring v6.1.13
+2026-05-18T14:12:00.462+03:00  INFO 21300 --- [winter-olympics-pro] [           main] c.i.o.WinterOlympicsProApplication       : The following 1 profile is active: "dev"
+2026-05-18T14:12:01.421+03:00  INFO 21300 --- [winter-olympics-pro] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-18T14:12:01.484+03:00  INFO 21300 --- [winter-olympics-pro] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 67 ms. Found 6 JPA repository interfaces.
+2026-05-18T14:12:02.245+03:00  INFO 21300 --- [winter-olympics-pro] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8091 (http)
+2026-05-18T14:12:02.282+03:00  INFO 21300 --- [winter-olympics-pro] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-18T14:12:02.282+03:00  INFO 21300 --- [winter-olympics-pro] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2026-05-18T14:12:02.355+03:00  INFO 21300 --- [winter-olympics-pro] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-05-18T14:12:02.356+03:00  INFO 21300 --- [winter-olympics-pro] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1853 ms
+2026-05-18T14:12:02.499+03:00  INFO 21300 --- [winter-olympics-pro] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-18T14:12:02.658+03:00  INFO 21300 --- [winter-olympics-pro] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:olympics_dev user=SA
+2026-05-18T14:12:02.658+03:00  INFO 21300 --- [winter-olympics-pro] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-18T14:12:02.674+03:00  INFO 21300 --- [winter-olympics-pro] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2'. Database available at 'jdbc:h2:mem:olympics_dev'
+2026-05-18T14:12:02.850+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.database                       : Set default schema name to public
+2026-05-18T14:12:03.167+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : Creating database history table with name: public.DATABASECHANGELOG
+2026-05-18T14:12:03.246+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : Reading from public.DATABASECHANGELOG
+2026-05-18T14:12:03.325+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.lockservice                    : Successfully acquired change log lock
+2026-05-18T14:12:03.325+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.command                        : Using deploymentId: 9102723325
+2026-05-18T14:12:03.325+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : Reading from public.DATABASECHANGELOG
+2026-05-18T14:12:03.356+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.ui                             : Running Changeset: db/changelog/changes/v1.0.0-initial-schema.yaml::v1.0.0-001-create-athletes::olympics
+2026-05-18T14:12:03.372+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : Table athletes created
+2026-05-18T14:12:03.374+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : Index idx_athletes_country created
+2026-05-18T14:12:03.374+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : Index idx_athletes_last_name created
+2026-05-18T14:12:03.374+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : ChangeSet db/changelog/changes/v1.0.0-initial-schema.yaml::v1.0.0-001-create-athletes::olympics ran successfully in 18ms
+2026-05-18T14:12:03.374+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.ui                             : Running Changeset: db/changelog/changes/v1.0.0-initial-schema.yaml::v1.0.0-002-create-competitions::olympics
+2026-05-18T14:12:03.374+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : Table competitions created
+2026-05-18T14:12:03.374+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : ChangeSet db/changelog/changes/v1.0.0-initial-schema.yaml::v1.0.0-002-create-competitions::olympics ran successfully in 0ms
+2026-05-18T14:12:03.374+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.ui                             : Running Changeset: db/changelog/changes/v1.0.0-initial-schema.yaml::v1.0.0-003-create-registrations::olympics
+2026-05-18T14:12:03.388+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : Table registrations created
+2026-05-18T14:12:03.388+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : Unique constraint added to registrations(competition_id, athlete_id)
+2026-05-18T14:12:03.388+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : ChangeSet db/changelog/changes/v1.0.0-initial-schema.yaml::v1.0.0-003-create-registrations::olympics ran successfully in 14ms
+2026-05-18T14:12:03.388+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.ui                             : Running Changeset: db/changelog/changes/v1.0.0-initial-schema.yaml::v1.0.0-004-create-slalom-results::olympics
+2026-05-18T14:12:03.388+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : Table slalom_results created
+2026-05-18T14:12:03.388+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : Unique constraint added to slalom_results(competition_id, athlete_id)
+2026-05-18T14:12:03.388+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : ChangeSet db/changelog/changes/v1.0.0-initial-schema.yaml::v1.0.0-004-create-slalom-results::olympics ran successfully in 0ms
+2026-05-18T14:12:03.404+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.ui                             : Running Changeset: db/changelog/changes/v1.0.0-initial-schema.yaml::v1.0.0-005-create-biathlon-results::olympics
+2026-05-18T14:12:03.404+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : Table biathlon_results created
+2026-05-18T14:12:03.404+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : Unique constraint added to biathlon_results(competition_id, athlete_id)
+2026-05-18T14:12:03.404+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : ChangeSet db/changelog/changes/v1.0.0-initial-schema.yaml::v1.0.0-005-create-biathlon-results::olympics ran successfully in 0ms
+2026-05-18T14:12:03.404+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.ui                             : Running Changeset: db/changelog/changes/v1.0.0-initial-schema.yaml::v1.0.0-006-create-user-accounts::olympics
+2026-05-18T14:12:03.404+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : Table user_accounts created
+2026-05-18T14:12:03.404+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : Table user_account_roles created
+2026-05-18T14:12:03.404+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : ChangeSet db/changelog/changes/v1.0.0-initial-schema.yaml::v1.0.0-006-create-user-accounts::olympics ran successfully in 0ms
+2026-05-18T14:12:03.420+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.ui                             : Running Changeset: db/changelog/changes/v1.0.1-seed-admin-role.yaml::v1.0.1-001-seed-default-admin::olympics
+2026-05-18T14:12:03.420+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : New row inserted into user_accounts
+2026-05-18T14:12:03.420+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : Custom SQL executed
+2026-05-18T14:12:03.420+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.changelog                      : ChangeSet db/changelog/changes/v1.0.1-seed-admin-role.yaml::v1.0.1-001-seed-default-admin::olympics ran successfully in 0ms
+2026-05-18T14:12:03.436+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.util                           : UPDATE SUMMARY
+2026-05-18T14:12:03.436+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.util                           : Run:                          7
+2026-05-18T14:12:03.436+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.util                           : Previously run:               0
+2026-05-18T14:12:03.436+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.util                           : Filtered out:                 0
+2026-05-18T14:12:03.436+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.util                           : -------------------------------
+2026-05-18T14:12:03.436+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.util                           : Total change sets:            7
+2026-05-18T14:12:03.436+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.util                           : Update summary generated
+2026-05-18T14:12:03.436+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.command                        : Update command completed successfully.
+2026-05-18T14:12:03.436+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.ui                             : Liquibase: Update has been successful. Rows affected: 9
+2026-05-18T14:12:03.436+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.lockservice                    : Successfully released change log lock
+2026-05-18T14:12:03.436+03:00  INFO 21300 --- [winter-olympics-pro] [           main] liquibase.command                        : Command execution complete
+2026-05-18T14:12:03.531+03:00  INFO 21300 --- [winter-olympics-pro] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-18T14:12:03.563+03:00  INFO 21300 --- [winter-olympics-pro] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2026-05-18T14:12:03.595+03:00  INFO 21300 --- [winter-olympics-pro] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-05-18T14:12:03.833+03:00  INFO 21300 --- [winter-olympics-pro] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-18T14:12:04.834+03:00  INFO 21300 --- [winter-olympics-pro] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-18T14:12:04.866+03:00  INFO 21300 --- [winter-olympics-pro] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-18T14:12:05.422+03:00 DEBUG 21300 --- [winter-olympics-pro] [           main] c.i.o.i.s.JwtAuthenticationFilter        : Filter 'jwtAuthenticationFilter' configured for use
+2026-05-18T14:12:06.024+03:00  INFO 21300 --- [winter-olympics-pro] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name olympicsUserDetailsService
+2026-05-18T14:12:06.103+03:00  INFO 21300 --- [winter-olympics-pro] [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2026-05-18T14:12:06.420+03:00  INFO 21300 --- [winter-olympics-pro] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoints beneath base path '/actuator'
+2026-05-18T14:12:07.260+03:00  INFO 21300 --- [winter-olympics-pro] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8091 (http) with context path '/'
+2026-05-18T14:12:07.276+03:00  INFO 21300 --- [winter-olympics-pro] [           main] c.i.o.WinterOlympicsProApplication       : Started WinterOlympicsProApplication in 7.181 seconds (process running for 7.517)
+2026-05-18T14:12:14.308+03:00  INFO 21300 --- [winter-olympics-pro] [nio-8091-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-18T14:12:14.308+03:00  INFO 21300 --- [winter-olympics-pro] [nio-8091-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-18T14:12:14.308+03:00  INFO 21300 --- [winter-olympics-pro] [nio-8091-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-05-18T14:12:14.435+03:00 DEBUG 21300 --- [winter-olympics-pro] [nio-8091-exec-1] org.hibernate.SQL                        : 
+    select
+        ae1_0.id,
+        ae1_0.country,
+        ae1_0.created_at,
+        ae1_0.date_of_birth,
+        ae1_0.first_name,
+        ae1_0.gender,
+        ae1_0.last_name,
+        ae1_0.updated_at,
+        ae1_0.version 
+    from
+        athletes ae1_0
+2026-05-18T14:12:14.451+03:00 DEBUG 21300 --- [winter-olympics-pro] [nio-8091-exec-1] org.hibernate.SQL                        : 
+    select
+        ce1_0.id,
+        ce1_0.created_at,
+        ce1_0.finished,
+        ce1_0.gender,
+        ce1_0.held_on,
+        ce1_0.min_age,
+        ce1_0.name,
+        ce1_0.type,
+        ce1_0.updated_at,
+        ce1_0.version 
+    from
+        competitions ce1_0
+2026-05-18T14:12:14.451+03:00 DEBUG 21300 --- [winter-olympics-pro] [nio-8091-exec-1] com.inf.olympics.config.LoggingAspect    : OlympicsAggregateService.getStats() completed in 95970 us
+2026-05-18T14:56:29.987+03:00 DEBUG 21300 --- [winter-olympics-pro] [nio-8091-exec-6] org.hibernate.SQL                        : 
+    select
+        ce1_0.id,
+        ce1_0.created_at,
+        ce1_0.finished,
+        ce1_0.gender,
+        ce1_0.held_on,
+        ce1_0.min_age,
+        ce1_0.name,
+        ce1_0.type,
+        ce1_0.updated_at,
+        ce1_0.version 
+    from
+        competitions ce1_0 
+    where
+        ce1_0.id=?
+2026-05-18T14:56:30.003+03:00  WARN 21300 --- [winter-olympics-pro] [nio-8091-exec-6] com.inf.olympics.config.LoggingAspect    : CompetitionService.findById(..) threw CompetitionNotFoundException: Competition with id 999 was not found
