@@ -1,6 +1,5 @@
 -- Migration: v1.0.0_initial_schema.sql
 -- Date: 2026-05-08
--- Specs: SDD-MN-DOM-001..005, SDD-MN-INF-002, SDD-MN-INF-003
 -- Description: Reference SQL for the initial MeepleNight schema. The actual schema
 --              is created and maintained via EF Core C# migrations (see Migrations/
 --              folder after running `dotnet ef migrations add Initial`). This file is
